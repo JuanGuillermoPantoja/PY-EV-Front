@@ -25,14 +25,15 @@ function EventsPage() {
       <div className="h-screen overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
         <h1 className="h-[10%] text-7xl text-[#FFEEB3]
         max-[1024px]:text-6xl
-        max-[600ox]:text-5xl">Eventos</h1>
+        max-[600ox]:text-5xl
+        max-[480px]:text-4xl">Eventos</h1>
         <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
           {events.map((event, index) => (
             <div
               key={event.id}
               className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] shadow-2xl shadow-black 
-              max-[1024px]:w-[30%]
-              max-[768px]:w-[40%]"
+              max-[1024px]:w-[30%] min-[769px]:w-[30%]:
+              max-[768px]:w-[50%]"/*aqui voyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */
             >
               <img
                 className="w-full h-2/5 border-[#AC703E] rounded-t-lg"

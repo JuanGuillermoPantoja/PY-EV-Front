@@ -8,8 +8,7 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-[#4A2D0B] h-[90px] flex justify-between items-center px-4
-          max-[480px]:">
+          <nav className="bg-[#4A2D0B] h-[90px] flex justify-between items-center px-4">
             <h1 className="text-3xl font-bold
             max-[768px]:text-2xl
             max-[600px]:text-xl
@@ -19,7 +18,7 @@ function Navbar() {
             <ul className="flex gap-x-2 text-3xl
             max-[768px]:text-2xl
             max-[600px]:text-xl
-            max-[480px]:text-lg">
+            max-[480px]:text-base">
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
                 {user.username}
               </li>
