@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import Navbar from "../components/Navbar";
+import FooterAdmin from "../components/FooterAdmin";
 dayjs.extend(utc);
 
 function EventsPage() {
@@ -86,6 +87,7 @@ function EventsPage() {
           ))}
         </div>
       </div>
+      <FooterAdmin/>
     </>
   );
 }
