@@ -20,7 +20,7 @@ function LoginClientsPage() {
 
   const onSubmit = handleSubmit((data) => {
     clientSignin(data);
-    console.log("data",data);
+    console.log("data", data);
   });
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function LoginClientsPage() {
         <div className="flex justify-center items-center h-4/5 w-[80%]">
           <div className="flex flex-col justify-center items-center w-1/2">
             <Link to="/">
-              <img className="w-1/2" src={logoeventBrew} alt="" />
+              <img src={logoeventBrew} alt="" />
             </Link>
             <p className="bg-[#4A2D0B] rounded-full py-1 px-4 text-[#FFEEB3] text-2xl ">
               ¿Aún no tienes cuenta? Registrate aquí.
@@ -48,14 +48,12 @@ function LoginClientsPage() {
               </NavLink>
             </p>
           </div>
-          
+
           <form
             className="flex flex-col items-center w-1/2 h-[70%]"
             onSubmit={onSubmit}
           >
             <div className="bg-[#0000004f] rounded-xl flex flex-col justify-center items-center w-4/5 h-full">
-              
-
               <input
                 className="my-2 w-2/3 h-12 text-lg bg-[#FFEEB3] text-[#AC703E] pl-2 font-bold placeholder-[#AC703E] placeholder:font-bold"
                 type="email"

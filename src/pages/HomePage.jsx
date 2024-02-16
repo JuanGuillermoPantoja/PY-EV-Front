@@ -20,7 +20,7 @@ function HomePage() {
             </NavLink>
             <NavLink
               className="bg-[#FFEEB3] text-black h-full w-1/3 text-2xl border rounded-2xl flex justify-center items-center font-bold hover:shadow-2xl hover:text-3xl"
-              to="/register"
+              to="/register-clients"
             >
               Registrate
             </NavLink>

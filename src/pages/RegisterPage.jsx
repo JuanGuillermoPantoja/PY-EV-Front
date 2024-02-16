@@ -24,7 +24,7 @@ function RegisterPage() {
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover">
-        <h2 className="text-7xl text-[#FFEEB3]">REGISTRATE</h2>
+        <h2 className="text-7xl text-[#FFEEB3]">REGISTRO ADMINISTRADOR</h2>
         <div className="flex justify-center items-center h-4/5 w-[80%]">
           <div className="flex flex-col justify-center items-center w-1/2">
             <Link to="/">

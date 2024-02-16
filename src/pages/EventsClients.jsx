@@ -78,6 +78,7 @@ import dayjs from "dayjs";
 import { getEventsClientsRequest } from "../api/event";
 import { useClientAuth } from "../context/ClientContex";
 import { useComments } from "../context/CommentsContext";
+import NavbarHome from "../components/NavbarHome";
 
 function EventsClients() {
   const { createComment, comments, getComments } = useComments();
@@ -91,7 +92,7 @@ function EventsClients() {
       try {
         const res = await getEventsClientsRequest();
         setEvents(
-          res.data.filter((event) => event.done !== false && event.done !== 0),
+          res.data.filter((event) => event.done !== false && event.done !== 0)
         );
       } catch (error) {
         console.error(error);
@@ -131,8 +132,11 @@ function EventsClients() {
 
   return (
     <>
+      <NavbarHome />
       <div className="h-screen overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="h-[10%] text-7xl text-[#FFEEB3]">Eventos</h1>
+        <h1 className="h-[10%] text-7xl text-[#FFEEB3] my-4">
+          Eventos disponibles
+        </h1>
         <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
           {events.length === 0 && (
             <h1 className='h-screen bg-cover w-full bg-center bg-[url("https://i.ibb.co/LQf91TG/fondo-EB.webp")] text-7xl text-center'>
