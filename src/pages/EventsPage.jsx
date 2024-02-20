@@ -23,17 +23,21 @@ function EventsPage() {
     <>
       <Navbar />
       <div className="h-screen overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="h-[10%] text-7xl text-[#FFEEB3]
+        <h1
+          className="h-[10%] text-7xl text-[#FFEEB3]
         max-[1024px]:text-6xl
         max-[600ox]:text-5xl
-        max-[480px]:text-4xl">Eventos</h1>
+        max-[480px]:text-4xl"
+        >
+          Eventos
+        </h1>
         <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
           {events.map((event, index) => (
             <div
               key={event.id}
               className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] shadow-2xl shadow-black 
               max-[1024px]:w-[30%] min-[769px]:w-[30%]:
-              max-[768px]:w-[50%]"/*aqui voyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */
+              max-[768px]:w-[50%]" /*aqui voyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */
             >
               <img
                 className="w-full h-2/5 border-[#AC703E] rounded-t-lg"
@@ -44,8 +48,12 @@ function EventsPage() {
                 <div className="flex-col bg-black w-full">
                   <div className="flex justify-between w-full h-[50%] mb-2">
                     <div className="w-[65%]">
-                      <p className="text-left font-bold
-                      max-[768px]:text-base">Nombre del local:</p>
+                      <p
+                        className="text-left font-bold
+                      max-[768px]:text-base"
+                      >
+                        Nombre del local:
+                      </p>
                       <p className="text-left text-xl">{event.title}</p>
                     </div>
                     <div className="w-[35%]">
@@ -89,7 +97,7 @@ function EventsPage() {
                     }
                     onClick={() => changeColor(event.id)}
                   >
-                    Mostrar
+                    {event.done === 1 ? "Ocultar" : "Mostrar"}
                   </button>
                 </div>
               </div>
@@ -97,7 +105,7 @@ function EventsPage() {
           ))}
         </div>
       </div>
-      <FooterAdmin/>
+      <FooterAdmin />
     </>
   );
 }

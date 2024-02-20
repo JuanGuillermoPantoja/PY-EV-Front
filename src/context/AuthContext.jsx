@@ -64,7 +64,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function checkLogin() {
       const token = localStorage.getItem("token");
-      console.log("cookies", token);
 
       if (!token) {
         setIsAuthenticated(false);
@@ -93,8 +92,6 @@ export const AuthProvider = ({ children }) => {
     }
     checkLogin();
   }, []);
-  
-
 
   return (
     <AuthContext.Provider

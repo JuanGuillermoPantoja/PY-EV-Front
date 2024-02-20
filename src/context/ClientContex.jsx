@@ -3,6 +3,7 @@ import {
   clientRegisterRequest,
   clientLoginRequest,
   verifyClientTokenRequest,
+  formContactRequest,
 } from "../api/authClients";
 import Cookies from "js-cookie";
 
@@ -21,10 +22,6 @@ export const ClientAuthProvider = ({ children }) => {
   const [isClientAuthenticated, setIsClientAuthenticated] = useState(false);
   const [clientErrors, setClientErrors] = useState([]);
   const [clientLoading, setClientLoading] = useState(true);
-
-  useEffect(() => {
-    console.log("autenticated", isClientAuthenticated);
-  });
 
   const clientSignup = async (client) => {
     try {
@@ -54,8 +51,17 @@ export const ClientAuthProvider = ({ children }) => {
     }
   };
 
+  const formContact = async (data) => {
+    try {
+      const res = await formContactRequest(data);
+      console.log("contact", res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const clientLogout = () => {
-    Cookies.remove("clientToken");
+    localStorage.removeItem("clienToken");
     setIsClientAuthenticated(false);
     setClient(null);
   };
@@ -71,7 +77,7 @@ export const ClientAuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function checkLogin() {
-      const clientToken = localStorage.getItem("clientToken");
+      const clientToken = localStorage.getItem("clienToken");
 
       if (!clientToken) {
         setIsClientAuthenticated(false);
@@ -107,6 +113,7 @@ export const ClientAuthProvider = ({ children }) => {
         clientSignup,
         clientSignin,
         clientLogout,
+        formContact,
         clientLoading,
         client,
         isClientAuthenticated,

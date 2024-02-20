@@ -4,7 +4,7 @@ import logoEventBrew from "../img/logoeventsBrew.png";
 import { useClientAuth } from "../context/ClientContex";
 
 function NavbarHome() {
-  const { isClientAuthenticated } = useClientAuth();
+  const { isClientAuthenticated, client, clientLogout } = useClientAuth();
   return (
     <>
       {isClientAuthenticated ? (
@@ -13,10 +13,17 @@ function NavbarHome() {
             <img className="w-[7%]" src={logoEventBrew} alt="" />
             <ul className="flex gap-x-2 text-3xl">
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
-                <Link to="/login-clients">salir</Link>
+                {client.client.name}
               </li>
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
-                <Link to="/register-clients">Registrarse</Link>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    clientLogout();
+                  }}
+                >
+                  salir
+                </Link>
               </li>
             </ul>
           </nav>
