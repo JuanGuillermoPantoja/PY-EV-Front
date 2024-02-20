@@ -5,7 +5,7 @@ import {
   verifyClientTokenRequest,
   formContactRequest,
 } from "../api/authClients";
-import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 export const ClientsContext = createContext();
 
@@ -55,6 +55,18 @@ export const ClientAuthProvider = ({ children }) => {
     try {
       const res = await formContactRequest(data);
       console.log("contact", res);
+      if (res.status === 200) {
+        Swal.fire({
+          title: "Mensaje enviado correctamente",
+          footer: `<h1> Gracias por contactarnos </h1>`,
+          icon: "success",
+          color: "#AC703E",
+          iconColor: "#AC703E",
+          background: "#FFEEB3",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+      }
     } catch (error) {
       console.log(error);
     }

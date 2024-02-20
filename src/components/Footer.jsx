@@ -4,7 +4,11 @@ import { useForm } from "react-hook-form";
 import { useClientAuth } from "../context/ClientContex";
 
 function Footer() {
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const { formContact } = useClientAuth();
 
   const onSubmit = handleSubmit((data) => {
@@ -13,8 +17,8 @@ function Footer() {
   });
   return (
     <>
-      <footer>
-        <div className="bg-[#4c3b22] w-full h-[350px] flex justify-center items-center">
+      <footer className="">
+        <div className="bg-[#4c3b22] w-full  flex justify-center items-center">
           <div className="p-4 w-[30%]">
             <form
               className=" bg-[#534320] rounded-md p-2 shadow-md shadow-black"
@@ -35,8 +39,13 @@ function Footer() {
                 <input
                   type="text"
                   className="bg-[#d5a6685e] font-sans"
-                  {...register("name")}
+                  {...register("name", { required: true })}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-lg">
+                    Este campo es requerido
+                  </p>
+                )}
               </div>
               <div className="flex flex-col">
                 <label className="text-lg text-[#FFEEB3] font-sans">
@@ -45,8 +54,16 @@ function Footer() {
                 <input
                   type="text"
                   className="bg-[#d5a6685e] font-sans"
-                  {...register("email")}
+                  {...register("email", {
+                    required: true,
+                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // Expresión regular para validar el formato del correo electrónico
+                  })}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-lg">
+                    Correo electrónico inválido
+                  </p>
+                )}
               </div>
               <div className="flex flex-col">
                 <label className="text-lg text-[#FFEEB3] font-sans">
@@ -56,8 +73,13 @@ function Footer() {
                   cols="10"
                   rows="3"
                   className="bg-[#d5a6685e] font-sans"
-                  {...register("content")}
+                  {...register("content", { required: true })}
                 ></textarea>
+                {errors.content && (
+                  <p className="text-red-500 text-lg">
+                    Este campo es requerido
+                  </p>
+                )}
               </div>
               <div className="flex items-center justify-center">
                 <button className="w-[35%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 text-center font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">

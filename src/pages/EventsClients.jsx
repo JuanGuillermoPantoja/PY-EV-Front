@@ -5,6 +5,7 @@ import { useClientAuth } from "../context/ClientContex";
 import { useComments } from "../context/CommentsContext";
 import NavbarHome from "../components/NavbarHome";
 import Footer from "../components/Footer";
+import Swal from "sweetalert2";
 
 function EventsClients() {
   const { createComment, comments, getComments } = useComments();
@@ -33,7 +34,15 @@ function EventsClients() {
 
   const handleCommentSubmit = async (data) => {
     if (!isClientAuthenticated) {
-      alert("Debes iniciar sesión para comentar");
+      Swal.fire({
+        title: "Debes iniciar sesion para comentar",
+        icon: "error",
+        color: "#AC703E",
+        iconColor: "#AC703E",
+        background: "#FFEEB3",
+        timer: 3000,
+        showConfirmButton: false,
+      });
       return;
     }
 
@@ -157,7 +166,7 @@ function EventsClients() {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }
