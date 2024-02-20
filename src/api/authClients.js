@@ -1,8 +1,30 @@
-import axios from "./axios";
+import axios from './axios';
 
-export const clientRegisterRequest = (client) => axios.post(`/registerClients`, client);
+const ruta_protegida = () => {
+	// Recuperar el token del localStorage
+	const token = localStorage.getItem('clienToken');
+	if (token) {
+		const clienteAxios = instance.create({
+			headers: {
+				authorization: `Bearer ${token}`,
+			},
+		});
+		return clienteAxios;
+	} else {
+		const clienteAxios = instance.create({
+			headers: {
+				authorization: `Bearer null`,
+			},
+		});
+		return clienteAxios;
+	}
+};
 
-export const clientLoginRequest = (client) => axios.post(`/loginClients`, client);
+export const clientRegisterRequest = (client) =>
+	axios.post(`/registerClients`, client);
 
-export const verifyClientTokenRequest = () => axios.get(`/clientVerify`)
-  
+export const clientLoginRequest = (client) =>
+	axios.post(`/loginClients`, client);
+
+export const verifyClientTokenRequest = () =>
+	ruta_protegida().get(`/clientVerify`);

@@ -14,9 +14,9 @@ export const useComments = () => {
 export function CommentProvider({ children }) {
   const [comments, setComments] = useState([]);
 
-  const getComments = async () => {
+  const getComments = async (event_id) => {
     try {
-      const res = await ruta_protegida().get("/comments");
+      const res = await ruta_protegida().get(`/comments?event_id=${event_id}`);
       console.log("respuesta al traer comentarios", res);
       setComments(res.data);
     } catch (error) {

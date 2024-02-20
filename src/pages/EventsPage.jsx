@@ -23,12 +23,17 @@ function EventsPage() {
     <>
       <Navbar />
       <div className="h-screen overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="h-[10%] text-7xl text-[#FFEEB3]">Eventos</h1>
+        <h1 className="h-[10%] text-7xl text-[#FFEEB3]
+        max-[1024px]:text-6xl
+        max-[600ox]:text-5xl
+        max-[480px]:text-4xl">Eventos</h1>
         <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
           {events.map((event, index) => (
             <div
               key={event.id}
-              className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] shadow-2xl shadow-black "
+              className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] shadow-2xl shadow-black 
+              max-[1024px]:w-[30%] min-[769px]:w-[30%]:
+              max-[768px]:w-[50%]"/*aqui voyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy */
             >
               <img
                 className="w-full h-2/5 border-[#AC703E] rounded-t-lg"
@@ -39,7 +44,8 @@ function EventsPage() {
                 <div className="flex-col bg-black w-full">
                   <div className="flex justify-between w-full h-[50%] mb-2">
                     <div className="w-[65%]">
-                      <p className="text-left font-bold">Nombre del local:</p>
+                      <p className="text-left font-bold
+                      max-[768px]:text-base">Nombre del local:</p>
                       <p className="text-left text-xl">{event.title}</p>
                     </div>
                     <div className="w-[35%]">
@@ -56,13 +62,17 @@ function EventsPage() {
                 <p className="text-left text-xl h-[30%]">{event.description}</p>
                 <div className="w-full flex justify-between items-center">
                   <Link
-                    className="flex items-center justify-center bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-2/5 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+                    className="flex items-center justify-center bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-2/5 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300
+                    max-[1024px]:text-lg
+                    max-[768px]:text-base"
                     to={`/events/${event.id}`}
                   >
                     Editar evento
                   </Link>
                   <button
-                    className="bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 hover:bg-red-700 hover:text-[#FFEEB3] duration-300"
+                    className="bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 hover:bg-red-700 hover:text-[#FFEEB3] duration-300
+                    max-[1024px]:text-lg
+                    max-[768px]:text-base"
                     onClick={() => {
                       deleteEvent(event.id);
                     }}
@@ -74,8 +84,8 @@ function EventsPage() {
                   <button
                     className={
                       event.done === 1
-                        ? "bg-green-700 text-white text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 duration-300"
-                        : "bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 duration-300 "
+                        ? "bg-green-700 text-white text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 duration-300 max-[1024px]:text-lg max-[768px]:text-base"
+                        : "bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 duration-300 max-[1024px]:text-lg max-[768px]:text-base"
                     }
                     onClick={() => changeColor(event.id)}
                   >
