@@ -76,9 +76,12 @@ function EventsFormPage() {
     <>
       <Navbar></Navbar>
       <div className="h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
-        <div className="flex justify-around items-center bg-[#0000007c] w-4/5 h-3/4 rounded-2xl border-4 border-[#AC703E]">
+        <div className="flex justify-around items-center bg-[#0000007c] w-4/5 h-3/4 rounded-2xl border-4 border-[#AC703E]
+        md:w-3/5
+        lg:w-1/2
+        xl:w-2/5">
           <form
-            className="flex flex-col h-full w-1/2 justify-center items-center mx-5"
+            className="flex flex-col h-full w-3/4 justify-center items-center mx-5"
             onSubmit={onSubmit}
           >
             <label
@@ -141,13 +144,14 @@ function EventsFormPage() {
             <div className="flex flex-col items-center">
               <input
                 onChange={handleFile}
-                className="border-4 border-[#AC703E] w-[360px] h-2/5 rounded-full hover:cursor-pointer"
+                className="border-4 border-[#AC703E] w-[260px] h-2/5 rounded-full hover:cursor-pointer 
+                md:w-[345px]"
                 type="file"
               />
               <button
                 onSubmit={onSubmit}
                 onClick={handleUpload}
-                className="bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold h-12 w-1/3 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+                className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-1/3 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
               >
                 Add
               </button>

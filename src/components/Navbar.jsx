@@ -7,31 +7,33 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-[#4A2D0B] h-[90px] flex justify-between items-center px-4">
+          <nav className="bg-[#4A2D0B] h-[70px] flex justify-between items-center px-4 
+          sm:h-[90px]">
             <h1
-              className="text-3xl font-bold
-            max-[768px]:text-2xl
-            max-[600px]:text-xl
-            max-[480px]:text-lg"
+              className="font-bold text-xl
+            lg:text-4xl
+            md:text-3xl
+            sm:text-2xl"
             >
               <Link to="/">EventsBrew</Link>
             </h1>
             <ul
-              className="flex gap-x-2 text-3xl
-            max-[768px]:text-2xl
-            max-[600px]:text-xl
-            max-[480px]:text-base"
+              className="flex gap-x-2 text-base
+            xl:text-3xl
+            lg:text-3xl
+            md:text-2xl
+            sm:text-xl"
             >
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
                 {user.user.username}
               </li>
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
                 <Link to="/events">Mis eventos</Link>
               </li>
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
                 <Link to="/add-event">Añadir evento</Link>
               </li>
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
                 <Link
                   to="/"
                   onClick={() => {

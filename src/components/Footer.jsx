@@ -18,22 +18,23 @@ function Footer() {
   return (
     <>
       <footer className="">
-        <div className="bg-[#4c3b22] w-full  flex justify-center items-center">
-          <div className="p-4 w-[30%]">
+        <div className="bg-[#4c3b22] flex flex-col items-center
+        lg:w-full  lg:flex lg:justify-center lg:items-center">
+          <div className="p-4 w-full ">
             <form
               className=" bg-[#534320] rounded-md p-2 shadow-md shadow-black"
               onSubmit={onSubmit}
             >
               <div>
-                <h2 className="text-xl text-[#FFEEB3] text-center font-sans">
+                <h2 className="text-base text-[#FFEEB3] text-center font-sans">
                   ¿Deseas agregar los eventos de tu establecimiento?
                 </h2>
-                <h3 className="text-lg text-[#FFEEB3] font-bold font-sans text-center">
+                <h3 className="text-base text-[#FFEEB3] font-bold font-sans text-center">
                   Contactanos
                 </h3>
               </div>
               <div className="flex flex-col">
-                <label className="text-lg text-[#FFEEB3] font-sans">
+                <label className="text-base text-[#FFEEB3] font-sans">
                   Nombre:
                 </label>
                 <input
@@ -48,7 +49,7 @@ function Footer() {
                 )}
               </div>
               <div className="flex flex-col">
-                <label className="text-lg text-[#FFEEB3] font-sans">
+                <label className="text-base text-[#FFEEB3] font-sans">
                   Correo:
                 </label>
                 <input
@@ -66,7 +67,7 @@ function Footer() {
                 )}
               </div>
               <div className="flex flex-col">
-                <label className="text-lg text-[#FFEEB3] font-sans">
+                <label className="text-base text-[#FFEEB3] font-sans">
                   Motivo:
                 </label>
                 <textarea
@@ -82,19 +83,19 @@ function Footer() {
                 )}
               </div>
               <div className="flex items-center justify-center">
-                <button className="w-[35%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 text-center font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+                <button className="w-[30%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 text-center font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
                   Enviar
                 </button>
               </div>
             </form>
           </div>
-          <div className="p-4 w-[70%] flex flex-col">
+          <div className="p-4 w-full flex flex-col">
             <div className="bg-[#534320] rounded-md p-2 shadow-md shadow-black">
-              <h2 className="h-[10%] text-3xl text-[#aa9857] text-start font-bold font-sans">
+              <h2 className="text-xl text-[#aa9857] text-start font-bold font-sans">
                 EventsBrews
               </h2>
               <br />
-              <p className="h-[10%] text-xl text-[#FFEEB3] font-sans">
+              <p className="h-[10%] text-base text-[#FFEEB3] font-sans">
                 Con un enfoque en la comodidad y la accesibilidad, nuestra
                 aplicación proporciona a los clientes una ventana abierta a un
                 mundo de experiencias en tiempo real. EventsBrew es una
@@ -109,8 +110,8 @@ function Footer() {
               </p>
             </div>
             <div className="flex justify-start items-center">
-              <img src={logoeventBrew} className="w-[8%] h-[8%]" alt="" />
-              <p className="text-2xl text-[#FFEEB3] text-end font-sans">
+              <img src={logoeventBrew} className="w-[15%] h-[8%]" alt="" />
+              <p className="text-xl text-[#FFEEB3] text-end font-sans">
                 ©EventsBrews
               </p>
             </div>
