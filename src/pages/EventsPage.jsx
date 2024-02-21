@@ -36,7 +36,8 @@ function EventsPage() {
             <div
               key={event.id}
               className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] shadow-2xl shadow-black
-              lg:w-[24%] lg:h-[90%]
+              xl:w-[28%]
+              lg:w-[25%] lg:h-[90%]
               sm:w-2/5 sm:h-4/5">
               <img
                 className="w-full h-2/5 border-[#AC703E] rounded-t-lg"

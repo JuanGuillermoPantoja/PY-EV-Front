@@ -18,11 +18,10 @@ function Footer() {
   return (
     <>
       <footer className="">
-        <div
-          className="bg-[#4c3b22] flex flex-col items-center
-        lg:w-full  lg:flex lg:justify-center lg:items-center"
-        >
-          <div className="p-4 w-full ">
+        <div className="bg-[#4c3b22] flex flex-col items-center
+        lg:w-full  lg:flex lg:justify-center lg:items-center">
+          <div className="p-4 w-full 
+          sm:w-11/12">
             <form
               className=" bg-[#534320] rounded-md p-2 shadow-md shadow-black"
               onSubmit={onSubmit}
@@ -97,7 +96,8 @@ function Footer() {
               </div>
             </form>
           </div>
-          <div className="p-4 w-full flex flex-col">
+          <div className="p-4 w-full flex flex-col
+          sm:w-11/12">
             <div className="bg-[#534320] rounded-md p-2 shadow-md shadow-black">
               <h2 className="text-xl text-[#aa9857] text-start font-bold font-sans">
                 EventsBrews
