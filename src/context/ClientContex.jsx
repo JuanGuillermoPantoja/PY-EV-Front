@@ -38,7 +38,6 @@ export const ClientAuthProvider = ({ children }) => {
   const clientSignin = async (client) => {
     try {
       const res = await clientLoginRequest(client);
-      console.log("client", res.data.token);
       localStorage.setItem("clienToken", res.data.token);
       setIsClientAuthenticated(true);
       setClient(res.data);
@@ -54,7 +53,6 @@ export const ClientAuthProvider = ({ children }) => {
   const formContact = async (data) => {
     try {
       const res = await formContactRequest(data);
-      console.log("contact", res);
       if (res.status === 200) {
         Swal.fire({
           title: "Mensaje enviado correctamente",
@@ -99,7 +97,6 @@ export const ClientAuthProvider = ({ children }) => {
 
       try {
         const res = await verifyClientTokenRequest(clientToken);
-        console.log(res);
         if (!res.data) {
           setIsClientAuthenticated(false);
           setClientLoading(false);

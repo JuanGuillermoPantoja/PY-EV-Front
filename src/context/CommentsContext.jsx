@@ -17,20 +17,36 @@ export function CommentProvider({ children }) {
   const getComments = async (event_id) => {
     try {
       const res = await ruta_protegida().get(`/comments?event_id=${event_id}`);
-      console.log("respuesta al traer comentarios", res);
       setComments(res.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const createComment = async (event_id, comment_text) => {
+  const createComment = async (event_id, comment_text, client_id) => {
     try {
       const res = await ruta_protegida().post(`/comments`, {
         comment_text,
         event_id,
+        client_id,
       });
       console.log("----", res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteComment = async (comment_id, client_id) => {
+    console.log("comentario id", comment_id + " cliente id ", client_id);
+    try {
+      const res = await ruta_protegida().delete(
+        `/comments/${comment_id}?client_id=${client_id}`
+      );
+      console.log(res);
+      if (res.status === 204) {
+        // Si fue exitosa, actualizar el estado eliminando el comentario
+        setComments(comments.filter((comments) => comments.id !== id));
+      }
     } catch (error) {
       console.error(error);
     }
@@ -62,6 +78,7 @@ export function CommentProvider({ children }) {
         comments,
         getComments,
         createComment,
+        deleteComment,
       }}
     >
       {children}

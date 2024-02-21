@@ -10,8 +10,8 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 function EventsClients() {
-  const { createComment, comments, getComments } = useComments();
-  const { isClientAuthenticated } = useClientAuth();
+  const { createComment, comments, getComments, deleteComment } = useComments();
+  const { isClientAuthenticated, client } = useClientAuth();
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [comment, setComment] = useState("");
@@ -48,7 +48,7 @@ function EventsClients() {
       return;
     }
 
-    createComment(selectedEvent.id, comment);
+    createComment(selectedEvent.id, comment, client.client.id);
     //limpia el comentario despues de enviarlo
     setComment("");
   };
@@ -60,6 +60,14 @@ function EventsClients() {
 
   const handleCloseModal = () => {
     setSelectedEvent(null);
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment(commentId, client.client.id); // Llamar a la función deleteComment con el ID del comentario
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -78,7 +86,7 @@ function EventsClients() {
           {events.map((event) => (
             <div
               key={event.id}
-              className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black"
+              className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black "
             >
               <img
                 className="w-full h-2/5 rounded-t-lg"
@@ -86,7 +94,7 @@ function EventsClients() {
                 alt=""
               />
               <div className="flex flex-col justify-between items-center h-[60%] w-full">
-                <div className="flex-col  bg-black w-full">
+                <div className="flex-col  bg-black w-full p-1">
                   <div className="flex justify-between w-full h-[50%] mb-2">
                     <div className="w-[65%]">
                       <p className="text-left font-bold ">Nombre del local:</p>
@@ -113,7 +121,7 @@ function EventsClients() {
                 </p>
                 <button
                   onClick={() => handleOpenModal(event)}
-                  className="w-[35%] h-[15%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+                  className="w-[25%] h-[10%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
                 >
                   Comentarios
                 </button>
@@ -125,12 +133,12 @@ function EventsClients() {
       {/* Modal de comentarios */}
       {selectedEvent && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-[#FFEEB3] text-[#AC703E] p-8 rounded-lg w-1/2">
-            <h2 className="text-2xl mb-4">{selectedEvent.title}</h2>
+          <div className="bg-[#AC703E] text-[#FFEEB3] p-8 rounded-lg w-1/2">
+            <h2 className="text-3xl mb-4">{selectedEvent.title}</h2>
             <textarea
               value={comment}
               onChange={handleCommentChange}
-              className="w-full bg-[#AC703E] text-[#FFEEB3] placeholder:text-[#FFEEB3]   font-bold"
+              className="w-full bg-[#FFEEB3] text-[#AC703E] text-lg placeholder:text-[#AC703E]   font-bold"
               placeholder="Escribe tu comentario aquí..."
             ></textarea>
 
@@ -138,14 +146,24 @@ function EventsClients() {
 
             <div className="mt-4">
               {comments.map((comment, index) => (
-                <div key={index} className="rounded-lg mb-1">
-                  <p className="bg-[#AC703E] text-[#FFEEB3] flex justify-between px-2">
-                    {comment.comment_text} <span>{dayjs(comment.create_at).utc().format("DD/MM/YYYY - HH:mm")}</span>
+                <div key={index} className="rounded-xl mb-1">
+                  <p className="bg-[#FFEEB3] text-[#AC703E] text-lg flex justify-between px-2 rounded-xl">
+                    {comment.comment_text}{" "}
+                    <span>
+                      {dayjs(comment.created_at)
+                        .utc()
+                        .format("DD/MM/YYYY - HH:mm")}
+                      <button
+                        className="ml-8"
+                        onClick={() => handleDeleteComment(comment.id)}
+                      >
+                        Eliminar
+                      </button>
+                    </span>
                   </p>
+                  {console.log(comments)}
                 </div>
-                
               ))}
-              {console.log("comments",comments)}
             </div>
 
             <div className="flex justify-between mt-4">
