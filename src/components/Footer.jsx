@@ -18,8 +18,10 @@ function Footer() {
   return (
     <>
       <footer className="">
-        <div className="bg-[#4c3b22] flex flex-col items-center
-        lg:w-full  lg:flex lg:justify-center lg:items-center">
+        <div
+          className="bg-[#4c3b22] flex flex-col items-center
+        lg:w-full  lg:flex lg:justify-center lg:items-center"
+        >
           <div className="p-4 w-full ">
             <form
               className=" bg-[#534320] rounded-md p-2 shadow-md shadow-black"
@@ -34,11 +36,7 @@ function Footer() {
                 </h3>
               </div>
               <div className="flex flex-col">
-<<<<<<< HEAD
-                <label className="text-base text-[#FFEEB3] font-sans">
-=======
                 <label className="text-lg text-[#FFEEB3] font-sans flex">
->>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                   Nombre:
                   <span>
                     {errors.name && (
@@ -55,11 +53,7 @@ function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-<<<<<<< HEAD
-                <label className="text-base text-[#FFEEB3] font-sans">
-=======
                 <label className="text-lg text-[#FFEEB3] font-sans mt-2 flex">
->>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                   Correo:
                   <span className="flex justify-end">
                     {errors.email && (
@@ -79,10 +73,6 @@ function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-<<<<<<< HEAD
-                <label className="text-base text-[#FFEEB3] font-sans">
-                  Motivo:
-=======
                 <label className="text-lg text-[#FFEEB3] font-sans flex mt-2">
                   Motivo:{" "}
                   <span>
@@ -92,7 +82,6 @@ function Footer() {
                       </p>
                     )}
                   </span>
->>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                 </label>
                 <textarea
                   cols="10"

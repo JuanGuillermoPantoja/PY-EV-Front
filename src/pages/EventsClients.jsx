@@ -86,11 +86,7 @@ function EventsClients() {
           {events.map((event) => (
             <div
               key={event.id}
-<<<<<<< HEAD
-              className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black"
-=======
               className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black "
->>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
             >
               <img
                 className="w-full h-2/5 rounded-t-lg"
@@ -101,13 +97,17 @@ function EventsClients() {
                 <div className="flex-col  bg-black w-full p-1">
                   <div className="flex justify-between w-full h-[50%] mb-2">
                     <div className="w-[65%]">
-                      <p className="text-left font-bold text-sm">Nombre del local:</p>
+                      <p className="text-left font-bold text-sm">
+                        Nombre del local:
+                      </p>
                       <p className="text-left text-sm mb-2 text-[#e6d48e]">
                         {event.title}
                       </p>
                     </div>
                     <div className="w-[35%]">
-                      <p className="text-right font-bold text-sm">Fecha del evento:</p>
+                      <p className="text-right font-bold text-sm">
+                        Fecha del evento:
+                      </p>
                       <p className="text-right text-sm">
                         {dayjs(event.dates).utc().format("DD/MM/YYYY")}
                       </p>
@@ -125,11 +125,7 @@ function EventsClients() {
                 </p>
                 <button
                   onClick={() => handleOpenModal(event)}
-<<<<<<< HEAD
-                  className="w-[35%] h-8 bg-[#FFEEB3] text-[#AC703E] text-sm m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
-=======
                   className="w-[25%] h-[10%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
->>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                 >
                   Comentarios
                 </button>
@@ -187,7 +183,7 @@ function EventsClients() {
               >
                 Enviar comentario
               </button>
-            </div>            
+            </div>
           </div>
         </div>
       )}
