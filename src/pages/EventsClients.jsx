@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
 import { getEventsClientsRequest } from "../api/event";
 import { useClientAuth } from "../context/ClientContex";
 import { useComments } from "../context/CommentsContext";
 import NavbarHome from "../components/NavbarHome";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 function EventsClients() {
   const { createComment, comments, getComments } = useComments();
@@ -43,11 +45,6 @@ function EventsClients() {
         timer: 3000,
         showConfirmButton: false,
       });
-      return;
-    }
-
-    if (!selectedEvent) {
-      alert("Selecciona un evento antes de comentar");
       return;
     }
 
@@ -127,13 +124,13 @@ function EventsClients() {
       </div>
       {/* Modal de comentarios */}
       {selectedEvent && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-50">
-          <div className="bg-gray-950 p-8 rounded-lg w-1/2">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-[#FFEEB3] text-[#AC703E] p-8 rounded-lg w-1/2">
             <h2 className="text-2xl mb-4">{selectedEvent.title}</h2>
             <textarea
               value={comment}
               onChange={handleCommentChange}
-              className="w-full bg-[#FFEEB3] text-[#AC703E] placeholder:text-[#AC703E] pl-2 font-bold"
+              className="w-full bg-[#AC703E] text-[#FFEEB3] placeholder:text-[#FFEEB3]   font-bold"
               placeholder="Escribe tu comentario aquí..."
             ></textarea>
 
@@ -141,12 +138,14 @@ function EventsClients() {
 
             <div className="mt-4">
               {comments.map((comment, index) => (
-                <div key={index} className="bg-black-300 p-2 rounded-lg mb-2">
-                  <p className="text-white-300 flex justify-between">
-                    {comment.comment_text} <span>{comment.created_at}</span>
+                <div key={index} className="rounded-lg mb-1">
+                  <p className="bg-[#AC703E] text-[#FFEEB3] flex justify-between px-2">
+                    {comment.comment_text} <span>{dayjs(comment.create_at).utc().format("DD/MM/YYYY - HH:mm")}</span>
                   </p>
                 </div>
+                
               ))}
+              {console.log("comments",comments)}
             </div>
 
             <div className="flex justify-between mt-4">
