@@ -8,11 +8,18 @@ import Footer from "../components/Footer";
 import Swal from "sweetalert2";
 
 function EventsClients() {
+<<<<<<< HEAD
   const { createComment, comments, getComments } = useComments();
   const { isClientAuthenticated } = useClientAuth();
+=======
+  const { createComment, comments, getComments, deleteComment, updateComment } =
+    useComments();
+  const { isClientAuthenticated, client } = useClientAuth();
+>>>>>>> d9bad1ff8f3e2136e5d53291bef0353c45a54461
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [comment, setComment] = useState("");
+  const [editingComment, setEditingComment] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,6 +72,31 @@ function EventsClients() {
     setSelectedEvent(null);
   };
 
+<<<<<<< HEAD
+=======
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment(commentId, client.client.id); // Llamar a la función deleteComment con el ID del comentario
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEditComment = (comment) => {
+    setEditingComment(comment); // Establecer el comentario en edición
+    setComment(comment.comment_text); // Establecer el texto del comentario en el campo de entrada
+  };
+
+  const handleUpdateComment = async (commentId) => {
+    try {
+      await updateComment(commentId, client.client.id, comment); // Pasar el nuevo texto del comentario a la función de actualización
+      setEditingComment(null); // Limpiar el estado de edición después de actualizar el comentario
+      setComment("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+>>>>>>> d9bad1ff8f3e2136e5d53291bef0353c45a54461
   return (
     <>
       <NavbarHome />
@@ -157,9 +189,46 @@ function EventsClients() {
 
             <div className="mt-4">
               {comments.map((comment, index) => (
+<<<<<<< HEAD
                 <div key={index} className="bg-black-300 p-2 rounded-lg mb-2">
                   <p className="text-white-300 flex justify-between">
                     {comment.comment_text} <span>{comment.created_at}</span>
+=======
+                <div key={index} className="rounded-xl mb-1">
+                  <p className="bg-[#FFEEB3] text-[#AC703E] text-lg flex justify-between px-2 rounded-xl">
+                    {editingComment && editingComment.id === comment.id ? (
+                      <textarea
+                        value={comment.comment_text}
+                        onChange={(e) => setComment(e.target.value)}
+                      />
+                    ) : (
+                      comment.comment_text
+                    )}
+                    <span>
+                      {dayjs(comment.created_at)
+                        .utc()
+                        .format("DD/MM/YYYY - HH:mm")}
+                      {!editingComment || editingComment.id !== comment.id ? (
+                        <>
+                          <button
+                            className="ml-8"
+                            onClick={() => handleDeleteComment(comment.id)}
+                          >
+                            Eliminar
+                          </button>
+                          <span> | </span>
+                          <button onClick={() => handleEditComment(comment)}>
+                            {" "}
+                            Editar{" "}
+                          </button>
+                        </>
+                      ) : (
+                        <button onClick={() => handleUpdateComment(comment.id)}>
+                          Guardar
+                        </button>
+                      )}
+                    </span>
+>>>>>>> d9bad1ff8f3e2136e5d53291bef0353c45a54461
                   </p>
                 </div>
               ))}
