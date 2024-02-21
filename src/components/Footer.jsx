@@ -34,23 +34,40 @@ function Footer() {
                 </h3>
               </div>
               <div className="flex flex-col">
+<<<<<<< HEAD
                 <label className="text-base text-[#FFEEB3] font-sans">
+=======
+                <label className="text-lg text-[#FFEEB3] font-sans flex">
+>>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                   Nombre:
+                  <span>
+                    {errors.name && (
+                      <p className="text-red-500 text-lg ml-4">
+                        Este campo es requerido*
+                      </p>
+                    )}
+                  </span>
                 </label>
                 <input
                   type="text"
                   className="bg-[#d5a6685e] font-sans"
                   {...register("name", { required: true })}
                 />
-                {errors.name && (
-                  <p className="text-red-500 text-lg">
-                    Este campo es requerido
-                  </p>
-                )}
               </div>
               <div className="flex flex-col">
+<<<<<<< HEAD
                 <label className="text-base text-[#FFEEB3] font-sans">
+=======
+                <label className="text-lg text-[#FFEEB3] font-sans mt-2 flex">
+>>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                   Correo:
+                  <span className="flex justify-end">
+                    {errors.email && (
+                      <p className="text-red-500 text-lg ml-4">
+                        Correo electrónico inválido*
+                      </p>
+                    )}
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -60,15 +77,22 @@ function Footer() {
                     pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // Expresión regular para validar el formato del correo electrónico
                   })}
                 />
-                {errors.email && (
-                  <p className="text-red-500 text-lg">
-                    Correo electrónico inválido
-                  </p>
-                )}
               </div>
               <div className="flex flex-col">
+<<<<<<< HEAD
                 <label className="text-base text-[#FFEEB3] font-sans">
                   Motivo:
+=======
+                <label className="text-lg text-[#FFEEB3] font-sans flex mt-2">
+                  Motivo:{" "}
+                  <span>
+                    {errors.content && (
+                      <p className="text-red-500 text-lg ml-4">
+                        Este campo es requerido*
+                      </p>
+                    )}
+                  </span>
+>>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                 </label>
                 <textarea
                   cols="10"
@@ -76,11 +100,6 @@ function Footer() {
                   className="bg-[#d5a6685e] font-sans"
                   {...register("content", { required: true })}
                 ></textarea>
-                {errors.content && (
-                  <p className="text-red-500 text-lg">
-                    Este campo es requerido
-                  </p>
-                )}
               </div>
               <div className="flex items-center justify-center">
                 <button className="w-[30%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 text-center font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">

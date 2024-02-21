@@ -24,20 +24,6 @@ export function TaskProvider({ children }) {
     }
   };
 
-  // const getEvents = async () => {
-  //   try {
-  //     const token = localStorage.getItem("token"); // Obtener el token del localStorage
-  //     const res = await axios.get("https://events-cqtw.onrender.com/events", {
-  //       headers: {
-  //         authorization: `bearer ${token}`, // Incluir el token en la cabecera
-  //       },
-  //     });
-  //     setEvents(res.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const createEvent = async (event) => {
     const res = await ruta_protegida().post("/events", event);
     console.log(res);
@@ -73,11 +59,13 @@ export function TaskProvider({ children }) {
   const toggleEventDone = async (id) => {
     try {
       const eventFound = events.find((event) => event.id === id);
-      await ruta_protegida().put(`/events/${id}`, { done : eventFound.done === 0 ? true : false });
+      await ruta_protegida().put(`/events/${id}`, {
+        done: eventFound.done === 0 ? true : false,
+      });
       setEvents(
         events.map((event) =>
-          event.id === id ? { ...event, done: !event.done } : event,
-        ),
+          event.id === id ? { ...event, done: !event.done } : event
+        )
       );
     } catch (error) {
       console.error(error);

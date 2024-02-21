@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
 import { getEventsClientsRequest } from "../api/event";
 import { useClientAuth } from "../context/ClientContex";
 import { useComments } from "../context/CommentsContext";
 import NavbarHome from "../components/NavbarHome";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 function EventsClients() {
-  const { createComment, comments, getComments } = useComments();
-  const { isClientAuthenticated } = useClientAuth();
+  const { createComment, comments, getComments, deleteComment } = useComments();
+  const { isClientAuthenticated, client } = useClientAuth();
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [comment, setComment] = useState("");
@@ -46,12 +48,7 @@ function EventsClients() {
       return;
     }
 
-    if (!selectedEvent) {
-      alert("Selecciona un evento antes de comentar");
-      return;
-    }
-
-    createComment(selectedEvent.id, comment);
+    createComment(selectedEvent.id, comment, client.client.id);
     //limpia el comentario despues de enviarlo
     setComment("");
   };
@@ -63,6 +60,14 @@ function EventsClients() {
 
   const handleCloseModal = () => {
     setSelectedEvent(null);
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment(commentId, client.client.id); // Llamar a la función deleteComment con el ID del comentario
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -81,7 +86,11 @@ function EventsClients() {
           {events.map((event) => (
             <div
               key={event.id}
+<<<<<<< HEAD
               className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black"
+=======
+              className="bg-[#000000a4] w-[24%] h-[90%] flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black "
+>>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
             >
               <img
                 className="w-full h-2/5 rounded-t-lg"
@@ -89,7 +98,7 @@ function EventsClients() {
                 alt=""
               />
               <div className="flex flex-col justify-between items-center h-[60%] w-full">
-                <div className="flex-col  bg-black w-full">
+                <div className="flex-col  bg-black w-full p-1">
                   <div className="flex justify-between w-full h-[50%] mb-2">
                     <div className="w-[65%]">
                       <p className="text-left font-bold text-sm">Nombre del local:</p>
@@ -116,7 +125,11 @@ function EventsClients() {
                 </p>
                 <button
                   onClick={() => handleOpenModal(event)}
+<<<<<<< HEAD
                   className="w-[35%] h-8 bg-[#FFEEB3] text-[#AC703E] text-sm m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+=======
+                  className="w-[25%] h-[10%] bg-[#FFEEB3] text-[#AC703E] text-xl m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+>>>>>>> 3a216d25069e524daf878fa03a9cf3ca61583edd
                 >
                   Comentarios
                 </button>
@@ -127,13 +140,13 @@ function EventsClients() {
       </div>
       {/* Modal de comentarios */}
       {selectedEvent && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-50">
-          <div className="bg-gray-950 p-8 rounded-lg w-1/2">
-            <h2 className="text-2xl mb-4">{selectedEvent.title}</h2>
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-[#AC703E] text-[#FFEEB3] p-8 rounded-lg w-1/2">
+            <h2 className="text-3xl mb-4">{selectedEvent.title}</h2>
             <textarea
               value={comment}
               onChange={handleCommentChange}
-              className="w-full bg-[#FFEEB3] text-[#AC703E] placeholder:text-[#AC703E] pl-2 font-bold"
+              className="w-full bg-[#FFEEB3] text-[#AC703E] text-lg placeholder:text-[#AC703E]   font-bold"
               placeholder="Escribe tu comentario aquí..."
             ></textarea>
 
@@ -141,10 +154,22 @@ function EventsClients() {
 
             <div className="mt-4">
               {comments.map((comment, index) => (
-                <div key={index} className="bg-black-300 p-2 rounded-lg mb-2">
-                  <p className="text-white-300 flex justify-between">
-                    {comment.comment_text} <span>{comment.created_at}</span>
+                <div key={index} className="rounded-xl mb-1">
+                  <p className="bg-[#FFEEB3] text-[#AC703E] text-lg flex justify-between px-2 rounded-xl">
+                    {comment.comment_text}{" "}
+                    <span>
+                      {dayjs(comment.created_at)
+                        .utc()
+                        .format("DD/MM/YYYY - HH:mm")}
+                      <button
+                        className="ml-8"
+                        onClick={() => handleDeleteComment(comment.id)}
+                      >
+                        Eliminar
+                      </button>
+                    </span>
                   </p>
+                  {console.log(comments)}
                 </div>
               ))}
             </div>
