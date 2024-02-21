@@ -10,11 +10,13 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 function EventsClients() {
-  const { createComment, comments, getComments, deleteComment } = useComments();
+  const { createComment, comments, getComments, deleteComment, updateComment } =
+    useComments();
   const { isClientAuthenticated, client } = useClientAuth();
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [comment, setComment] = useState("");
+  const [editingComment, setEditingComment] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,6 +72,20 @@ function EventsClients() {
     }
   };
 
+  const handleEditComment = (comment) => {
+    setEditingComment(comment); // Establecer el comentario en edición
+    setComment(comment.comment_text); // Establecer el texto del comentario en el campo de entrada
+  };
+
+  const handleUpdateComment = async (commentId) => {
+    try {
+      await updateComment(commentId, client.client.id, comment); // Pasar el nuevo texto del comentario a la función de actualización
+      setEditingComment(null); // Limpiar el estado de edición después de actualizar el comentario
+      setComment("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       <NavbarHome />
@@ -152,20 +168,39 @@ function EventsClients() {
               {comments.map((comment, index) => (
                 <div key={index} className="rounded-xl mb-1">
                   <p className="bg-[#FFEEB3] text-[#AC703E] text-lg flex justify-between px-2 rounded-xl">
-                    {comment.comment_text}{" "}
+                    {editingComment && editingComment.id === comment.id ? (
+                      <textarea
+                        value={comment.comment_text}
+                        onChange={(e) => setComment(e.target.value)}
+                      />
+                    ) : (
+                      comment.comment_text
+                    )}
                     <span>
                       {dayjs(comment.created_at)
                         .utc()
                         .format("DD/MM/YYYY - HH:mm")}
-                      <button
-                        className="ml-8"
-                        onClick={() => handleDeleteComment(comment.id)}
-                      >
-                        Eliminar
-                      </button>
+                      {!editingComment || editingComment.id !== comment.id ? (
+                        <>
+                          <button
+                            className="ml-8"
+                            onClick={() => handleDeleteComment(comment.id)}
+                          >
+                            Eliminar
+                          </button>
+                          <span> | </span>
+                          <button onClick={() => handleEditComment(comment)}>
+                            {" "}
+                            Editar{" "}
+                          </button>
+                        </>
+                      ) : (
+                        <button onClick={() => handleUpdateComment(comment.id)}>
+                          Guardar
+                        </button>
+                      )}
                     </span>
                   </p>
-                  {console.log(comments)}
                 </div>
               ))}
             </div>

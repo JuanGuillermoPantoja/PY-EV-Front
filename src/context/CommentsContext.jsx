@@ -37,7 +37,6 @@ export function CommentProvider({ children }) {
   };
 
   const deleteComment = async (comment_id, client_id) => {
-    console.log("comentario id", comment_id + " cliente id ", client_id);
     try {
       const res = await ruta_protegida().delete(
         `/comments/${comment_id}?client_id=${client_id}`
@@ -45,8 +44,20 @@ export function CommentProvider({ children }) {
       console.log(res);
       if (res.status === 204) {
         // Si fue exitosa, actualizar el estado eliminando el comentario
-        setComments(comments.filter((comments) => comments.id !== id));
+        setComments(comments.filter((comments) => comments.id !== comment_id));
       }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateComment = async (comment_id, client_id, comment_text) => {
+    try {
+      await ruta_protegida().put(
+        `/comments/${comment_id}?client_id=${client_id}&comment_text=${comment_text}`
+      );
+      console.log("hola", comment_text);
+      console.log("id", comment_id);
     } catch (error) {
       console.error(error);
     }
@@ -79,6 +90,7 @@ export function CommentProvider({ children }) {
         getComments,
         createComment,
         deleteComment,
+        updateComment,
       }}
     >
       {children}
