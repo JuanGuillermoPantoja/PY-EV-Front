@@ -53,11 +53,14 @@ export function CommentProvider({ children }) {
 
   const updateComment = async (comment_id, client_id, comment_text) => {
     try {
-      await ruta_protegida().put(
-        `/comments/${comment_id}?client_id=${client_id}&comment_text=${comment_text}`
+      const data = {
+        client_id: client_id,
+        comment_text: comment_text
+      }
+      const res = await ruta_protegida().put(
+        `/comments/${comment_id}`, data
       );
-      console.log("hola", comment_text);
-      console.log("id", comment_id);
+      console.log("hola", res);
     } catch (error) {
       console.error(error);
     }
