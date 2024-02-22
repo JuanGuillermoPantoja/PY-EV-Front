@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import chatImg from '../img/chat-bot.png';
-import Scrollbars from 'react-custom-scrollbars';
 
 function Chat() {
 	const [history, setHistory] = useState([]);

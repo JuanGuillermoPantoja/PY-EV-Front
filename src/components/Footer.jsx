@@ -19,8 +19,9 @@ function Footer() {
     <>
       <footer className="">
         <div className="bg-[#4c3b22] flex flex-col items-center
-        lg:w-full  lg:flex lg:justify-center lg:items-center">
+        lg:w-full  lg:flex lg:items-start lg:flex-row">
           <div className="p-4 w-full 
+          lg:w-1/2
           sm:w-11/12">
             <form
               className=" bg-[#534320] rounded-md p-2 shadow-md shadow-black"
