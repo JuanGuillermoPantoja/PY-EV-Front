@@ -12,3 +12,7 @@ body {
   background: #202020;
   color: white;
 }
+
+::-webkit-scrollbar{
+  width: 10px;
+}
