@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import dayjs, { utc } from "dayjs";
 import { getEventsClientsRequest } from "../api/event";
@@ -6,6 +7,17 @@ import { useComments } from "../context/CommentsContext";
 import NavbarHome from "../components/NavbarHome";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
+=======
+import React, { useEffect, useState } from 'react';
+import dayjs, { utc } from 'dayjs';
+import { getEventsClientsRequest } from '../api/event';
+import { useClientAuth } from '../context/ClientContex';
+import { useComments } from '../context/CommentsContext';
+import NavbarHome from '../components/NavbarHome';
+import Footer from '../components/Footer';
+import Swal from 'sweetalert2';
+import Chat from '../components/Chat';
+>>>>>>> 76a96cc19f6fda4bd7cd1ace94386bef8087d650
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -178,6 +190,7 @@ function EventsClients() {
               placeholder="Escribe tu comentario aquí..."
             ></textarea>
 
+<<<<<<< HEAD
             <div className="mt-4 bg-[#8b5a33] p-2 rounded-2xl">
               {comments.map((comment) => (
                 <div
@@ -264,6 +277,59 @@ function EventsClients() {
       <Footer />
     </>
   );
+=======
+						<div className='mt-4'>
+							{comments.map((comment, index) => (
+								<div
+									key={index}
+									className='bg-[#FFEEB3] text-[#AC703E] rounded-xl mb-1  flex w-full items-center justify-between'
+								>
+									<p className='text-lg font-bold '>{comment.client}</p>
+									<p className='text-lg w-full pl-2 '>{comment.comment_text}</p>
+									<p className='text-sm pr-2'>{dayjs(comment.created_at).utc().format("HH:mm")}</p>
+									<p className='text-sm pr-2'>{dayjs(comment.created_at).utc().format("DD/MM/YYYY")}</p>
+									{client.client.id === comment.client_id && (
+										<div className='flex'>
+											<button
+												onClick={() => handleDeleteComment(comment.id)}
+												className='text-sm text-red-600 font-bold mx-2'
+											>
+												Eliminar
+											</button>
+											<span> | </span>
+											<button
+												onClick={() => handleEditComment(comment)}
+												className='text-sm text-[#AC703E] font-bold mx-2'
+											>
+												Editar
+											</button>
+										</div>
+									)}
+								</div>
+							))}
+						</div>
+						<div className='w-full flex justify-center'>
+							<button
+								onClick={handleCommentSubmit}
+								className='mx-2 w-1/4 bg-[#FFEEB3] text-[#AC703E] font-bold mt-4 p-2 rounded-full hover:bg-[#d5935c] hover:text-[#FFEEB3] duration-300'
+							>
+								{editingComment ? 'Guardar cambios' : 'Comentar'}
+							</button>
+							<button
+								onClick={handleCloseModal}
+								className='mx-2 w-1/4 bg-red-600 text-white font-bold mt-4 p-2 rounded-full hover:bg-red-700 duration-300'
+							>
+								Cerrar
+							</button>
+						</div>
+					</div>
+				</div>
+			)}
+			<Chat />
+			<Footer />
+		</>
+	);
+>>>>>>> 76a96cc19f6fda4bd7cd1ace94386bef8087d650
 }
 
 export default EventsClients;
