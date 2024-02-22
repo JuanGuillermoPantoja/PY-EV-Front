@@ -26,6 +26,8 @@ function LoginClientsPage() {
   useEffect(() => {
     if (isClientAuthenticated) {
       navigate("/events-clients"); // Redirigir a la página del panel de control del cliente después de iniciar sesión
+    }else{
+      navigate("/login-clients");
     }
   }, [isClientAuthenticated]);
 

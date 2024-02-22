@@ -9,9 +9,11 @@ import Swal from 'sweetalert2';
 import Chat from '../components/Chat';
 import SimpleBar from 'simplebar-react';
 import "simplebar-react/dist/simplebar.min.css"
+import { useNavigate } from 'react-router-dom';
 dayjs.extend(utc);
 
 function EventsClients() {
+	const navigate = useNavigate();
 	const {
 		createComment,
 		comments,

@@ -5,6 +5,7 @@ import { useClientAuth } from "../context/ClientContex";
 
 function NavbarHome() {
   const { isClientAuthenticated, client, clientLogout } = useClientAuth();
+  const clientName = client.client ? client.client.name : null;
   return (
     <>
       {isClientAuthenticated ? (
@@ -20,7 +21,7 @@ function NavbarHome() {
             md:text-3xl
             sm:text-2x">
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
-                {client.client.name}
+                {clientName}
               </li>
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
                 <Link

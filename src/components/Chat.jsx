@@ -40,7 +40,7 @@ function Chat() {
 		<>
 			<div className='fixed right-4 bottom-4 z-50'>
 				<button onClick={openModal}>
-					<img className='w-[80%]' src={chatImg} alt='chatBot' />
+					<img className='w-[60%]' src={chatImg} alt='chatBot' />
 				</button>
 			</div>
 			{isModalOpen && (
