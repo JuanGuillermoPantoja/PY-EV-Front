@@ -202,7 +202,7 @@ function EventsClients() {
 										<p className='text-sm pr-2'>
 											{dayjs(comment.created_at).utc().format('DD/MM/YYYY')}
 										</p>
-										{client.client && client.client.id === comment.client_id && (
+										{client && client.client.id === comment.client_id && (
 											<div className='flex'>
 												<button
 													onClick={() => handleDeleteComment(comment.id)}
