@@ -7,7 +7,6 @@ import NavbarHome from '../components/NavbarHome';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
 import Chat from '../components/Chat';
-import Scrollbars from 'react-custom-scrollbars';
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -186,7 +185,7 @@ function EventsClients() {
 						></textarea>
 
 						<div className='mt-4'>
-							<Scrollbars autoHide style={{ height: 300 }}>
+							
 								{comments.map((comment, index) => (
 									<div
 										key={index}
@@ -221,7 +220,7 @@ function EventsClients() {
 										)}
 									</div>
 								))}
-							</Scrollbars>
+						
 						</div>
 						<div className='w-full flex justify-center'>
 							<button
