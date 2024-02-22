@@ -7,6 +7,8 @@ import NavbarHome from '../components/NavbarHome';
 import Footer from '../components/Footer';
 import Swal from 'sweetalert2';
 import Chat from '../components/Chat';
+import SimpleBar from 'simplebar-react';
+import "simplebar-react/dist/simplebar.min.css"
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -185,7 +187,7 @@ function EventsClients() {
 						></textarea>
 
 						<div className='mt-4'>
-							
+							<SimpleBar autoHide  style={{maxHeight:300}}>
 								{comments.map((comment, index) => (
 									<div
 										key={index}
@@ -220,7 +222,7 @@ function EventsClients() {
 										)}
 									</div>
 								))}
-						
+							</SimpleBar>
 						</div>
 						<div className='w-full flex justify-center'>
 							<button

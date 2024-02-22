@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import chatImg from '../img/chat-bot.png';
-import Scrollbars from 'react-custom-scrollbars';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 function Chat() {
 	const [history, setHistory] = useState([]);
@@ -49,16 +50,16 @@ function Chat() {
 							Charla con el Bot y preguntale tus dudas sobre EventsBrews
 						</h1>
 						<div className='flex justify-center items-center flex-col w-full'>
-							<Scrollbars autoHide style={{ height: 300 }}>
+							<SimpleBar autoHide className="w-full" style={{maxHeight:300}}>
 								{history.map((item, index) => (
 									<div
-										className='bg-[#5c3b1f] text-lg p-2 m-2 max-w-md rounded-xl'
+										className='bg-[#5c3b1f] text-lg p-2 m-2 w-full rounded-xl'
 										key={index}
 									>
 										{item.role} : {item.parts}
 									</div>
 								))}
-							</Scrollbars>
+							</SimpleBar>
 						</div>
 						<div className='flex justify-center w-full'>
 							<input
