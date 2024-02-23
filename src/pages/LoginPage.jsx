@@ -53,11 +53,11 @@ function LoginPage() {
               </NavLink>{" "}
             </p>
           </div>
-          {signinErrors.map((error, i) => (
+          {/* {signinErrors.map((error, i) => (
             <div className="bg-red-500 p-2 text-white text-center my-2" key={i}>
               {error}
             </div>
-          ))}
+          ))} */}
           <form
             className="flex flex-col items-center w-1/2 h-[70%]
             max-[480px]:w-3/5 "
