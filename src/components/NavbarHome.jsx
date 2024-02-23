@@ -5,7 +5,7 @@ import { useClientAuth } from '../context/ClientContex';
 
 function NavbarHome() {
 	const { isClientAuthenticated, client, clientLogout } = useClientAuth();
-	const clientName = client.client ? client.client.name : null;
+	const clientName = client && client.client && client.client.name;
 	return (
 		<>
 			{isClientAuthenticated ? (
