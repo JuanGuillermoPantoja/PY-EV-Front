@@ -10,11 +10,7 @@ function LoginClientsPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const {
-    clientSignin,
-    isClientAuthenticated,
-    errors: clientErrors,
-  } = useClientAuth();
+  const { clientSignin, isClientAuthenticated, clientErrors } = useClientAuth();
 
   const navigate = useNavigate();
 
@@ -23,30 +19,49 @@ function LoginClientsPage() {
     console.log("data", data);
   });
 
+  console.log("errores", clientErrors);
+
   useEffect(() => {
     if (isClientAuthenticated) {
-      navigate("/events-clients"); // Redirigir a la página del panel de control del cliente después de iniciar sesión
+      // Si el usuario está autenticado, redirige a la página principal
+      navigate("/");
     }
-  }, [isClientAuthenticated]);
+  }, [isClientAuthenticated, navigate]);
+
+  console.log(isClientAuthenticated);
 
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover">
-        <h2 className="text-7xl text-[#FFEEB3] 
+        <h2
+          className="text-7xl text-[#FFEEB3] 
         max-[1024px]:text-6xl
-        max-[480px]:text-4xl">INICIO DE SESION CLIENTE</h2>
-        <div className="flex justify-center items-center h-4/5 w-[80%]
+        max-[480px]:text-4xl"
+        >
+          INICIO DE SESION CLIENTE
+        </h2>
+        <div
+          className="flex justify-center items-center h-4/5 w-[80%]
         max-[768px]:w-[90%]
-        max-[480px]:flex-col">
-          <div className="flex flex-col justify-center items-center w-1/2
-          max-[1024px]:pb-12">
+        max-[480px]:flex-col"
+        >
+          <div
+            className="flex flex-col justify-center items-center w-1/2
+          max-[1024px]:pb-12"
+          >
             <Link to="/">
-              <img className="1/2 max-[1024px]:w-4/5 max-[768px]:m-auto" src={logoeventBrew} alt="" />
+              <img
+                className="1/2 max-[1024px]:w-4/5 max-[768px]:m-auto"
+                src={logoeventBrew}
+                alt=""
+              />
             </Link>
-            <p className="bg-[#4A2D0B] rounded-full py-1 px-4 text-[#FFEEB3] text-2xl
+            <p
+              className="bg-[#4A2D0B] rounded-full py-1 px-4 text-[#FFEEB3] text-2xl
             max-[1024px]:text-xl 
             max-[600px]:text-lg max-[600px]:px-5
-            max-[480px]:text-sm max-[480px]:px-2">
+            max-[480px]:text-sm max-[480px]:px-2"
+            >
               ¿Aún no tienes cuenta? Registrate aquí.
               <NavLink
                 className="text-[#AC703E] underline hover:font-bold"
@@ -62,11 +77,22 @@ function LoginClientsPage() {
             max-[480px]:w-3/5"
             onSubmit={onSubmit}
           >
-            <div className="bg-[#0000004f] rounded-xl flex flex-col justify-center items-center w-4/5 h-full
-            max-[1024px]:h-[90%]
-            max-[480px]:h-full max-[480px]:w-full">
-              
-
+            <div
+              className="bg-[#00000065] rounded-xl flex flex-col justify-center items-center w-4/5 h-full
+            "
+            >
+              {clientErrors && (
+                <div className="flex flex-col justify-center items-center w-2/3">
+                  {clientErrors.map((error, index) => (
+                    <p
+                      key={index}
+                      className="text-red-500 text-xl font-bold text-left  w-full"
+                    >
+                      {error}
+                    </p>
+                  ))}
+                </div>
+              )}
               <input
                 className="my-2 w-2/3 h-12 text-lg bg-[#FFEEB3] text-[#AC703E] pl-2 font-bold placeholder-[#AC703E] placeholder:font-bold
                 max-[768px]:w-3/4

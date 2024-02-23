@@ -35,13 +35,33 @@ export const ClientAuthProvider = ({ children }) => {
     }
   };
 
+  // const clientSignin = async (client) => {
+  //   try {
+  //     const res = await clientLoginRequest(client);
+  //     localStorage.setItem("clienToken", res.data.token);
+  //     setIsClientAuthenticated(true);
+  //     setClient(res.data);
+  //     console.log("res", res);
+  //   } catch (error) {
+  //     if (Array.isArray(error.response.data)) {
+  //       return setClientErrors(error.response.data);
+  //     }
+  //     setClientErrors([error.response.data.message]);
+  //   }
+  // };
+
   const clientSignin = async (client) => {
     try {
       const res = await clientLoginRequest(client);
-      localStorage.setItem("clienToken", res.data.token);
-      setIsClientAuthenticated(true);
-      setClient(res.data);
-      console.log("res", res);
+      if (res.data.token) {
+        localStorage.setItem("clienToken", res.data.token);
+        setIsClientAuthenticated(true);
+        setClient(res.data);
+        console.log("res", res);
+      } else {
+        setIsClientAuthenticated(false);
+        setClientErrors(["Correo o contraseña invalidos"]);
+      }
     } catch (error) {
       if (Array.isArray(error.response.data)) {
         return setClientErrors(error.response.data);

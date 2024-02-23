@@ -10,8 +10,9 @@ function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { signin, isAuthenticated } = useAuth();
-  const [signinError, setSigninError] = useState(null);
+  const { signin, isAuthenticated, userErrors } = useAuth();
+
+  console.log("value", userErrors);
 
   const navigate = useNavigate();
 
@@ -21,15 +22,15 @@ function LoginPage() {
   // });
 
   const onSubmit = handleSubmit(async (data) => {
-    const signInSuccess = await signin(data);
-    if (!signInSuccess) {
-      setSigninError("Correo o contraseña incorrectos");
-    }
+    signin(data);
   });
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/events");
-  }, [isAuthenticated]);
+    // Si isAuthenticated es true, redirige a la página de eventos
+    if (isAuthenticated) {
+      navigate("/events");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
@@ -72,11 +73,7 @@ function LoginPage() {
               </NavLink>{" "}
             </p>
           </div>
-          {signinError && (
-            <div className="bg-red-500 p-2 text-white text-center my-2">
-              {signinError}
-            </div>
-          )}
+
           <form
             className="flex flex-col items-center w-1/2 h-[70%]
             max-[480px]:w-3/5 "
@@ -87,6 +84,19 @@ function LoginPage() {
             max-[1024px]:h-[90%]
             max-[480px]:h-full max-[480px]:w-full"
             >
+              {userErrors && (
+                <div className="flex flex-col justify-center items-center w-2/3">
+                  {userErrors.map((error, index) => (
+                    <p
+                      key={index}
+                      className="text-red-500 text-xl font-bold text-left  w-full"
+                    >
+                      {error}
+                    </p>
+                  ))}
+                </div>
+              )}
+
               <input
                 className="my-2 w-2/3 h-12 text-lg bg-[#FFEEB3] text-[#AC703E] pl-2 font-bold placeholder-[#AC703E] placeholder:font-bold
                 max-[768px]:w-3/4

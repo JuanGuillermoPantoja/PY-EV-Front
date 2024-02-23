@@ -7,11 +7,21 @@ import NavbarHome from "../components/NavbarHome";
 import Footer from "../components/Footer";
 import Swal from "sweetalert2";
 import Chat from "../components/Chat";
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
+import { useNavigate } from "react-router-dom";
 dayjs.extend(utc);
 
 function EventsClients() {
-  const { createComment, comments, getComments, deleteComment, updateComment } =
-    useComments();
+  const navigate = useNavigate();
+  const {
+    createComment,
+    comments,
+    getComments,
+    deleteComment,
+    updateComment,
+    setComments,
+  } = useComments();
   const { isClientAuthenticated, client } = useClientAuth();
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -53,11 +63,16 @@ function EventsClients() {
         const updateComments = comments.map((c) =>
           c.id === editingComment ? { ...c, comment_text: comment } : c
         );
-        setComment(updateComments);
+        setComments(updateComments);
         setEditingComment(null);
       } else {
-        await createComment(selectedEvent.id, comment, client.client.id);
-        await getComments(selectedEvent.id);
+        if (selectedEvent && selectedEvent.id) {
+          await createComment(selectedEvent.id, comment, client.client.id);
+          await getComments(selectedEvent.id);
+        } else {
+          showAlert("Selecciona un evento antes de comentar", "warning");
+          return;
+        }
       }
       setComment("");
     } catch (error) {
@@ -78,8 +93,13 @@ function EventsClients() {
   };
 
   const handleOpenModal = async (event) => {
-    setSelectedEvent(event);
-    await getComments(event.id);
+    if (event && event.id) {
+      // Verificar si event es válido y tiene la propiedad id
+      setSelectedEvent(event);
+      await getComments(event.id);
+    } else {
+      console.error("El evento seleccionado es inválido.");
+    }
   };
 
   const handleCloseModal = () => {
@@ -99,11 +119,15 @@ function EventsClients() {
     setComment(comment.comment_text);
   };
 
+  useEffect(() => {
+    if (isClientAuthenticated) navigate("/");
+  }, [isClientAuthenticated]);
+
   return (
     <>
       <NavbarHome />
-      <div className="h-screen overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl">
+      <div className="h-[600px] overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-fixed bg-cover bg-center flex flex-col justify-center items-center">
+        <h1 className="text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl mt-20">
           Eventos disponibles
         </h1>
         <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
@@ -115,7 +139,7 @@ function EventsClients() {
           {events.map((event) => (
             <div
               key={event.id}
-              className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black xl:w-[30%] lg:w-[27%] lg:h-[90%] sm:w-2/5 sm:h-4/5"
+              className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black xl:w-[20%] lg:w-[27%] lg:h-[90%] sm:w-2/5 sm:h-4/5"
             >
               <img
                 className="w-full h-2/5 rounded-t-lg"
@@ -180,38 +204,42 @@ function EventsClients() {
             ></textarea>
 
             <div className="mt-4">
-              {comments.map((comment, index) => (
-                <div
-                  key={index}
-                  className="bg-[#FFEEB3] text-[#AC703E] rounded-xl mb-1  flex w-full items-center justify-between"
-                >
-                  <p className="text-lg font-bold ">{comment.client}</p>
-                  <p className="text-lg w-full pl-2 ">{comment.comment_text}</p>
-                  <p className="text-sm pr-2">
-                    {dayjs(comment.created_at).utc().format("HH:mm")}
-                  </p>
-                  <p className="text-sm pr-2">
-                    {dayjs(comment.created_at).utc().format("DD/MM/YYYY")}
-                  </p>
-                  {client.client.id === comment.client_id && (
-                    <div className="flex">
-                      <button
-                        onClick={() => handleDeleteComment(comment.id)}
-                        className="text-sm text-red-600 font-bold mx-2"
-                      >
-                        Eliminar
-                      </button>
-                      <span> | </span>
-                      <button
-                        onClick={() => handleEditComment(comment)}
-                        className="text-sm text-[#AC703E] font-bold mx-2"
-                      >
-                        Editar
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
+              <SimpleBar autoHide style={{ maxHeight: 300 }}>
+                {comments.map((comment, index) => (
+                  <div
+                    key={index}
+                    className="bg-[#FFEEB3] text-[#AC703E] rounded-xl mb-1  flex w-full items-center justify-between"
+                  >
+                    <p className="text-lg font-bold ">{comment.client}</p>
+                    <p className="text-lg w-full pl-2 ">
+                      {comment.comment_text}
+                    </p>
+                    <p className="text-sm pr-2">
+                      {dayjs(comment.created_at).utc().format("HH:mm")}
+                    </p>
+                    <p className="text-sm pr-2">
+                      {dayjs(comment.created_at).utc().format("DD/MM/YYYY")}
+                    </p>
+                    {client && client.client.id === comment.client_id && (
+                      <div className="flex">
+                        <button
+                          onClick={() => handleDeleteComment(comment.id)}
+                          className="text-sm text-red-600 font-bold mx-2"
+                        >
+                          Eliminar
+                        </button>
+                        <span> | </span>
+                        <button
+                          onClick={() => handleEditComment(comment)}
+                          className="text-sm text-[#AC703E] font-bold mx-2"
+                        >
+                          Editar
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </SimpleBar>
             </div>
             <div className="w-full flex justify-center">
               <button

@@ -15,7 +15,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [userErrors, setUserErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const signup = async (user) => {
@@ -27,22 +27,27 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       //console.log(error.response);
-      setErrors(error.response.data);
+      setUserErrors(error.response.data);
     }
   };
 
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
-      localStorage.setItem("token", res.data.token);
-      setIsAuthenticated(true);
-      setUser(res.data);
-      console.log(res);
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        setIsAuthenticated(true);
+        setUser(res.data);
+        console.log(res);
+      } else {
+        setIsAuthenticated(false);
+        setUserErrors(["Correo o contraseña invalidos"]);
+      }
     } catch (error) {
       if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
+        return setUserErrors(error.response.data);
       }
-      setErrors([error.response.data.message]);
+      setUserErrors([error.response.data.message]);
     }
   };
 
@@ -53,13 +58,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (errors.length > 0) {
+    if (userErrors.length > 0) {
       const timer = setTimeout(() => {
-        setErrors([]);
+        setUserErrors([]);
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [errors]);
+  }, [userErrors]);
 
   useEffect(() => {
     async function checkLogin() {
@@ -102,7 +107,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         user,
         isAuthenticated,
-        errors,
+        userErrors,
       }}
     >
       {children}

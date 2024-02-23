@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
+  const userName = user && user.user && user.user.username;
   return (
     <>
       {isAuthenticated ? (
@@ -26,9 +27,11 @@ function Navbar() {
             md:text-2xl
             sm:text-xl"
             >
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
-                {user.user.username}
-              </li>
+              {userName && ( // Verificar si userName está definido
+                <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
+                  {userName}
+                </li>
+              )}
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-1 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 sm:p-2">
                 <Link to="/events">Mis eventos</Link>
               </li>

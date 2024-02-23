@@ -44,7 +44,7 @@ export function CommentProvider({ children }) {
       console.log(res);
       if (res.status === 204) {
         // Si fue exitosa, actualizar el estado eliminando el comentario
-        setComments(comments.filter((comments) => comments.id !== comment_id));
+        setComments(comments.filter((comment) => comment.id !== comment_id));
       }
     } catch (error) {
       console.error(error);
@@ -55,11 +55,9 @@ export function CommentProvider({ children }) {
     try {
       const data = {
         client_id: client_id,
-        comment_text: comment_text
-      }
-      const res = await ruta_protegida().put(
-        `/comments/${comment_id}`, data
-      );
+        comment_text: comment_text,
+      };
+      const res = await ruta_protegida().put(`/comments/${comment_id}`, data);
       console.log("hola", res);
     } catch (error) {
       console.error(error);

@@ -28,9 +28,11 @@ function NavbarHome() {
             md:text-3xl
             sm:text-2x"
             >
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
-                {clientName}
-              </li>
+              {clientName && (
+                <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+                  {clientName}
+                </li>
+              )}
               <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
                 <Link
                   to="/"
