@@ -66,14 +66,14 @@ function LoginPage() {
             <div className="bg-[#0000004f] rounded-xl flex flex-col justify-center items-center w-4/5 h-full
             max-[1024px]:h-[90%]
             max-[480px]:h-full max-[480px]:w-full">
-              {signinErrors.map((error, i) => (
+              {/* {signinErrors.map((error, i) => (
                 <div
                   className="bg-red-500 text-white w-2/3 text-lg text-center my-2"
                   key={i}
                 >
                   {error}
                 </div>
-              ))}
+              ))} */}
 
               <input
                 className="my-2 w-2/3 h-12 text-lg bg-[#FFEEB3] text-[#AC703E] pl-2 font-bold placeholder-[#AC703E] placeholder:font-bold
