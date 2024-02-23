@@ -20,8 +20,11 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/events");
-  }, [isAuthenticated]);
+    // Si isAuthenticated es true, redirige a la página de eventos
+    if (isAuthenticated) {
+      navigate("/events");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <>

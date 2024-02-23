@@ -18,6 +18,7 @@ function EventsPage() {
   useEffect(() => {
     getEvents();
   }, []);
+  
 
   return (
     <>
