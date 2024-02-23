@@ -45,18 +45,20 @@ function Chat() {
 			</div>
 			{isModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-					<div className='bg-[#AC703E] text-[#FFEEB3] flex flex-col items-center p-8 rounded-lg w-[40%]'>
+					<div className='bg-[#865832] text-[#FFEEB3] flex flex-col items-center p-8 rounded-lg w-[40%]'>
 						<h1 className='text-2xl my-4'>
-							Charla con el Bot y preguntale tus dudas sobre EventsBrews
+							Charla con nosotros!
 						</h1>
-						<div className='flex justify-center items-center flex-col w-full'>
-							<SimpleBar autoHide className="w-full" style={{maxHeight:300}}>
+						<div className='flex justify-center bg-[#c2985a] items-center flex-col w-full'>
+							<SimpleBar autoHide className="w-full" style={{ maxHeight: 300 }}>
 								{history.map((item, index) => (
-									<div
-										className='bg-[#5c3b1f] text-lg p-2 m-2 w-full rounded-xl'
-										key={index}
-									>
-										{item.role} : {item.parts}
+									<div key={index} className="flex">
+										<div
+											className={`p-2 m-2 rounded-xl ${item.role === 'user' ? 'bg-[#94663bfb] text-white' : 'bg-[#6d4a2afb] text-white'}`}
+											style={{ alignSelf: item.role === 'user' ? 'flex-start' : 'flex-end' }}
+										>
+											{item.parts}
+										</div>
 									</div>
 								))}
 							</SimpleBar>
