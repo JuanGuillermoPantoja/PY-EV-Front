@@ -126,72 +126,75 @@ function EventsClients() {
   return (
     <>
       <NavbarHome />
-      <div className="h-[600px] overflow-auto bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-fixed bg-cover bg-center flex flex-col justify-center items-center">
-        <h1 className="text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl mt-20">
-          Eventos disponibles
-        </h1>
-        <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
-          {events.length === 0 && (
-            <h1 className='h-screen bg-cover w-full bg-center bg-[url("https://i.ibb.co/LQf91TG/fondo-EB.webp")] text-4xl text-center'>
-              No se han agregado eventos
-            </h1>
-          )}
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black xl:w-[20%] lg:w-[27%] lg:h-[90%] sm:w-2/5 sm:h-4/5"
-            >
-              <img
-                className="w-full h-2/5 rounded-t-lg"
-                src={`https://events-cqtw.onrender.com/uploads/${event.img_event}`}
-                alt=""
-              />
-              <div className="flex flex-col justify-between items-center h-[60%] w-full">
-                <div className="flex-col  bg-black w-full">
-                  <div className="flex justify-between w-full h-[50%] mb-2">
-                    <div className="w-[65%]">
-                      <p className="text-left font-bold text-sm lg:text-base">
-                        Nombre del local:
-                      </p>
-                      <p className="text-left text-sm mb-2 text-[#e6d48e] md:text-base">
-                        {event.title}
-                      </p>
-                    </div>
-                    <div className="w-[35%]">
-                      <p className="text-right font-bold text-sm md:text-base">
-                        Fecha del evento:
-                      </p>
-                      <p className="text-right text-sm md:text-base">
-                        {dayjs(event.dates).utc().format("DD/MM/YYYY")}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-left font-bold text-xs md:text-base">
-                    Dirección:
-                  </p>
-                  <p className="text-left text-sm md:text-base">
-                    {event.address}
-                  </p>
-                </div>
 
-                <p className="text-center text-sm font-bold md:text-base">
-                  Información del evento:
-                </p>
-                <p className="text-center text-sm h-[30%] md:text-base">
-                  {event.description}
-                </p>
-                <button
-                  onClick={() => handleOpenModal(event)}
-                  className="w-[35%] h-8 bg-[#FFEEB3] text-[#AC703E] text-sm m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 md:text-base"
-                >
-                  Comentarios
-                </button>
+      <SimpleBar className="bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')]  bg-fixed bg-cover bg-center flex flex-col h-[550px]">
+        <div className="h-[500px]  justify-center items-center">
+          <h1 className="text-center text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl ">
+            Eventos disponibles
+          </h1>
+          <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
+            {events.length === 0 && (
+              <h1 className='h-screen bg-cover w-full bg-center bg-[url("https://i.ibb.co/LQf91TG/fondo-EB.webp")] text-4xl text-center'>
+                No se han agregado eventos
+              </h1>
+            )}
+            {events.map((event) => (
+              <div
+                key={event.id}
+                className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black xl:w-[20%] lg:w-[27%] lg:h-[90%] sm:w-2/5 sm:h-4/5"
+              >
+                <img
+                  className="w-full h-2/5 rounded-t-lg"
+                  src={`https://events-cqtw.onrender.com/uploads/${event.img_event}`}
+                  alt=""
+                />
+                <div className="flex flex-col justify-between items-center h-[60%] w-full">
+                  <div className="flex-col  bg-black w-full">
+                    <div className="flex justify-between w-full h-[50%] mb-2">
+                      <div className="w-[65%]">
+                        <p className="text-left font-bold text-sm lg:text-base">
+                          Nombre del local:
+                        </p>
+                        <p className="text-left text-sm mb-2 text-[#e6d48e] md:text-base">
+                          {event.title}
+                        </p>
+                      </div>
+                      <div className="w-[35%]">
+                        <p className="text-right font-bold text-sm md:text-base">
+                          Fecha del evento:
+                        </p>
+                        <p className="text-right text-sm md:text-base">
+                          {dayjs(event.dates).utc().format("DD/MM/YYYY")}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-left font-bold text-xs md:text-base">
+                      Dirección:
+                    </p>
+                    <p className="text-left text-sm md:text-base">
+                      {event.address}
+                    </p>
+                  </div>
+
+                  <p className="text-center text-sm font-bold md:text-base">
+                    Información del evento:
+                  </p>
+                  <p className="text-center text-sm h-[30%] md:text-base">
+                    {event.description}
+                  </p>
+                  <button
+                    onClick={() => handleOpenModal(event)}
+                    className="w-[35%] h-8 bg-[#FFEEB3] text-[#AC703E] text-sm m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 md:text-base"
+                  >
+                    Comentarios
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-          <hr className="h-7 bg-none w-full border-none" />
+            ))}
+            <hr className="h-7 bg-none w-full border-none" />
+          </div>
         </div>
-      </div>
+      </SimpleBar>
       {selectedEvent && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-[#AC703E] text-[#FFEEB3] p-8 rounded-lg w-1/2">
