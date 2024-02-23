@@ -7,8 +7,10 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-[#4A2D0B] h-[70px] flex justify-between items-center px-4 
-          sm:h-[90px]">
+          <nav
+            className="bg-[#4A2D0B] h-[70px] flex justify-between items-center px-4 
+          sm:h-[90px]"
+          >
             <h1
               className="font-bold text-xl
             lg:text-4xl
