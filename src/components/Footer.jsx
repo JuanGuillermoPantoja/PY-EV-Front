@@ -20,7 +20,7 @@ function Footer() {
       <footer className="">
         <div
           className="bg-[#4c3b22] flex flex-col items-center
-        lg:w-full  lg:flex lg:items-start lg:flex-row"
+          lg:flex lg:items-start lg:flex-row"
         >
           <div
             className="p-4 w-full 

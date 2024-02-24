@@ -126,8 +126,7 @@ function EventsClients() {
   return (
     <>
       <NavbarHome />
-
-      <SimpleBar className="bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')]  bg-fixed bg-cover bg-center flex flex-col h-[550px]">
+      <SimpleBar className="bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-fixed bg-cover bg-center flex flex-col h-[840px]">
         <div className="h-[500px]  justify-center items-center">
           <h1 className="text-center text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl ">
             Eventos disponibles
@@ -141,7 +140,11 @@ function EventsClients() {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black xl:w-[20%] lg:w-[27%] lg:h-[90%] sm:w-2/5 sm:h-4/5"
+                className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black 
+                xl:w-[20%] 
+                lg:w-[27%] 
+                lg:h-[90%] 
+                sm:w-2/5 sm:h-4/5"
               >
                 <img
                   className="w-full h-2/5 rounded-t-lg"

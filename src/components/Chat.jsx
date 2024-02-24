@@ -38,9 +38,9 @@ function Chat() {
 
 	return (
 		<>
-			<div className='fixed right-4 bottom-4 z-50'>
+			<div className='fixed left-[92%] bottom-[2%] z-50'>
 				<button onClick={openModal}>
-					<img className='w-[60%]' src={chatImg} alt='chatBot' />
+					<img className='w-[100%]' src={chatImg} alt='chatBot' />
 				</button>
 			</div>
 			{isModalOpen && (
