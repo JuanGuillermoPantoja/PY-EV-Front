@@ -30,6 +30,11 @@ function EventsPage() {
             Eventos
           </h1>
           <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
+          {events.length === 0 && (
+              <h1 className='h-screen bg-cover w-full bg-center text-center'>
+                No se han agregado eventos
+              </h1>
+            )}
             {Array.isArray(events) ? (
               events.map((event) => (
                 <div
