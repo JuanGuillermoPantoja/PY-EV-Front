@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useEvents } from "../context/EventContext";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import Navbar from "../components/Navbar";
@@ -11,7 +11,6 @@ dayjs.extend(utc);
 
 function EventsPage() {
   const { getEvents, events, deleteEvent, toggleEventDone } = useEvents();
-  const navigate = useNavigate();
 
   const changeColor = async (eventId) => {
     await toggleEventDone(eventId);
