@@ -10,7 +10,7 @@ function RegisterPage() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const { signup, isAuthenticated, registerErrors } = useAuth();
+	const { signup, isAuthenticated, errors: registerErrors } = useAuth();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -19,15 +19,6 @@ function RegisterPage() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		signup(values);
-		Swal.fire({
-			title: 'Registro exitoso',
-			icon: 'success',
-			color: '#AC703E',
-			iconColor: '#AC703E',
-			background: '#FFEEB3',
-			timer: 3000,
-			showConfirmButton: false,
-		});
 	});
 
 	return (
@@ -83,7 +74,8 @@ function RegisterPage() {
             max-[1024px]:h-[90%]
             max-[480px]:h-full max-[480px]:w-full'
 						>
-							{registerErrors.map((error, i) => (
+							{registerErrors ??
+								[].map((error, i) => (
 								<div className='bg-red-500 text-white w-2/3 text-lg' key={i}>
 									{error}
 								</div>
