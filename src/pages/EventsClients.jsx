@@ -128,7 +128,7 @@ function EventsClients() {
       <NavbarHome />
       <SimpleBar className="bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-fixed bg-cover bg-center flex flex-col h-[840px]">
         <div className="h-[500px]  justify-center items-center">
-          <h1 className="text-center text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl ">
+          <h1 className="text-center mt-10 mb-10 text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl ">
             Eventos disponibles
           </h1>
           <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
@@ -141,14 +141,18 @@ function EventsClients() {
               <div
                 key={event.id}
                 className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black 
-                xl:w-[20%] 
+                xl:w-[20%] xl:h-full
                 lg:w-[27%] 
                 lg:h-[90%] 
                 sm:w-2/5 sm:h-4/5"
               >
                 <img
                   className="w-full h-2/5 rounded-t-lg"
-                  src={`https://events-cqtw.onrender.com/uploads/${event.img_event}`}
+                  src={
+                    event.img_event
+                      ? `https://events-cqtw.onrender.com/uploads/${event.img_event}`
+                      : 'https://cdn-icons-png.flaticon.com/512/5225/5225572.png'
+                  }
                   alt=""
                 />
                 <div className="flex flex-col justify-between items-center h-[60%] w-full">
@@ -182,7 +186,7 @@ function EventsClients() {
                   <p className="text-center text-sm font-bold md:text-base">
                     Información del evento:
                   </p>
-                  <p className="text-center text-sm h-[30%] md:text-base">
+                  <p className="text-start text-sm h-[30%] md:text-base p-2">
                     {event.description}
                   </p>
                   <button
