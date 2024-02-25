@@ -4,10 +4,13 @@ import chatImg from '../img/chat-bot.png';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 
+
+
 function Chat() {
 	const [history, setHistory] = useState([]);
 	const [message, setMessage] = useState('');
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isBotResponding, setIsBotResponding] = useState(false);
 
 	const sendMessage = async () => {
 		const requestBody = {
@@ -16,6 +19,7 @@ function Chat() {
 		};
 
 		try {
+			setIsBotResponding(true); // Iniciar la animación de puntos
 			const response = await axios.post(
 				'https://events-cqtw.onrender.com/chat',
 				requestBody,
@@ -25,6 +29,8 @@ function Chat() {
 			setMessage('');
 		} catch (error) {
 			console.error('Error sending message:', error);
+		} finally {
+			setIsBotResponding(false); // Detener la animación de puntos
 		}
 	};
 
@@ -46,27 +52,41 @@ function Chat() {
 			{isModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
 					<div className='bg-[#865832] text-[#FFEEB3] flex flex-col items-center p-8 rounded-lg w-[40%]'>
-						<h1 className='text-2xl my-4'>
-							Charla con nosotros!
-						</h1>
+						<h1 className='text-2xl my-4'>Charla con nosotros!</h1>
+
 						<div className='flex justify-center bg-[#c2985a] items-center flex-col w-full'>
-							<SimpleBar autoHide className="w-full" style={{ maxHeight: 300 }}>
+							<SimpleBar autoHide className='w-full' style={{ maxHeight: 300 }}>
 								{history.map((item, index) => (
-									<div key={index} className="flex">
+									<div key={index} className='flex'>
 										<div
-											className={`p-2 m-2 rounded-xl ${item.role === 'user' ? 'bg-[#94663bfb] text-white' : 'bg-[#6d4a2afb] text-white'}`}
-											style={{ alignSelf: item.role === 'user' ? 'flex-start' : 'flex-end' }}
+											className={`p-2 m-2 rounded-xl ${
+												item.role === 'user'
+													? 'bg-[#94663bfb] text-white'
+													: 'bg-[#6d4a2afb] text-white'
+											}`}
+											style={{
+												alignSelf:
+													item.role === 'user' ? 'flex-start' : 'flex-end',
+											}}
 										>
 											{item.parts}
 										</div>
 									</div>
 								))}
+								{/* Mostrar puntos animados si el bot está respondiendo */}
+                                {isBotResponding && (
+                                    <div className="text-white flex justify-center bg-none text-3xl">
+										<div className='animate-bouncing animate-delay-100 animate-iteration-count-infinite'>.</div>
+										<div className='animate-bouncing animate-delay-200 animate-iteration-count-infinite'>.</div>
+										<div className='animate-bouncing animate-delay-300 animate-iteration-count-infinite'>.</div>
+									</div>
+                                )}
 							</SimpleBar>
 						</div>
 						<div className='flex justify-center w-full'>
 							<input
 								type='text'
-								className='w-full bg-[#FFEEB3] rounded-sm text-[#AC703E] placeholder:text-[#AC703E] p-2 m-2 font-bold '
+								className='w-full bg-[#FFEEB3] rounded-sm text-[#AC703E] placeholder:text-[#AC703E] p-2 mt-2 font-bold '
 								placeholder='Pregunta aquí!'
 								value={message}
 								onChange={(e) => setMessage(e.target.value)}

@@ -52,18 +52,13 @@ function EventsClients() {
       return;
     }
 
-    if (!selectedEvent) {
-      showAlert("Selecciona un evento antes de comentar", "warning");
-      return;
-    }
-
     try {
       if (editingComment) {
         await updateComment(editingComment.id, client.client.id, comment);
         const updateComments = comments.map((c) =>
           c.id === editingComment ? { ...c, comment_text: comment } : c
         );
-        setComments(updateComments);
+        setComment(updateComments);
         setEditingComment(null);
       } else {
         if (selectedEvent && selectedEvent.id) {
@@ -127,24 +122,20 @@ function EventsClients() {
     <>
       <NavbarHome />
       <SimpleBar className="bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-fixed bg-cover bg-center flex flex-col h-[840px]">
-        <div className="h-[500px]  justify-center items-center">
-          <h1 className="text-center mt-10 mb-10 text-4xl text-[#FFEEB3] xl:text-7xl md:text-6xl sm:text-5xl ">
+        <div className="h-[550px]  justify-center items-center">
+          <h1 className="text-center text-[#FFEEB3] text-[60px]">
             Eventos disponibles
           </h1>
           <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
             {events.length === 0 && (
-              <h1 className='h-screen bg-cover w-full bg-center bg-[url("https://i.ibb.co/LQf91TG/fondo-EB.webp")] text-4xl text-center'>
+              <h1 className='h-screen bg-cover w-full bg-center text-center'>
                 No se han agregado eventos
               </h1>
             )}
             {events.map((event) => (
               <div
                 key={event.id}
-                className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black 
-                xl:w-[20%] xl:h-full
-                lg:w-[27%] 
-                lg:h-[90%] 
-                sm:w-2/5 sm:h-4/5"
+                className="bg-[#000000a4] w-[20%] h-full flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black"
               >
                 <img
                   className="w-full h-2/5 rounded-t-lg"
@@ -158,40 +149,40 @@ function EventsClients() {
                 <div className="flex flex-col justify-between items-center h-[60%] w-full">
                   <div className="flex-col  bg-black w-full">
                     <div className="flex justify-between w-full h-[50%] mb-2">
-                      <div className="w-[65%]">
-                        <p className="text-left font-bold text-sm lg:text-base">
+                      <div className="w-[60%]">
+                        <p className="text-left font-bold ">
                           Nombre del local:
                         </p>
-                        <p className="text-left text-sm mb-2 text-[#e6d48e] md:text-base">
+                        <p className="text-left mb-2 text-[#e6d48e]">
                           {event.title}
                         </p>
                       </div>
-                      <div className="w-[35%]">
-                        <p className="text-right font-bold text-sm md:text-base">
+                      <div className="w-[40%]">
+                        <p className="text-right font-bold">
                           Fecha del evento:
                         </p>
-                        <p className="text-right text-sm md:text-base">
+                        <p className="text-right text-[#e6d48e]">
                           {dayjs(event.dates).utc().format("DD/MM/YYYY")}
                         </p>
                       </div>
                     </div>
-                    <p className="text-left font-bold text-xs md:text-base">
+                    <p className="text-left font-bold">
                       Dirección:
                     </p>
-                    <p className="text-left text-sm md:text-base">
+                    <p className="text-left text-[#e6d48e]">
                       {event.address}
                     </p>
                   </div>
 
-                  <p className="text-center text-sm font-bold md:text-base">
+                  <p className="text-center font-bold">
                     Información del evento:
                   </p>
-                  <p className="text-start text-sm h-[30%] md:text-base p-2">
+                  <p className="text-center p-1">
                     {event.description}
                   </p>
                   <button
                     onClick={() => handleOpenModal(event)}
-                    className="w-[35%] h-8 bg-[#FFEEB3] text-[#AC703E] text-sm m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300 md:text-base"
+                    className="w-[35%] h-8 text-base bg-[#FFEEB3] text-[#AC703E] m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
                   >
                     Comentarios
                   </button>
@@ -203,9 +194,9 @@ function EventsClients() {
         </div>
       </SimpleBar>
       {selectedEvent && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 animate-fade-in animate-duration-300">
           <div className="bg-[#AC703E] text-[#FFEEB3] p-8 rounded-lg w-1/2">
-            <h2 className="text-2xl mb-4">{selectedEvent.title}</h2>
+            <h2 className="mb-4">{selectedEvent.title}</h2>
             <textarea
               value={comment}
               onChange={handleCommentChange}
@@ -220,28 +211,28 @@ function EventsClients() {
                     key={index}
                     className="bg-[#FFEEB3] text-[#AC703E] rounded-xl mb-1  flex w-full items-center justify-between"
                   >
-                    <p className="text-lg font-bold ">{comment.client}</p>
-                    <p className="text-lg w-full pl-2 ">
+                    <p className="font-bold ">{comment.client}</p>
+                    <p className="w-full pl-2 ">
                       {comment.comment_text}
                     </p>
-                    <p className="text-sm pr-2">
+                    <p className="pr-2">
                       {dayjs(comment.created_at).utc().format("HH:mm")}
                     </p>
-                    <p className="text-sm pr-2">
+                    <p className="pr-2">
                       {dayjs(comment.created_at).utc().format("DD/MM/YYYY")}
                     </p>
                     {client && client.client.id === comment.client_id && (
                       <div className="flex">
                         <button
                           onClick={() => handleDeleteComment(comment.id)}
-                          className="text-sm text-red-600 font-bold mx-2"
+                          className="text-red-600 font-bold mx-2"
                         >
                           Eliminar
                         </button>
                         <span> | </span>
                         <button
                           onClick={() => handleEditComment(comment)}
-                          className="text-sm text-[#AC703E] font-bold mx-2"
+                          className="text-[#AC703E] font-bold mx-2"
                         >
                           Editar
                         </button>

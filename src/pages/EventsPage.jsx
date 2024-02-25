@@ -26,8 +26,8 @@ function EventsPage() {
     <>
       <Navbar />
       <SimpleBar className="bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-fixed bg-cover bg-center flex flex-col h-[840px]">
-        <div className="h-[650px] pb-4 bg-cover bg-center flex flex-col justify-center items-center">
-          <h1 className="bg-cover bg-center mt-20 text-center text-[60px]">
+        <div className="h-[550px] pb-4 bg-cover bg-center flex flex-col justify-center items-center">
+          <h1 className="mt-20 text-center text-[60px]">
             Eventos
           </h1>
           <div className="w-full flex h-full justify-center items-center gap-3 flex-wrap">
@@ -35,10 +35,7 @@ function EventsPage() {
               events.map((event) => (
                 <div
                   key={event.id}
-                  className="bg-[#000000a4] w-[60%] h-2/3 flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black 
-                  xl:w-[20%] 
-                  lg:w-[27%] lg:h-[90%] 
-                  sm:w-2/5 sm:h-4/5"
+                  className="bg-[#000000a4] w-[20%] h-full flex flex-col justify-between rounded-2xl text-[#FFEEB3] my-2 shadow-xl shadow-black"
                 >
                   <img
                     className="w-full h-2/5 border-[#AC703E] rounded-t-lg"
@@ -51,63 +48,53 @@ function EventsPage() {
                   />
                   <div className="flex flex-col justify-between items-center h-[60%] w-full">
                     <div
-                      className="flex-col bg-black w-full h-2/5
-                sm:h-auto"
+                      className="flex-col bg-black w-full h-2/5"
                     >
                       <div className="flex justify-between w-full h-[50%] mb-2">
-                        <div className="w-[65%]">
+                        <div className="w-[60%]">
                           <p
-                            className="text-left font-bold text-xs
-                      lg:text-base
-                      sm:text-sm"
+                            className="text-left font-bold"
                           >
                             Nombre del local:
                           </p>
                           <p
-                            className="text-left text-xs
-                      xl:text-xl
-                      lg:text-base
-                      sm:text-sm"
+                            className="text-left"
                           >
                             {event.title}
                           </p>
                         </div>
-                        <div className="w-[35%]">
+                        <div className="w-[40%]">
                           <p
-                            className="text-right font-bold text-xs
-                      lg:text-base
-                      sm:text-sm"
+                            className="text-right font-bold"
                           >
                             Fecha del evento:
                           </p>
-                          <p className="text-right text-lg">
+                          <p className="text-right">
                             {dayjs(event.dates).utc().format("YYYY/MM/DD")}
                           </p>
                         </div>
                       </div>
                       <p
-                        className="text-left font-bold text-xs
-                  lg:text-base
-                  sm:text-sm"
+                        className="text-left font-bold "
                       >
                         Direccion:
                       </p>
-                      <p className="text-left text-sm">{event.address}</p>
+                      <p className="text-left">{event.address}</p>
                     </div>
-                    <p className="text-left font-bold text-xl">Descripción:</p>
-                    <p className="text-start p-2 h-[30%] text-lg">
+                    <p className="text-left font-bold ">Descripción:</p>
+                    <p className="text-center">
                       {event.description}
                     </p>
                     <div className="w-full flex justify-between items-center">
                       <Link
-                        className="flex items-center justify-center bg-[#FFEEB3] text-center text-[#AC703E] text-xs m-2 font-bold h-8 w-1/2 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300
+                        className="flex items-center justify-center bg-[#FFEEB3] text-center text-[#AC703E] text-base m-2 font-bold h-8 w-1/2 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300
                    "
                         to={`/events/${event.id}`}
                       >
                         Editar evento
                       </Link>
                       <button
-                        className="bg-[#FFEEB3] text-[#AC703E] text-xs m-2 font-bold h-8 w-1/3 rounded-full mt-2 hover:bg-red-700 hover:text-[#FFEEB3] duration-300
+                        className="bg-[#FFEEB3] text-[#AC703E] text-base m-2 font-bold h-8 w-1/3 rounded-full mt-2 hover:bg-red-700 hover:text-[#FFEEB3] duration-300
                     "
                         onClick={() => {
                           deleteEvent(event.id);
@@ -120,8 +107,8 @@ function EventsPage() {
                       <button
                         className={
                           event.done === 1
-                            ? "bg-green-700 text-white text-xs m-2 font-bold h-8 w-1/3 rounded-full mt-2 duration-300 "
-                            : "bg-[#FFEEB3] text-[#AC703E] text-xs m-2 font-bold h-8 w-1/3 rounded-full mt-2 duration-300 "
+                            ? "bg-green-700 text-white text-base m-2 font-bold h-8 w-1/3 rounded-full mt-2 duration-300 "
+                            : "bg-[#FFEEB3] text-[#AC703E] text-base m-2 font-bold h-8 w-1/3 rounded-full mt-2 duration-300 "
                         }
                         onClick={() => changeColor(event.id)}
                       >
