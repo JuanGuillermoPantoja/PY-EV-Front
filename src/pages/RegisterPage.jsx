@@ -3,6 +3,7 @@ import logoeventBrew from '../img/logoeventsBrew.png';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 function RegisterPage() {
 	const {
