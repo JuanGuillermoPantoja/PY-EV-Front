@@ -51,7 +51,7 @@ function Chat() {
 			</div>
 			{isModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50'>
-					<div className='bg-[#865832] text-[#FFEEB3] flex flex-col items-center p-8 rounded-lg w-[40%]'>
+					<div className='bg-[#865832] text-[#FFEEB3] flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[40%]'>
 						<h1 className='text-2xl my-4'>Charla con nosotros!</h1>
 
 						<div className='flex justify-center bg-[#c2985a] items-center flex-col w-full'>
@@ -95,13 +95,13 @@ function Chat() {
 						<div className='w-full flex justify-center'>
 							<button
 								onClick={sendMessage}
-								className='mx-2 w-1/4 bg-[#FFEEB3] text-[#AC703E] font-bold mt-4 p-2 rounded-full hover:bg-[#d5935c] hover:text-[#FFEEB3] duration-300'
+								className='mx-2 w-1/2 sm:w-1/4 lg:w-1/3 xl:w-1/4 bg-[#FFEEB3] text-[#AC703E] font-bold mt-4 p-2 rounded-full hover:bg-[#d5935c] hover:text-[#FFEEB3] duration-300'
 							>
 								Preguntar
 							</button>
 							<button
 								onClick={closeModal}
-								className='mx-2 w-1/4 bg-red-600 text-white font-bold mt-4 p-2 rounded-full hover:bg-red-700 duration-300'
+								className='mx-2 w-1/2 sm:w-1/4 lg:w-1/3 xl:w-1/4 bg-red-600 text-white font-bold mt-4 p-2 rounded-full hover:bg-red-700 duration-300'
 							>
 								Cerrar Chat
 							</button>
