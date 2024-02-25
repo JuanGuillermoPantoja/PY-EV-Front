@@ -145,7 +145,7 @@ function EventsFormPage() {
               {...register("description")}
             ></textarea>
             <div className="">
-            <div className="w-full flex items-center">
+            <div className="w-full flex flex-col items-center">
               <button
                 onSubmit={onSubmit}
                 className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-full rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
