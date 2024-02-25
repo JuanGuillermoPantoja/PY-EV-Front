@@ -10,7 +10,7 @@ function RegisterPage() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
-	const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+	const { signup, isAuthenticated, registerErrors } = useAuth();
 	const navigate = useNavigate();
 
 	useEffect(() => {
