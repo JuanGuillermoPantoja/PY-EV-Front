@@ -19,11 +19,10 @@ function RegisterClients() {
 
 	const navigate = useNavigate();
 
-  
-  const onSubmit = handleSubmit(async (values) => {
-    clientSignup(values);
+	const onSubmit = handleSubmit(async (values) => {
+		clientSignup(values);
 		Swal.fire({
-      title: 'Registro exitoso',
+			title: 'Registro exitoso',
 			icon: 'success',
 			color: '#AC703E',
 			iconColor: '#AC703E',
@@ -32,11 +31,11 @@ function RegisterClients() {
 			showConfirmButton: false,
 		});
 	});
-  
-  useEffect(() => {
-    if (isClientAuthenticated) navigate('/login-clients');
-  }, [isClientAuthenticated]);
-  
+
+	useEffect(() => {
+		if (isClientAuthenticated) navigate('/login-clients');
+	}, [isClientAuthenticated]);
+
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover">

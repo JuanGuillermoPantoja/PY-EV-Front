@@ -19,6 +19,15 @@ function RegisterPage() {
 
 	const onSubmit = handleSubmit(async (values) => {
 		signup(values);
+		Swal.fire({
+			title: 'Registro exitoso',
+			icon: 'success',
+			color: '#AC703E',
+			iconColor: '#AC703E',
+			background: '#FFEEB3',
+			timer: 3000,
+			showConfirmButton: false,
+		});
 	});
 
 	return (
