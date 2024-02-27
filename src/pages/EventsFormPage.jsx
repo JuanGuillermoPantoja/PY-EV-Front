@@ -7,11 +7,13 @@ import utc from "dayjs/plugin/utc";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import FooterAdmin from "../components/FooterAdmin";
+import EventsFormImages from "./EventsFormImages";
 dayjs.extend(utc);
 
 function EventsFormPage() {
   const { register, handleSubmit, setValue } = useForm();
   const { createEvent, getEvent, updateEvent } = useEvents();
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -76,7 +78,7 @@ function EventsFormPage() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex flex-col justify-center items-center">
+      <div className="h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex justify-around items-center">
         <div
           className="flex justify-around items-center bg-[#0000007c] w-4/5 h-3/4 rounded-2xl border-4 border-[#AC703E]
         md:w-3/5
@@ -145,30 +147,31 @@ function EventsFormPage() {
               {...register("description")}
             ></textarea>
             <div className="">
-            <div className="w-full flex flex-col items-center">
-              <button
-                onSubmit={onSubmit}
-                className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-full rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
-              >
-                Añadir evento
-              </button>
-              <input
-                onChange={handleFile}
-                className="border-4 border-[#AC703E] w-[260px] h-2/5 rounded-full hover:cursor-pointer 
+              <div className="w-full flex flex-col items-center">
+                <button
+                  onSubmit={onSubmit}
+                  className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-full rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+                >
+                  Añadir evento
+                </button>
+                <input
+                  onChange={handleFile}
+                  className="border-4 border-[#AC703E] w-[260px] h-2/5 rounded-full hover:cursor-pointer 
                 md:w-[345px]"
-                type="file"
-              />
-              <button
-                onSubmit={onSubmit}
-                onClick={handleUpload}
-                className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-full rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
-              >
-                Actulizar imagen de portada
-              </button>
-            </div>
+                  type="file"
+                />
+                <button
+                  onSubmit={onSubmit}
+                  onClick={handleUpload}
+                  className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-full rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+                >
+                  Actulizar imagen de portada
+                </button>
+              </div>
             </div>
           </form>
         </div>
+        {/* <EventsFormImages></EventsFormImages> */}
       </div>
       <FooterAdmin></FooterAdmin>
     </>
