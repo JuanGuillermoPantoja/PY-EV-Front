@@ -10,6 +10,8 @@ import Chat from "../components/Chat";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import { useNavigate } from "react-router-dom";
+import {AiFillLike} from 'react-icons/ai'
+import {AiFillDislike} from 'react-icons/ai'
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -21,6 +23,8 @@ function EventsClients() {
     deleteComment,
     updateComment,
     setComments,
+    addLike,
+    addDisLike,
   } = useComments();
   const { isClientAuthenticated, client } = useClientAuth();
   const [events, setEvents] = useState([]);
@@ -41,6 +45,25 @@ function EventsClients() {
     };
     fetchData();
   }, []);
+
+  const handleLike = async (event) => {
+    console.log(event.id);
+    try {
+      await addLike(event.id, client.client.id);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleDisLike = async (event) => {
+    console.log(event.id);
+    try {
+      await addDisLike(event.id, client.client.id);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -186,6 +209,10 @@ function EventsClients() {
                   >
                     Comentarios
                   </button>
+                  <div className="w-full flex justify-around">
+                      <button onClick={()=>handleLike(event)}><AiFillLike color="#FFEEB3" size="35"/></button>
+                      <button onClick={()=>handleDisLike(event)}><AiFillDislike color="#FFEEB3" size="35"/></button>
+                  </div>
                 </div>
               </div>
             ))}
