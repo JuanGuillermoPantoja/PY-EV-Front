@@ -12,27 +12,33 @@ function EventsFormImages() {
     setFiles(newFiles);
   };
 
-  const handleUpload = () => {
-    if (!params.id || isNaN(params.id)) {
-      console.error("ID del evento no proporcionado o no válido");
-      return;
+ const handleUpload = () => {
+  if (!params.id || isNaN(params.id)) {
+    console.error("ID del evento no proporcionado o no válido");
+    return;
+  }
+
+  const formdata = new FormData();
+  formdata.append("eventId", params.id);
+
+  // Itera sobre los archivos y los adjunta individualmente al objeto FormData
+  files.forEach((file, index) => {
+    if (file) {
+      formdata.append(`images`, file);
     }
+  });
 
-    const formdata = new FormData();
-    formdata.append("eventId", params.id);
-    formdata.append("images", files);
-
-    axios
-      .post("https://events-cqtw.onrender.com/uploadImages", formdata)
-      .then((res) => {
-        if (res.data.Status === "Success") {
-          console.log("Succeeded");
-        } else {
-          console.log("Failed");
-        }
-      })
-      .catch((err) => console.log(err));
-  };
+  axios
+    .post("https://events-cqtw.onrender.com/uploadImages", formdata)
+    .then((res) => {
+      if (res.data.Status === "Success") {
+        console.log("Succeeded");
+      } else {
+        console.log("Failed");
+      }
+    })
+    .catch((err) => console.log(err));
+};
 
   return (
     <div className="multi-image-upload-form">
