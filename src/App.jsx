@@ -14,6 +14,7 @@ import RegisterClients from './pages/RegisterClients';
 import { ClientAuthProvider } from './context/ClientContex';
 import { CommentProvider } from './context/CommentsContext';
 import NotFound from './components/NotFound';
+import InfoEvents from './pages/InfoEvents';
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 								<Route path='/events-clients' element={<EventsClients />} />
 								<Route path='/login-clients' element={<LoginClientsPage />} />
 								<Route path='/register-clients' element={<RegisterClients />} />
+								<Route path='/info-events/:id' element={<InfoEvents />} />
 
 								<Route element={<ProtectedRoute />}>
 									<Route path='/events' element={<EventsPage />} />
@@ -41,7 +43,7 @@ function App() {
 									/>
 									<Route path='/profile' element={<ProfilePage />} />
 								</Route>
-                <Route path="*" element={<NotFound/>}/>
+								<Route path='*' element={<NotFound />} />
 							</Routes>
 						</BrowserRouter>
 					</CommentProvider>
