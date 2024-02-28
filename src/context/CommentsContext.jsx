@@ -36,6 +36,30 @@ export function CommentProvider({ children }) {
     }
   };
 
+  const addLike = async (event_id, client_id) => {
+    try {
+      const res = await ruta_protegida().post(`/events/${event_id}/like`, {
+        event_id,
+        client_id,
+      });
+      console.log("----", res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const addDisLike = async (event_id, client_id) => {
+    try {
+      const res = await ruta_protegida().post(`/events/${event_id}/dislike`, {
+        event_id,
+        client_id,
+      });
+      console.log("----", res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const deleteComment = async (comment_id, client_id) => {
     try {
       const res = await ruta_protegida().delete(
@@ -92,6 +116,8 @@ export function CommentProvider({ children }) {
         createComment,
         deleteComment,
         updateComment,
+        addLike,
+        addDisLike,
       }}
     >
       {children}

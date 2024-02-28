@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import dayjs, { utc } from 'dayjs';
-import es from 'dayjs/locale/es';
 import { getEventsClientsRequest } from '../api/event';
 import { useClientAuth } from '../context/ClientContex';
 import { useComments } from '../context/CommentsContext';
@@ -11,12 +10,12 @@ import Chat from '../components/Chat';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { useNavigate } from 'react-router-dom';
-import bgCard from '../img/bg-card.png';
-import coffe from '../img/coffe.png';
-import coffeGrain from '../img/Coffe-grano.png';
-import threeGrainCoffe from '../img/3grain-coffe.png';
-
-dayjs.locale(es);
+import { AiFillLike } from 'react-icons/ai';
+import { AiFillDislike } from 'react-icons/ai';
+import bgCard from "../img/bg-card.png"
+import threeGrainCoffe from "../img/3grain-coffe.png"
+import coffeGrain from "../img/Coffe-grano.png"
+import coffe from "../img/coffe.png"
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -28,6 +27,8 @@ function EventsClients() {
 		deleteComment,
 		updateComment,
 		setComments,
+		addLike,
+		addDisLike,
 	} = useComments();
 	const { isClientAuthenticated, client } = useClientAuth();
 	const [events, setEvents] = useState([]);
@@ -48,6 +49,24 @@ function EventsClients() {
 		};
 		fetchData();
 	}, []);
+
+	const handleLike = async (event) => {
+		console.log(event.id);
+		try {
+			await addLike(event.id, client.client.id);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleDisLike = async (event) => {
+		console.log(event.id);
+		try {
+			await addDisLike(event.id, client.client.id);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	const handleCommentChange = (e) => {
 		setComment(e.target.value);
@@ -136,7 +155,7 @@ function EventsClients() {
 			<SimpleBar className='bg-white w-full bg-fixed bg-cover bg-center h-screen'>
 				<div className='h-full w-full text-center text-textBlack flex flex-col justify-center items-center'>
 					<div className='h-screen w-full flex flex-col items-center justify-center bg-primary '>
-						<div className="bg-white h-1/2 w-3/4 rounded-tr-full rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700">
+						<div className='bg-white h-1/2 w-3/4 rounded-tr-full rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700'>
 							<h1 className='text-textBlack text-8xl'>
 								Bienvenidos a <span className='text-acent'>EventsBrew</span>
 							</h1>
@@ -145,7 +164,39 @@ function EventsClients() {
 							</h2>
 						</div>
 					</div>
-
+					{/* <p className="text-center font-bold">
+                    Información del evento:
+                  </p>
+                  <p className="text-center p-1">
+                    {event.description}
+                  </p>
+                  <button
+                    onClick={() => handleOpenModal(event)}
+                    className="w-[35%] h-8 text-base bg-[#FFEEB3] text-[#AC703E] m-2 font-bold rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+                  >
+                    Comentarios
+                  </button>
+                  <div className="w-full flex justify-around">
+                      <button onClick={()=>handleLike(event)}><AiFillLike color="#FFEEB3" size="35"/></button>
+                      <button onClick={()=>handleDisLike(event)}><AiFillDislike color="#FFEEB3" size="35"/></button>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <hr className="h-7 bg-none w-full border-none" />
+          </div>
+        </div>
+      </SimpleBar>
+      {selectedEvent && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 animate-fade-in animate-duration-300">
+          <div className="bg-[#AC703E] text-[#FFEEB3] p-8 rounded-lg w-1/2">
+            <h2 className="mb-4">{selectedEvent.title}</h2>
+            <textarea
+              value={comment}
+              onChange={handleCommentChange}
+              className="w-full bg-[#FFEEB3] text-[#AC703E] placeholder:text-[#AC703E] pl-2 font-bold"
+              placeholder="Escribe tu comentario aquí..."
+            ></textarea> */}
 					<h1 className='text-left w-[80%]'>Eventos disponibles</h1>
 					<div className='w-[80%]  h-[550px] flex justify-between items-center flex-wrap'>
 						{events.length === 0 && (
