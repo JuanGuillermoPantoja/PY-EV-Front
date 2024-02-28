@@ -7,7 +7,6 @@ import utc from "dayjs/plugin/utc";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import FooterAdmin from "../components/FooterAdmin";
-import EventsFormImages from "./EventsFormImages";
 dayjs.extend(utc);
 
 function EventsFormPage() {
@@ -171,7 +170,6 @@ function EventsFormPage() {
             </div>
           </form>
         </div>
-        {/* <EventsFormImages></EventsFormImages> */}
       </div>
       <FooterAdmin></FooterAdmin>
     </>
