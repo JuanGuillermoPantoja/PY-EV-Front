@@ -12,33 +12,33 @@ function EventsFormImages() {
     setFiles(newFiles);
   };
 
- const handleUpload = () => {
-  if (!params.id || isNaN(params.id)) {
-    console.error("ID del evento no proporcionado o no válido");
-    return;
-  }
-
-  const formdata = new FormData();
-  formdata.append("eventId", params.id);
-
-  // Itera sobre los archivos y los adjunta individualmente al objeto FormData
-  files.forEach((file, index) => {
-    if (file) {
-      formdata.append(`images`, file);
+  const handleUpload = () => {
+    if (!params.id || isNaN(params.id)) {
+      console.error("ID del evento no proporcionado o no válido");
+      return;
     }
-  });
 
-  axios
-    .post("https://events-cqtw.onrender.com/uploadImages", formdata)
-    .then((res) => {
-      if (res.data.Status === "Success") {
-        console.log("Succeeded");
-      } else {
-        console.log("Failed");
+    const formdata = new FormData();
+    formdata.append("eventId", params.id);
+
+    // Itera sobre los archivos y los adjunta individualmente al objeto FormData
+    files.forEach((file, index) => {
+      if (file) {
+        formdata.append(`images`, file);
       }
-    })
-    .catch((err) => console.log(err));
-};
+    });
+
+    axios
+      .post("https://events-cqtw.onrender.com/uploadImages", formdata)
+      .then((res) => {
+        if (res.data.Status === "Success") {
+          console.log("Succeeded");
+        } else {
+          console.log("Failed");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="multi-image-upload-form flex flex-col justify-around  items-center h-1/2">
@@ -48,10 +48,16 @@ function EventsFormImages() {
             type="file"
             onChange={(e) => handleFileChange(index - 1, e)}
             accept="image/*"
+            multiple
           />
         </div>
       ))}
-      <button onClick={handleUpload} className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-1/2 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">Subir imágenes</button>
+      <button
+        onClick={handleUpload}
+        className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-1/2 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+      >
+        Subir imágenes
+      </button>
     </div>
   );
 }

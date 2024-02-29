@@ -8,6 +8,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import FooterAdmin from "../components/FooterAdmin";
 import EventsFormImages from "./EventsFormImages";
+import Swal from "sweetalert2";
 dayjs.extend(utc);
 
 function EventsFormPage() {
@@ -29,6 +30,18 @@ function EventsFormPage() {
       return;
     }
 
+    const showAlert = (message, type) => {
+      Swal.fire({
+        title: message,
+        icon: "error",
+        color: "#AC703E",
+        iconColor: "#AC703E",
+        background: "#FFEEB3",
+        timer: 3000,
+        showConfirmButton: false,
+      });
+    };
+
     const formdata = new FormData();
     formdata.append("eventId", params.id);
     formdata.append("image", file);
@@ -39,7 +52,7 @@ function EventsFormPage() {
         if (res.data.Status === "Success") {
           console.log("Succeeded");
         } else {
-          console.log("Failed");
+          showAlert("La imagen no cumple con los requerimientos");
         }
       })
       .catch((err) => console.log(err));
@@ -53,7 +66,7 @@ function EventsFormPage() {
         setValue("title", event.title);
         setValue("address", event.address);
         setValue("description", event.description);
-        setValue("dates", event.dates);
+        setValue("dates", dayjs(event.dates).utc().format("YYYY-MM-DD"));
       }
     }
     loadEvent();
@@ -121,7 +134,7 @@ function EventsFormPage() {
             <input
               className="h-[10%] w-full my-2 pl-2 bg-[#FFEEB3] text-[#AC703E] placeholder:text-[#AC703E] placeholder:pl-2 font-bold"
               type="date"
-              name="firstDate"
+              name="dates"
               {...register("dates")}
             />
 

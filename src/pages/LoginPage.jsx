@@ -163,19 +163,20 @@ function LoginPage() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center h-screen bg-gradient-orange">
         <div className="flex justify-center items-center h-full w-[75%] max-[768px]:w-[90%] max-[480px]:flex-col">
-          <div className="flex flex-col justify-center items-center w-1/2 max-[1024px]:pb-12 h-3/4 bg-black opacity-90 border-acent border-t-2 border-l-2 border-b-2 rounded-l-2xl shadow-complete shadow-primary">
+          <div className="relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2 max-[1024px]:pb-12 h-3/4 bg-transparent border-acent border-t-2 border-l-2 border-b-2 rounded-l-2xl shadow-complete shadow-primary">
+            <div className="absolute h-full w-full bg-black opacity-50"></div>
             <Link to="/" className="">
               <div className="flex justify-center items-center">
                 <img
-                  className="w-3/4 max-[1024px]:w-4/5 max-[768px]:m-auto"
+                  className="w-3/4 max-[1024px]:w-4/5 max-[768px]:m-auto drop-shadow-complete "
                   src={logoeventBrew}
                   alt=""
                 />
               </div>
             </Link>
-            <p className="bg-primary rounded-full my-2 py-2 px-4 text-[#FFEEB3] max-[1024px]:text-xl max-[600px]:text-lg max-[600px]:px-5 max-[480px]:text-sm max-[480px]:px-2">
+            <p className="relative bg-primary rounded-full my-2 py-2 px-4 text-[#FFEEB3] max-[1024px]:text-xl max-[600px]:text-lg max-[600px]:px-5 max-[480px]:text-sm max-[480px]:px-2">
               ¿Aún no tienes cuenta? Registrate aquí.{" "}
               <NavLink
                 className="text-acent underline hover:text-gold"

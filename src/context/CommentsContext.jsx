@@ -1,7 +1,20 @@
 import { createContext, useContext, useState } from "react";
 import instance from "../api/axios";
+import Swal from "sweetalert2";
 
 const CommentsContext = createContext();
+
+const showAlert = (message, type) => {
+  Swal.fire({
+    title: message,
+    icon: "error",
+    color: "#AC703E",
+    iconColor: "#AC703E",
+    background: "#FFEEB3",
+    timer: 3000,
+    showConfirmButton: false,
+  });
+};
 
 export const useComments = () => {
   const context = useContext(CommentsContext);
@@ -30,7 +43,9 @@ export function CommentProvider({ children }) {
         event_id,
         client_id,
       });
-      console.log("----", res.data);
+      if (res.data.Status === "Inapropiated") {
+        showAlert("Comentario eliminado por contenido inapropiado");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -42,7 +57,6 @@ export function CommentProvider({ children }) {
         event_id,
         client_id,
       });
-      console.log("----", res.data);
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +68,6 @@ export function CommentProvider({ children }) {
         event_id,
         client_id,
       });
-      console.log("----", res.data);
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +78,6 @@ export function CommentProvider({ children }) {
       const res = await ruta_protegida().delete(
         `/comments/${comment_id}?client_id=${client_id}`
       );
-      console.log(res);
       if (res.status === 204) {
         // Si fue exitosa, actualizar el estado eliminando el comentario
         setComments(comments.filter((comment) => comment.id !== comment_id));
@@ -82,7 +94,9 @@ export function CommentProvider({ children }) {
         comment_text: comment_text,
       };
       const res = await ruta_protegida().put(`/comments/${comment_id}`, data);
-      console.log("hola", res);
+      if (res.data.Status === "Inapropiated") {
+        showAlert("Comentario eliminado por contenido inapropiado");
+      }
     } catch (error) {
       console.error(error);
     }

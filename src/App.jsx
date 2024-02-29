@@ -31,7 +31,7 @@ function App() {
 								<Route path='/events-clients' element={<EventsClients />} />
 								<Route path='/login-clients' element={<LoginClientsPage />} />
 								<Route path='/register-clients' element={<RegisterClients />} />
-								<Route path='/info-events/:id' element={<InfoEvents />} />
+								<Route path='/info-events/:id' element={<InfoEvents />} />	
 
 								<Route element={<ProtectedRoute />}>
 									<Route path='/events' element={<EventsPage />} />
