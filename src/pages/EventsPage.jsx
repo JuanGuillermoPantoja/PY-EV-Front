@@ -5,12 +5,14 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import Navbar from "../components/Navbar";
 import FooterAdmin from "../components/FooterAdmin";
+
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 dayjs.extend(utc);
 
 function EventsPage() {
   const { getEvents, events, deleteEvent, toggleEventDone } = useEvents();
+  
 
   const changeColor = async (eventId) => {
     await toggleEventDone(eventId);
