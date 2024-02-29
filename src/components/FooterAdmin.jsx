@@ -1,5 +1,5 @@
 import React from 'react'
-import logoeventBrew from "../img/logoeventsBrew.png";
+import logoeventBrewDark from "../img/eventsBrewDark.png";
 
 
 function FooterAdmin() {
@@ -25,7 +25,7 @@ function FooterAdmin() {
                             </p>    
                         </div>
                         <div className='flex justify-start items-center mt-2'>
-                            <img src={logoeventBrew} className='w-[10%]
+                            <img src={logoeventBrewDark} className='w-[10%]
                             ' alt="" />
                             <p className='text-2xl text-[#FFEEB3] text-end font-sans
                             lg:text-3xl

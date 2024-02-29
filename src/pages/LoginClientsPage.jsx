@@ -103,7 +103,7 @@ function LoginClientsPage() {
               />
 
               {errors.email && (
-                <p className="text-red-500">email is required</p>
+                <p className="text-red-500">Se requiere Correo electronico*</p>
               )}
 
               <input
@@ -116,7 +116,7 @@ function LoginClientsPage() {
               />
 
               {errors.password && (
-                <p className="text-red-500">password is required</p>
+                <p className="text-red-500">Se requiere contraseña*</p>
               )}
 
               <button

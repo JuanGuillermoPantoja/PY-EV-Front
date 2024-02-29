@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
         console.log(res);
       } else {
         setIsAuthenticated(false);
-        setUserErrors(["Correo o contraseña invalidos"]);
+        setUserErrors(["Correo o contraseña invalidos*"]);
       }
     } catch (error) {
       if (Array.isArray(error.response.data)) {

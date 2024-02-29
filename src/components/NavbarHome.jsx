@@ -10,30 +10,20 @@ function NavbarHome() {
     <>
       {isClientAuthenticated ? (
         <>
-          <nav
-            className="bg-[#4A2D0B] h-[70px] w-full flex justify-between items-center px-4
-          sm:h-[90px]"
-          >
-            <img
-              className="w-[18%]
-            md:w-[13%]
-            lg:w-[10%]
-            xl:w-[7%]"
-              src={logoEventBrew}
-              alt=""
-            />
-            <ul
-              className="flex gap-x-2 text-xl
-            lg:text-4xl
-            md:text-3xl
-            sm:text-2x"
-            >
+          <nav className="bg-white w-full flex justify-between items-center px-4 h-[70px] border-b-[1px] border-gray-200">
+            <h1 className="text-textBlack font-lobster">
+              <span className="text-acent font-lobster">E</span>v
+              <span className="text-primary font-lobster">en</span>ts
+              <span className="text-acent font-lobster">B</span>r
+              <span className="text-primary font-lobster">ew</span>
+            </h1>
+            {/* <img className='w-[20%]' src={logoEventBrew} alt='' /> */}
+            <ul className="flex justify-center items-center gap-x-2 text-xl text-black h-full font-semibold">
               {clientName && (
-                <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
-                  {clientName}
-                </li>
+                <li className="text-textBlack rounded-xl p-2 ">{clientName}</li>
               )}
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+              <div className="h-[60%] w-[1px] bg-gray-200"></div>
+              <li className="bg-acent text-primary  p-2 shadow-sm shadow-black rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
                 <Link
                   to="/"
                   onClick={() => {
@@ -48,28 +38,20 @@ function NavbarHome() {
         </>
       ) : (
         <>
-          <nav
-            className="bg-[#4A2D0B] h-[70px] w-full flex justify-between items-center px-4
-          sm:h-[90px]"
-          >
-            <img
-              className="w-[18%]
-            md:w-[13%]
-            lg:w-[10%]
-            xl:w-[7%]"
-              src={logoEventBrew}
-              alt=""
-            />
-            <ul
-              className="flex gap-x-2 text-xl
-            lg:text-4xl
-            md:text-3xl
-            sm:text-2xl"
-            >
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
-                <Link to="/login-clients">Iniciar sesión</Link>
+          <nav className="bg-white w-full flex justify-between items-center px-4 h-[70px] border-b-[1px] border-gray-200">
+            {/* <img className='w-[5.5%]' src={logoEventBrew} /> */}
+            <h1 className="text-textBlack font-lobster">
+              <span className="text-[acent] font-lobster">E</span>v
+              <span className="text-primary font-lobster">en</span>ts
+              <span className="text-acent font-lobster">B</span>r
+              <span className="text-primary font-lobster">ew</span>
+            </h1>
+            <ul className="flex justify-center items-center gap-x-2 text-xl text-black h-full font-semibold">
+              <li className="bg-acent text-primary  p-2 shadow-sm shadow-black rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
+                <Link to="/login-clients">Inicia sesión</Link>
               </li>
-              <li className="bg-[#FFEEB3] text-[#AC703E] rounded-xl p-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">
+              <div className="h-[60%] w-[1px] bg-gray-200"></div>
+              <li className="bg-acent text-primary  p-2 shadow-sm shadow-black rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
                 <Link to="/register-clients">Registrarse</Link>
               </li>
             </ul>

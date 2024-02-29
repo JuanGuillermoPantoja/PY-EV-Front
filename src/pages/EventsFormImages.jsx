@@ -41,7 +41,7 @@ function EventsFormImages() {
 };
 
   return (
-    <div className="multi-image-upload-form">
+    <div className="multi-image-upload-form flex flex-col justify-around  items-center h-1/2">
       {[1, 2, 3].map((index) => (
         <div key={index}>
           <input
@@ -51,7 +51,7 @@ function EventsFormImages() {
           />
         </div>
       ))}
-      <button onClick={handleUpload}>Subir imágenes</button>
+      <button onClick={handleUpload} className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-1/2 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300">Subir imágenes</button>
     </div>
   );
 }

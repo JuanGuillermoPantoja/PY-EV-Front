@@ -7,12 +7,12 @@ import utc from "dayjs/plugin/utc";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import FooterAdmin from "../components/FooterAdmin";
+import EventsFormImages from "./EventsFormImages";
 dayjs.extend(utc);
 
 function EventsFormPage() {
   const { register, handleSubmit, setValue } = useForm();
   const { createEvent, getEvent, updateEvent } = useEvents();
-
   const navigate = useNavigate();
   const params = useParams();
 
@@ -78,12 +78,7 @@ function EventsFormPage() {
     <>
       <Navbar></Navbar>
       <div className="h-screen bg-[url('https://i.ibb.co/LQf91TG/fondo-EB.webp')] bg-cover bg-center flex justify-around items-center">
-        <div
-          className="flex justify-around items-center bg-[#0000007c] w-4/5 h-3/4 rounded-2xl border-4 border-[#AC703E]
-        md:w-3/5
-        lg:w-1/2
-        xl:w-2/5"
-        >
+        <div className="flex justify-around items-center bg-[#00000082] w-2/5 h-3/4 rounded-2xl border-4 border-[#AC703E]">
           <form
             className="flex flex-col h-full w-3/4 justify-center items-center mx-5"
             onSubmit={onSubmit}
@@ -153,22 +148,25 @@ function EventsFormPage() {
                 >
                   Añadir evento
                 </button>
-                <input
-                  onChange={handleFile}
-                  className="border-4 border-[#AC703E] w-[260px] h-2/5 rounded-full hover:cursor-pointer 
-                md:w-[345px]"
-                  type="file"
-                />
-                <button
-                  onSubmit={onSubmit}
-                  onClick={handleUpload}
-                  className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-full rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
-                >
-                  Actulizar imagen de portada
-                </button>
               </div>
             </div>
           </form>
+        </div>
+        <div className="flex flex-col justify-center items-center bg-[#0000007b] w-2/5 h-3/4 rounded-2xl border-4 border-[#AC703E]">
+          <h2>imagenes</h2>
+          <input
+            onChange={handleFile}
+            className="hover:cursor-pointer"
+            type="file"
+          />
+          <button
+            onSubmit={onSubmit}
+            onClick={handleUpload}
+            className="bg-[#FFEEB3] text-[#AC703E] text-lg m-2 font-bold h-10 w-1/2 rounded-full mt-2 hover:bg-[#AC703E] hover:text-[#FFEEB3] duration-300"
+          >
+            Actulizar imagen de portada
+          </button>
+          <EventsFormImages />
         </div>
       </div>
       <FooterAdmin></FooterAdmin>
