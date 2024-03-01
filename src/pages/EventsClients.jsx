@@ -112,7 +112,7 @@ function EventsClients() {
                         <p className="bg-primary w-[75%] h-[40%] text-white">
                           {event.address}
                         </p>
-                        <button
+                        <button className="bg-acent rounded-md my-2 p-2 text-black hover:bg-gold"
                           onClick={() => {
                             handleMoreInfoClick(event.id);
                           }}
