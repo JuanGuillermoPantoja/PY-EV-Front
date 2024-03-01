@@ -173,12 +173,12 @@ function InfoEvents() {
 									<img
 										className='w-full h-full border-black border-4 rounded-xl'
 										src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-										alt=''
+										alt='Cover Image'
 									/>
 								</div>
 								<div className='w-full h-1/2'>
 									<Slider className='w-full h-1/2' {...settings}>
-										{images.images.map((image, index) => (
+										{images?.images?.map((image, index) => (
 											<div className="w-full h-1/2" key={index}>
 												<img
 													className='w-full h-[300px] border-black border-4 rounded-xl'

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logoEventBrew from "../img/logoeventsBrew.png";
 import { useClientAuth } from "../context/ClientContex";
+import userIcon from "../img/userIcon.png"
 
 function NavbarHome() {
   const { isClientAuthenticated, client, clientLogout } = useClientAuth();
@@ -19,9 +20,9 @@ function NavbarHome() {
               <span className="text-primary font-lobster">ew</span>
             </h1>
             {/* <img className='w-[20%]' src={logoEventBrew} alt='' /> */}
-            <ul className="flex justify-center items-center gap-x-2 text-xl text-black h-full font-semibold">
+            <ul className="flex justify-center items-center gap-x-2 text-xl text-black h-full">
               {clientName && (
-                <li className="text-textBlack rounded-xl p-2 ">{clientName}</li>
+                <li className="font-bold text-textBlack rounded-xl p-2 h-2/3 flex items-center"><img className="h-full mr-2" src={userIcon} alt="" />{clientName}</li>
               )}
               <div className="h-[60%] w-[1px] bg-gray-200"></div>
               <li className="bg-acent text-primary  p-2 rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
@@ -53,7 +54,7 @@ function NavbarHome() {
               <span className="text-acent">B</span>r
               <span className="text-primary">ew</span>
             </h1>
-            <ul className="flex justify-center items-center gap-x-2 text-lg text-black h-full font-medium">
+            <ul className="flex justify-center items-center gap-x-2 text-lg text-black h-full ">
               <li
                 id="btn-events"
                 className="bg-acent active:bg-amber-700 text-primary p-2 rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100"

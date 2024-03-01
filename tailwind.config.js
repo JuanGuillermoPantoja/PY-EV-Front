@@ -10,6 +10,7 @@ export default {
       backgroundImage: (theme) => ({
         "gradient-orange": "linear-gradient(to right, #ff9800,#bb4c02)",
         "gradient-top-amber": "linear-gradient(to bottom, #e27100 ,#bb4c02)",
+        "bg-linear-trhee-color":  'linear-gradient(90deg, #ff9800 19%, #e27100 47%, #983a08 82%, #481700 97%)',
       }),
       dropShadow: {
         complete: "0 0 10px rgba(0, 0, 0, 1)",

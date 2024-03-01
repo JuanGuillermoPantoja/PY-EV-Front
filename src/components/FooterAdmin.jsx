@@ -6,10 +6,10 @@ function FooterAdmin() {
     return (
         <>
             <footer>
-                <div className='bg-[#4c3b22] w-full h-500px flex justify-center items-center'>
+                <div className='bg-textBlack w-full h-500px flex justify-center items-center'>
                     <div className='p-4 w-[100%] flex flex-col'>
-                        <div className='bg-[#534320] rounded-md p-2 shadow-md shadow-black'>
-                            <h2 className='h-[10%] text-2xl text-[#aa9857] text-start font-bold font-sans
+                        <div className='bg-primary rounded-md p-2 shadow-md shadow-black'>
+                            <h2 className='h-[10%] text-2xl text-white text-start font-bold font-sans
                             lg:text-3xl
                             sm:text-xl'>EventsBrews</h2><br />
                             <p className='h-[10%] text-base text-[#FFEEB3] font-sans
@@ -27,7 +27,7 @@ function FooterAdmin() {
                         <div className='flex justify-start items-center mt-2'>
                             <img src={logoeventBrewDark} className='w-[10%]
                             ' alt="" />
-                            <p className='text-2xl text-[#FFEEB3] text-end font-sans
+                            <p className='text-2xl text-acent text-end font-sans
                             lg:text-3xl
                             sm:text-xl'>©EventsBrews</p>
                         </div>
