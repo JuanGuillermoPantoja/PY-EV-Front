@@ -176,7 +176,7 @@ function LoginPage() {
                 />
               </div>
             </Link>
-            <p className="relative bg-primary rounded-full my-2 py-2 px-4 text-[#FFEEB3] max-[1024px]:text-xl max-[600px]:text-lg max-[600px]:px-5 max-[480px]:text-sm max-[480px]:px-2">
+            <p className="relative rounded-full my-2 py-2 px-4 text-[#FFEEB3] max-[1024px]:text-xl max-[600px]:text-lg max-[600px]:px-5 max-[480px]:text-sm max-[480px]:px-2">
               ¿Aún no tienes cuenta? Registrate aquí.{" "}
               <NavLink
                 className="text-acent underline hover:text-gold"
@@ -191,7 +191,7 @@ function LoginPage() {
             className="flex flex-col items-center w-1/2 h-3/4 rounded-r-2xl shadow-complete shadow-primary max-[480px]:w-3/5 "
             onSubmit={onSubmit}
           >
-            <div className="bg-textBlack bg-opacity-90 rounded-r-xl flex flex-col justify-center items-center w-full h-full border-acent border-t-2 border-b-2 border-r-2 max-[1024px]:h-[90%] max-[480px]:h-full max-[480px]:w-full">
+            <div className="bg-black bg-opacity-90 rounded-r-xl flex flex-col justify-center items-center w-full h-full border-acent border-t-2 border-b-2 border-r-2 max-[1024px]:h-[90%] max-[480px]:h-full max-[480px]:w-full">
               <h2 className="text-white  font-bold">INICIA SESIÓN</h2>
               <div className="w-[50%] bg-acent h-[1px] mb-10"></div>
               {userErrors && (
