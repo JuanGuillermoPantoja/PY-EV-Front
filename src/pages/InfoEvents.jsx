@@ -161,13 +161,14 @@ function InfoEvents() {
                 }}
               ></div>
               <div>
-                {images.images.map((image, index) => {
+                {images.images.map((image, index) => (
                   <div key={index}>
                     <img
-                      src={`url(${`https://events-cqtw.onrender.com/uploads/${filteredEvent.id.image_url}`})`}
+                      src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
+                      alt={`Image ${index}`}
                     />
-                  </div>;
-                })}
+                  </div>
+                ))}
               </div>
               <div className="w-[30%] h-full bg-gradient-orange p-4 text-white flex items-center">
                 <div className="w-full bg-white text-textBlack rounded-md shadow-inner p-2 shadow-amber-950">
