@@ -12,6 +12,9 @@ import { utc } from 'dayjs';
 import NavbarHome from '../components/NavbarHome';
 import { getEventsClientsRequest } from '../api/event';
 import axios from 'axios';
+import Slider from 'react-slick'; // Importa el componente Slider de react-slick
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 dayjs.extend(utc);
 
 function InfoEvents() {
@@ -118,6 +121,17 @@ function InfoEvents() {
 		});
 	};
 
+	const settings = {
+		dots: true,
+    fade:true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 2000,
+	};
+
 	const handleCommentSubmit = async () => {
 		if (!isClientAuthenticated) {
 			showAlert('Debes iniciar sesión para comentar', 'error');
@@ -154,23 +168,29 @@ function InfoEvents() {
 				<div className='w-full h-full'>
 					{filteredEvent ? (
 						<div className='flex w-full h-full justify-between '>
-							<div
-								className='w-2/5 bg-black h-1/2 bg-cover bg-center'
-								style={{
-									backgroundImage: `url(${`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`})`,
-								}}
-							></div>
-							<div>
-								{images.images.map((image, index) => {
-									<div key={index}>
-										<img
-											src={`https://events-cqtw.onrender.com/uploads/${image}`}
-											alt={`Image ${index}`}
-										/>
-									</div>;
-								})}
+							<div className='w-1/3 h-full p-2 bg-black'>
+								<div className='w-full h-1/2 mb-2'>
+									<img
+										className='w-full h-full border-black border-4 rounded-xl'
+										src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+										alt=''
+									/>
+								</div>
+								<div className='w-full h-1/2'>
+									<Slider className='w-full h-1/2' {...settings}>
+										{images.images.map((image, index) => (
+											<div className="w-full h-1/2" key={index}>
+												<img
+													className='w-full h-[300px] border-black border-4 rounded-xl'
+													src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
+													alt={`Image ${index}`}
+												/>
+											</div>
+										))}
+									</Slider>
+								</div>
 							</div>
-							<div className='w-[30%] h-full bg-gradient-orange p-4 text-white flex items-center'>
+							<div className='w-[40%] h-full bg-gradient-orange p-4 text-white flex items-center'>
 								<div className='w-full bg-white text-textBlack rounded-md shadow-inner p-2 shadow-amber-950'>
 									<h2 className='mb-8 font-bold'>{filteredEvent.title}</h2>
 									<p className='font-bold'>Descripción del evento:</p>
@@ -192,7 +212,8 @@ function InfoEvents() {
 										<SimpleBar
 											autoHide
 											over
-											style={{maxHeight: 450 }}
+											direction='vertical'
+											style={{ maxHeight: 450 }}
 										>
 											{comments.map((comment, index) => (
 												<div
@@ -242,7 +263,7 @@ function InfoEvents() {
 										<textarea
 											value={comment}
 											onChange={handleCommentChange}
-											className='w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-2 font-bold'
+											className='w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 font-bold'
 											placeholder='Escribe tu comentario aquí...'
 										></textarea>
 										<div className='w-full h-[50%] flex justify-around items-center'>

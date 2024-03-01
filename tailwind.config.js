@@ -19,6 +19,7 @@ export default {
         textBlack: "#1A1515",
         acent: "#ff9800",
         gold: "#AB6A09",
+        gradientOrange: "linear-gradient(to right, #ff9800,#bb4c02)",
       },
       boxShadow: {
         complete: "0 0 10px",
