@@ -19,32 +19,29 @@ function Footer() {
     <>
       <footer className="">
         <div
-          className="bg-textBlack flex flex-col items-center
-          lg:flex lg:items-start lg:flex-row"
+          className="bg-textBlack flex flex-col items-center lg:flex lg:items-start lg:flex-row"
         >
           <div
-            className="p-4 w-full 
-          lg:w-1/2
-          sm:w-11/12"
+            className="p-4 w-full  lg:w-1/2 sm:w-11/12"
           >
             <form
               className=" bg-primary rounded-md p-2 shadow-complete shadow-black"
               onSubmit={onSubmit}
             >
               <div className="text-white">
-                <h2 className=" text-center">
+                <h2 className=" text-center text-base">
                   ¿Deseas agregar los eventos de tu establecimiento?
                 </h2>
-                <h3 className="font-bold text-center">
+                <h3 className="font-bold text-center text-base">
                   Contactanos
                 </h3>
               </div>
               <div className="flex flex-col">
-                <label className="text-lg flex">
+                <label className="text-base flex ">
                   Nombre:
                   <span>
                     {errors.name && (
-                      <p className="text-red-500 text-lg ml-4">
+                      <p className="text-red-500 text-base ml-4">
                         Este campo es requerido*
                       </p>
                     )}
@@ -57,11 +54,11 @@ function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-lg mt-2 flex">
+                <label className="text-base mt-2 flex">
                   Correo:
                   <span className="flex justify-end">
                     {errors.email && (
-                      <p className="text-red-500 text-lg ml-4">
+                      <p className="text-red-500 text-base ml-4">
                         Correo electrónico inválido*
                       </p>
                     )}
@@ -77,11 +74,11 @@ function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-lg flex mt-2">
+                <label className="text-base flex mt-2">
                   Motivo:{" "}
                   <span>
                     {errors.content && (
-                      <p className="text-red-500 text-lg ml-4">
+                      <p className="text-red-500 text-base ml-4">
                         Este campo es requerido*
                       </p>
                     )}
@@ -95,7 +92,7 @@ function Footer() {
                 ></textarea>
               </div>
               <div className="flex items-center justify-center">
-                <button className="w-[30%] bg-acent text-primary shadow-complete shadow-black text-xl m-2 text-center font-bold rounded-md mt-4 hover:bg-gold duration-300">
+                <button className="w-[30%] bg-acent text-primary shadow-complete shadow-black text-base m-2 text-center font-bold rounded-md mt-4 hover:bg-gold duration-300">
                   Enviar
                 </button>
               </div>
