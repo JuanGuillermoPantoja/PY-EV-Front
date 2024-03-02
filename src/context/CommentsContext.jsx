@@ -51,6 +51,20 @@ export function CommentProvider({ children }) {
     }
   };
 
+
+  const getLikesAndDisLikes = async (event_id) => {
+    try {
+      const res = await ruta_protegida().get(`/${event_id}/likes-dislikes`, {
+        event_id,
+      });
+      console.log(res.data);
+      return res.data; // Devuelve los datos de la respuesta
+    } catch (error) {
+      console.error(error);
+      throw error; // Lanza el error para que puedas manejarlo en tu componente
+    }
+  };
+
   const addLike = async (event_id, client_id) => {
     try {
       const res = await ruta_protegida().post(`/events/${event_id}/like`, {
@@ -132,6 +146,7 @@ export function CommentProvider({ children }) {
         updateComment,
         addLike,
         addDisLike,
+        getLikesAndDisLikes,
       }}
     >
       {children}
