@@ -46,7 +46,7 @@ function NavbarHome() {
         </>
       ) : (
         <>
-          <nav className="bg-white w-full flex justify-between items-center px-2 h-[70px] border-b-[1px] border-gray-200">
+          <nav className="bg-white w-full flex flex-col sm:flex-row justify-between items-center px-2 h-[70px] border-b-[1px] border-gray-200">
             {/* <img className='w-[5.5%]' src={logoEventBrew} /> */}
             <h1 className="text-textBlack  text-base sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
               <span className="text-acent">E</span>v
