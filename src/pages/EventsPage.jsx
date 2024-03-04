@@ -122,7 +122,7 @@ function EventsPage() {
 													<p className='text-center h-10% bg-primary text-white w-[75%] relative z-10'>
 														{event.description}
 													</p> */}
-														<div className='w-full h-[50%] bg-cover bg-center flex flex-col justify-start items-center relative z-10'>
+														<div className='w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10'>
 															<p className='bg-primary text-center w-[75%] h-[40%] text-white'>
 																{event.address}
 															</p>
