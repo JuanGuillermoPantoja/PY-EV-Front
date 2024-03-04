@@ -6,9 +6,9 @@ import utc from 'dayjs/plugin/utc';
 import Navbar from '../components/Navbar';
 import FooterAdmin from '../components/FooterAdmin';
 import bgCard from '../img/bg-card.png';
-import threeGrainCoffe from '../img/3grain-coffe.png';
-import coffeGrain from '../img/Coffe-grano.png';
-import coffe from '../img/coffe.png';
+import 'dayjs/locale/es'; // Importa el idioma español
+
+dayjs.locale('es');
 
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
@@ -86,7 +86,7 @@ function EventsPage() {
 															{event.title}
 														</h2>
 														<p className='h-[20%] bg-acent text-textBlack  w-[75%] flex justify-center items-center relative z-10'>
-															empanadas 2x1
+															{event.promotion}
 														</p>
 														<p className='text-center h-10% bg-textBlack text-acent w-[75%] relative z-10'>
 															{dayjs(event.dates)

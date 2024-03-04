@@ -12,7 +12,9 @@ import bgCard from "../img/bg-card.png";
 import threeGrainCoffe from "../img/3grain-coffe.png";
 import coffeGrain from "../img/Coffe-grano.png";
 import coffe from "../img/coffe.png";
+import 'dayjs/locale/es'; // Importa el idioma español
 
+dayjs.locale('es');
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -60,7 +62,7 @@ function EventsClients() {
             </div>
           </div>
           <h1 className="text-left w-[80%]">Eventos disponibles</h1>
-          <div className="w-[80%]  h-[550px] flex justify-between items-center flex-wrap">
+          <div className="w-[80%]  h-[550px] flex justify-center items-center flex-wrap gap-2">
             {events.length === 0 && (
               <h1 className="h-screen bg-cover w-full bg-center text-center">
                 No se han agregado eventos
@@ -69,7 +71,7 @@ function EventsClients() {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="w-[24%] h-[80%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
+                className="w-[24%] h-[80%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400 border-4 border-amber-700"
               >
                 {/* <div className=' w-full h-full bg-primary rounded-t-lg'>
 									<img
@@ -84,7 +86,7 @@ function EventsClients() {
                 <div className="flex flex-col justify-between items-center h-full w-full relative">
                   <div className="flex-col w-full h-full">
                     <div
-                      className="flex flex-col justify-center w-full h-full mb-2 relative overflow-hidden"
+                      className="flex flex-col justify-center w-full h-full mb-2 relative overflow-hidden rounded-xl"
                       style={{
                         backgroundImage: `url(${bgCard})`,
                       }}
@@ -100,7 +102,7 @@ function EventsClients() {
                           {event.title}
                         </h2>
                         <p className="h-[20%] bg-acent text-textBlack  w-[75%] flex justify-center items-center relative z-10">
-                          empanadas 2x1
+                          {event.promotion}
                         </p>
                         <p className="h-10% bg-textBlack text-acent w-[75%] relative z-10">
                           {dayjs(event.dates)
@@ -108,8 +110,8 @@ function EventsClients() {
                             .format("DD [de] MMMM [del] YYYY")}
                         </p>
                       </div>
-                      <div className="w-full h-[50%] bg-cover bg-center flex flex-col justify-start items-center relative z-10">
-                        <p className="bg-primary w-[75%] h-[40%] text-white">
+                      <div className="w-full h-[55%] bg-cover bg-center flex flex-col justify-start items-center relative z-10">
+                        <p className="bg-primary w-[75%] h-[50%] text-white flex items-center justify-center px-1">
                           {event.address}
                         </p>
                         <button className="bg-acent rounded-md my-2 p-2 text-black hover:bg-gold"
