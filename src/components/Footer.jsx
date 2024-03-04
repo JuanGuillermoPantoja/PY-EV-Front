@@ -13,7 +13,6 @@ function Footer() {
 
   const onSubmit = handleSubmit((data) => {
     formContact(data);
-    console.log("formulario", data);
   });
   return (
     <>

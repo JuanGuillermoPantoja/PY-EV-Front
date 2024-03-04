@@ -16,7 +16,6 @@ function LoginClientsPage() {
 
 	const onSubmit = handleSubmit((data) => {
 		clientSignin(data);
-		console.log('data', data);
 	});
 
 	console.log('errores', clientErrors);
@@ -28,7 +27,6 @@ function LoginClientsPage() {
 		}
 	}, [isClientAuthenticated, navigate]);
 
-	console.log(isClientAuthenticated);
 
 	return (
 		<>
