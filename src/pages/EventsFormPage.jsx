@@ -37,7 +37,6 @@ function EventsFormPage() {
 	};
 
 	const handleUpload = () => {
-		console.log('id-----------', params);
 		if (!params.id || isNaN(params.id)) {
 			console.error('ID del evento no proporcionado o no válido');
 			return;
@@ -85,7 +84,6 @@ function EventsFormPage() {
 		async function loadEvent() {
 			if (params.id) {
 				const event = await getEvent(params.id);
-				console.log(event);
 				setValue('title', event.title);
 				setValue('address', event.address);
 				setValue('description', event.description);
@@ -185,7 +183,7 @@ function EventsFormPage() {
 							<div className='w-full flex flex-col items-center'>
 								<button
 									onSubmit={onSubmit}
-									className='bg-acent font-bold w-full text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600 max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl'
+									className='bg-acent font-bold w-full mb-2 text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600 max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl'
 								>
 									Añadir evento
 								</button>
