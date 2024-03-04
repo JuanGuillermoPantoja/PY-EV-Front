@@ -81,6 +81,7 @@ function LoginClientsPage() {
 							<input
 								className='my-2 w-2/3 h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base'
 								{...register('email', { required: true })}
+								type='email'
 								placeholder='Correo:'
 							/>
 
@@ -91,6 +92,7 @@ function LoginClientsPage() {
 							<input
 								className='my-2 w-2/3 h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base'
 								{...register('password', { required: true })}
+								type='password'
 								placeholder='Contraseña:'
 							/>
 
