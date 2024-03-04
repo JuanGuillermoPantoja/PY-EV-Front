@@ -52,7 +52,7 @@ function Chat() {
 			{isModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70'>
 					<div className='bg-primary text-acent border-2 flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[40%]'>
-						<h1 className='text-2xl my-4'>Charla con nosotros!</h1>
+						<h1 className='text-xl my-4'>Charla con nosotros!</h1>
 
 						<div className='animate-fade-in flex justify-center items-center flex-col w-full bg-primary rounded-sm'>
 							<SimpleBar autoHide className='w-full' style={{ maxHeight: 300 }}>
@@ -86,22 +86,22 @@ function Chat() {
 						<div className='flex justify-center w-full'>
 							<input
 								type='text'
-								className='w-full bg-acent rounded-sm text-textBlack placeholder:text-gold p-2 mt-2 font-bold '
+								className='w-full bg-acent rounded-sm  text-textBlack placeholder:text-gold p-2 mt-2 font-bold '
 								placeholder='Pregunta aquí!'
 								value={message}
 								onChange={(e) => setMessage(e.target.value)}
 							/>
 						</div>
-						<div className='w-1/2 flex justify-around'>
+						<div className='w-auto gap-x-1 flex justify-around'>
 							<button
 								onClick={sendMessage}
-								className='bg-acent h-12 text-primary font-bold mt-4 p-2 rounded-xl hover:bg-gold hover:text-black duration-300'
+								className='bg-acent h-10 text-primary text-base font-bold mt-4 p-2 rounded-xl hover:bg-gold hover:text-black duration-300'
 							>
 								Preguntar
 							</button>
 							<button
 								onClick={closeModal}
-								className='bg-red-600 h-12 text-white font-bold mt-4 p-2 rounded-xl hover:bg-red-700 duration-300'
+								className='bg-red-600 h-10 w-full text-white text-base font-bold mt-4 p-2 rounded-xl hover:bg-red-700 duration-300'
 							>
 								Cerrar Chat
 							</button>

@@ -52,26 +52,28 @@ function EventsClients() {
       <SimpleBar className="bg-white w-full bg-fixed bg-cover bg-center h-screen">
         <div className="h-full w-full text-center text-textBlack flex flex-col justify-center items-center">
           <div className="h-screen w-full flex flex-col items-center justify-center bg-gradient-orange">
-            <div className="bg-white h-full w-full rounded-tr-full rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700">
-              <h1 className="text-textBlack text-8xl">
+            <div className="bg-white h-full w-full rounded-tr-[300px] rounded-bl-[300px] sm:rounded-tr-[350px] sm:rounded-bl-[350px] md:rounded-tr-[450px] md:rounded-bl-[450px] lg:rounded-tr-full lg:rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700">
+              <h1 className="text-textBlack lg:text-6xl xl:text-7xl 2xl:text-8xl">
                 Bienvenidos a <span className="text-acent">EventsBrew</span>
               </h1>
-              <h2 className="text-2xl animate-slide-in-left">
+              <h2 className="text-xl w-9/12 sm:w-full lg:text-2xl animate-slide-in-left">
                 Descubre, saborea, disfruta: ¡Tu próximo evento comienza aquí!
               </h2>
             </div>
           </div>
-          <h1 className="text-left w-[80%]">Eventos disponibles</h1>
-          <div className="w-[80%]  h-[550px] flex justify-center items-center flex-wrap gap-2">
+
+
+          <h1 className="text-left w-[80%] text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">Eventos disponibles</h1>
+          <div className="w-[80%]  h-[550px] flex justify-center sm:justify-between items-center flex-wrap">
             {events.length === 0 && (
-              <h1 className="h-screen bg-cover w-full bg-center text-center">
+              <h1 className="h-screen bg-cover w-full bg-center text-center text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">
                 No se han agregado eventos
               </h1>
             )}
             {events.map((event) => (
               <div
                 key={event.id}
-                className="w-[24%] h-[80%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400 border-4 border-amber-700"
+                className=" w-3/4 sm:w-[49%] lg:w-[32%] xl:w-[30%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
               >
                 {/* <div className=' w-full h-full bg-primary rounded-t-lg'>
 									<img
@@ -98,23 +100,23 @@ function EventsClients() {
                         }}
                       >
                         <div className="bg-black h-full w-full absolute opacity-40"></div>
-                        <h2 className="h-[20%] w-[75%] text-white flex justify-center items-center relative bottom-10 z-10">
+                        <h2 className="h-[20%] w-[75%] text-white text-lg xl:text-xl flex justify-center items-center relative bottom-10 z-10">
                           {event.title}
                         </h2>
-                        <p className="h-[20%] bg-acent text-textBlack  w-[75%] flex justify-center items-center relative z-10">
-                          {event.promotion}
+                        <p className="h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
+                          { event.promotion }
                         </p>
-                        <p className="h-10% bg-textBlack text-acent w-[75%] relative z-10">
+                        <p className="h-10% bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
                           {dayjs(event.dates)
                             .utc()
                             .format("DD [de] MMMM [del] YYYY")}
                         </p>
                       </div>
-                      <div className="w-full h-[55%] bg-cover bg-center flex flex-col justify-start items-center relative z-10">
-                        <p className="bg-primary w-[75%] h-[50%] text-white flex items-center justify-center px-1">
+                      <div className="w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10">
+                        <p className="bg-primary w-[75%] text-base xl:text-base h-[40%] text-white">
                           {event.address}
                         </p>
-                        <button className="bg-acent rounded-md my-2 p-2 text-black hover:bg-gold"
+                        <button className="bg-acent rounded-md text-base xl:text-base my-2 p-2 text-black hover:bg-gold"
                           onClick={() => {
                             handleMoreInfoClick(event.id);
                           }}
@@ -123,7 +125,7 @@ function EventsClients() {
                         </button>
                       </div>
                       <img
-                        className="z-0 absolute left-24 bottom-28"
+                        className="z-0 absolute left-24 bottom-28 "
                         src={threeGrainCoffe}
                         alt=""
                       />
@@ -133,7 +135,7 @@ function EventsClients() {
                         alt=""
                       />
                       <img
-                        className="absolute top-2/3 left-0 right-0 mx-auto "
+                        className="absolute top-2/3 left-0 right-0 mx-auto"
                         src={coffe}
                         alt=""
                       />
