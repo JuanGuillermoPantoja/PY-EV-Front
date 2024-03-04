@@ -135,7 +135,7 @@ function EventsFormImages() {
 		});
 
 		axios
-			.post('https://events-cqtw.onrender.com/uploadImages', formdata)
+			.post('https://events-cqtw.onrender.com/uploadImgIA', formdata)
 			.then((res) => {
 				console.log("respuesta",res);
 				if (res.data.Status === 'Success') {
