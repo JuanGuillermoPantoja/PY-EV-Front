@@ -63,96 +63,153 @@
 // }
 
 // export default EventsFormImages;
-import { useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import SimpleBar from 'simplebar-react';
-import Swal from 'sweetalert2';
+import { useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import SimpleBar from "simplebar-react";
+import Swal from "sweetalert2";
 
 function EventsFormImages() {
-	const [files, setFiles] = useState([null]);
-	const [selectedFile, setSelectedFile] = useState(
-		Array(files.length).fill(null),
-	);
-	const params = useParams();
-	const fileInputRef = useRef([]);
 
-	const handleFileChange = (index, e) => {
-		const newFiles = [...files];
-		const newSelectedFiles = [...selectedFile];
-		const file = e.target.files[0];
+	const [images, setimages] = useState([]);
 
-		newSelectedFiles[index] = file ? file.name : null;
-		setSelectedFile(newSelectedFiles);
-		newFiles[index] = e.target.files[0];
-		setFiles(newFiles);
-		if (index === files.length - 1 && files.length < 10) {
-			setFiles([...newFiles, null]);
-			setSelectedFile([...newSelectedFiles, null]);
-		}
-	};
+  const changeInput = (e) => {
+    //esto es el indice que se le dará a cada imagen, a partir del indice de la ultima foto
+    let indexImg;
+
+    //aquí evaluamos si ya hay imagenes antes de este input, para saber en dónde debe empezar el index del proximo array
+    if (images.length > 0) {
+      indexImg = images[images.length - 1].index + 1;
+    } else {
+      indexImg = 0;
+    }
+
+    let newImgsToState = readmultifiles(e, indexImg);
+    let newImgsState = [...images, ...newImgsToState];
+    setimages(newImgsState);
+
+    console.log(newImgsState);
+  };
+
+  function readmultifiles(e, indexInicial) {
+    const files = e.currentTarget.files;
+
+    //el array con las imagenes nuevas
+    const arrayImages = [];
+
+    Object.keys(files).forEach((i) => {
+      const file = files[i];
+
+      let url = URL.createObjectURL(file);
+
+      //console.log(file);
+      arrayImages.push({
+        index: indexInicial,
+        name: file.name,
+        url,
+        file
+      });
+
+      indexInicial++;
+    });
+
+    //despues de haber concluido el ciclo retornamos las nuevas imagenes
+    return arrayImages;
+  }
+
+  function deleteImg(indice) {
+    //console.log("borrar img " + indice);
+
+    const newImgs = images.filter(function (element) {
+      return element.index !== indice;
+    });
+    console.log(newImgs);
+    setimages(newImgs);
+  }
+	////////////////////////////////////////////////////////
+  const [files, setFiles] = useState([null]);
+  const [selectedFile, setSelectedFile] = useState(
+    Array(files.length).fill(null)
+  );
+  const params = useParams();
+  const fileInputRef = useRef([]);
+
+  const handleFileChange = (index, e) => {
+    const newFiles = [...files];
+    const newSelectedFiles = [...selectedFile];
+    const file = e.target.files[0];
+
+    newSelectedFiles[index] = file ? file.name : null;
+    setSelectedFile(newSelectedFiles);
+    newFiles[index] = e.target.files[0];
+    setFiles(newFiles);
+    if (index === files.length - 1 && files.length < 10) {
+      setFiles([...newFiles, null]);
+      setSelectedFile([...newSelectedFiles, null]);
+    }
+  };
 
   const showAlert = (message, type) => {
-    let iconType = 'info'; 
+    let iconType = "info";
 
-    if (type === 'error') {
-      iconType = 'error';
-    } else if (type === 'warning') {
-      iconType = 'warning';
-    } else if (type === 'success') {
-      iconType = 'success';
+    if (type === "error") {
+      iconType = "error";
+    } else if (type === "warning") {
+      iconType = "warning";
+    } else if (type === "success") {
+      iconType = "success";
     }
 
     Swal.fire({
       title: message,
       icon: iconType,
-      color: '#ff9800',
-      iconColor: '#ff9800',
-      background: '#000000',
+      color: "#ff9800",
+      iconColor: "#ff9800",
+      background: "#000000",
       timer: 3000,
       showConfirmButton: false,
     });
   };
 
-	const handleFileButtonClick = (index) => {
-		fileInputRef.current[index].click();
-	};
+  const handleFileButtonClick = (index) => {
+    fileInputRef.current[index].click();
+  };
 
-	const handleUpload = () => {
-		if (!params.id || isNaN(params.id)) {
-			console.error('ID del evento no proporcionado o no válido');
-			return;
-		}
+  const handleUpload = () => {
+    if (!params.id || isNaN(params.id)) {
+      console.error("ID del evento no proporcionado o no válido");
+      return;
+    }
 
-		const formdata = new FormData();
-		formdata.append('eventId', params.id);
+    const formdata = new FormData();
+    formdata.append("eventId", params.id);
 
-		// Itera sobre los archivos y los adjunta individualmente al objeto FormData
-		files.forEach((file) => {
-			if (file) {
-				formdata.append(`images`, file);
-			}
-		});
+    // Itera sobre los archivos y los adjunta individualmente al objeto FormData
+    files.forEach((file) => {
+      if (file) {
+        formdata.append(`images`, file);
+      }
+    });
 
-		axios
-			.post('https://events-cqtw.onrender.com/uploadImgIA', formdata)
-			.then((res) => {
-				console.log("respuesta",res);
-				if (res.data.Status === 'Success') {
-					showAlert('las imagenes se agregaron correctamente', 'success');
-				} else {
-					showAlert('Fallo al agregar las imagenes', 'error');
-				}
-			})
-			.catch((err) => console.log(err));
-	};
+    axios
+      .post("https://events-cqtw.onrender.com/uploadImgIA", formdata)
+      .then((res) => {
+        console.log("respuesta", res);
+        if (res.data.Status === "Success") {
+          showAlert("las imagenes se agregaron correctamente", "success");
+        } else {
+          showAlert("Fallo al agregar las imagenes", "error");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
-	return (
-		<div className='h-[400px] multi-image-upload-form flex flex-col justify-around  items-center'>
-			<SimpleBar className='bg-transparent w-[400px] bg-fixed bg-cover bg-center h-[200px]'>
-				{files.map((file, index) => (
-					<div key={index} className='flex items-center justify-center w-full'>
-						<button
+  return (
+    <div className="h-[400px] multi-image-upload-form flex flex-col justify-around  items-center">
+      <SimpleBar className="bg-transparent w-[400px] bg-fixed bg-cover bg-center h-[200px]">
+        {files.map((file, index) => (
+          <div key={index} className="flex items-center justify-center w-full">
+            {/* <button
 							onClick={() => handleFileButtonClick(index)}
 							className='bg-gray-500 hover:bg-gray-600 w-1/2 p-2 h-10 rounded-lg text-xs my-1'
 						>
@@ -165,22 +222,51 @@ function EventsFormImages() {
 								style={{ display: 'none' }}
 							/>
 							Seleccionar archivo
-						</button>
+						</button> */}
+            <label className="btn btn-warning">
+              <span>Seleccionar archivos </span>
+              <input hidden type="file" multiple onChange={changeInput}></input>
+            </label>
 
-						{selectedFile[index] && (
-							<p className='ml-2 w-full text-xs'>{`Archivo seleccionado: ${selectedFile[index]}`}</p>
-						)}
-					</div>
-				))}
-			</SimpleBar>
-			<button
-				onClick={handleUpload}
-				className='bg-acent font-bold mx-auto w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl'
-			>
-				Subir imágenes
-			</button>
-		</div>
-	);
+            <div className="row">
+              {images.map((imagen) => (
+                <div
+                  className="col-6 col-sm-4 col-lg-3 square"
+                  key={imagen.index}
+                >
+                  <div className="content_img">
+                    <button
+                      className="position-absolute btn btn-danger"
+                      onClick={deleteImg.bind(this, imagen.index)}
+                    >
+                      x
+                    </button>
+                    <img
+                      alt="algo"
+                      src={imagen.url}
+                      data-toggle="modal"
+                      data-target="#ModalPreViewImg"
+                      className="img-responsive"
+                    ></img>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {selectedFile[index] && (
+              <p className="ml-2 w-full text-xs">{`Archivo seleccionado: ${selectedFile[index]}`}</p>
+            )}
+          </div>
+        ))}
+      </SimpleBar>
+      <button
+        onClick={handleUpload}
+        className="bg-acent font-bold mx-auto w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
+      >
+        Subir imágenes
+      </button>
+    </div>
+  );
 }
 
 export default EventsFormImages;
