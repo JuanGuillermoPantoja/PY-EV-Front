@@ -1,342 +1,344 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import instance from '../api/axios';
-import { useComments } from '../context/CommentsContext';
-import { AiFillLike } from 'react-icons/ai';
-import { AiFillDislike } from 'react-icons/ai';
-import Swal from 'sweetalert2';
-import SimpleBar from 'simplebar-react';
-import { useClientAuth } from '../context/ClientContex';
-import dayjs from 'dayjs';
-import { utc } from 'dayjs';
-import NavbarHome from '../components/NavbarHome';
-import { getEventsClientsRequest } from '../api/event';
-import axios from 'axios';
-import Slider from 'react-slick'; // Importa el componente Slider de react-slick
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import instance from "../api/axios";
+import { useComments } from "../context/CommentsContext";
+import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
+import Swal from "sweetalert2";
+import SimpleBar from "simplebar-react";
+import { useClientAuth } from "../context/ClientContex";
+import dayjs from "dayjs";
+import { utc } from "dayjs";
+import NavbarHome from "../components/NavbarHome";
+import { getEventsClientsRequest } from "../api/event";
+import axios from "axios";
+import Slider from "react-slick"; // Importa el componente Slider de react-slick
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 dayjs.extend(utc);
-import Footer from '../components/Footer';
-import { set } from 'react-hook-form';
+import Footer from "../components/Footer";
 
 function InfoEvents() {
-	const { id } = useParams(); // Obtener el parámetro id de la URL
-	const [event, setEvent] = useState(null);
-	const {
-		createComment,
-		comments,
-		getComments,
-		deleteComment,
-		updateComment,
-		addLike,
-		addDisLike,
-		getLikesAndDisLikes,
-	} = useComments();
-	const [comment, setComment] = useState('');
-	const [editingComment, setEditingComment] = useState(null);
-	const [events, setEvents] = useState([]);
-	const { isClientAuthenticated, client } = useClientAuth();
-	const [images, setImages] = useState([]);
-	const filteredEvent = events.find((event) => event.id === parseInt(id));
-	const [likesCount, setLikesCount] = useState(null);
-	const [dislikesCount, setDislikesCount] = useState(null);
+  const { id } = useParams(); // Obtener el parámetro id de la URL
+  const [event, setEvent] = useState(null);
+  const {
+    createComment,
+    comments,
+    getComments,
+    deleteComment,
+    updateComment,
+    addLike,
+    addDisLike,
+    getLikesAndDisLikes,
+  } = useComments();
+  const [comment, setComment] = useState("");
+  const [editingComment, setEditingComment] = useState(null);
+  const [events, setEvents] = useState([]);
+  const { isClientAuthenticated, client } = useClientAuth();
+  const [images, setImages] = useState([]);
+  const filteredEvent = events.find((event) => event.id === parseInt(id));
+  const [likesCount, setLikesCount] = useState(null);
+  const [dislikesCount, setDislikesCount] = useState(null);
 
-	useEffect(() => {
-		const fetchImages = async () => {
-			try {
-				const response = await axios.get(
-					`https://events-cqtw.onrender.com/events/${id}/images`,
-				); // Realizar la solicitud al backend
-				// Almacenar la información de las imágenes en el estado
-				setImages(response.data);
-			} catch (error) {
-				console.error('Error fetching images:', error);
-			}
-		};
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(
+          `https://events-cqtw.onrender.com/events/${id}/images`
+        ); // Realizar la solicitud al backend
+        // Almacenar la información de las imágenes en el estado
+        setImages(response.data);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
 
-		fetchImages(); // Llamar a la función para obtener la información de las imágenes
-	}, []);
+    fetchImages(); // Llamar a la función para obtener la información de las imágenes
+  }, []);
 
-	useEffect(() => {
-		// Función para obtener la información de los eventos
-		const fetchEvent = async () => {
-			try {
-				const response = await getEventsClientsRequest();
-				setEvents(
-					response.data.filter(
-						(event) => event.done !== false && event.done !== 0,
-					),
-				);
-				setEvent(filteredEvent);
-				getComments(id);
-			} catch (error) {
-				console.error('Error fetching event:', error);
-			}
-		};
+  useEffect(() => {
+    // Función para obtener la información de los eventos
+    const fetchEvent = async () => {
+      try {
+        const response = await getEventsClientsRequest();
+        setEvents(
+          response.data.filter(
+            (event) => event.done !== false && event.done !== 0
+          )
+        );
+        setEvent(filteredEvent);
+        getComments(id);
+      } catch (error) {
+        console.error("Error fetching event:", error);
+      }
+    };
 
-		fetchEvent(); // Llamar a la función para obtener la información del evento
-	}, [id]); // Hacer que useEffect se ejecute cada vez que el ID cambie en la URL
+    fetchEvent(); // Llamar a la función para obtener la información del evento
+  }, [id]); // Hacer que useEffect se ejecute cada vez que el ID cambie en la URL
 
-	useEffect(() => {
-		const fetchLikesAndDislikes = async () => {
-			try {
-				const res = await getLikesAndDisLikes(id);
-				setLikesCount(res.total_likes);
-				setDislikesCount(res.total_dislikes);
-			} catch (error) {
-				console.error('Error fetching likes and dislikes:', error);
-			}
-		};
+  useEffect(() => {
+    const fetchLikesAndDislikes = async () => {
+      try {
+        const res = await getLikesAndDisLikes(id);
+        setLikesCount(res.total_likes);
+        setDislikesCount(res.total_dislikes);
+      } catch (error) {
+        console.error("Error fetching likes and dislikes:", error);
+      }
+    };
 
-		fetchLikesAndDislikes();
-	}, [id, getLikesAndDisLikes]);
+    fetchLikesAndDislikes();
+  }, [id, getLikesAndDisLikes]);
 
-	const handleLike = async () => {
-		try {
-			if (filteredEvent) {
-				const hasDislike = dislikesCount > 0;
-				await addLike(filteredEvent.id, client.client.id);
-				const res = await getLikesAndDisLikes(id);
-				setLikesCount(res.total_likes);
+  const handleLike = async () => {
+    try {
+      if (filteredEvent) {
+        const hasDislike = dislikesCount > 0;
+        await addLike(filteredEvent.id, client.client.id);
+        const res = await getLikesAndDisLikes(id);
+        setLikesCount(res.total_likes);
 
-				if (hasDislike) {
-					setDislikesCount(res.total_dislikes);
-				}
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	};
+        if (hasDislike) {
+          setDislikesCount(res.total_dislikes);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	const handleDisLike = async () => {
-		try {
-			await addDisLike(filteredEvent.id, client.client.id);
-			const res = await getLikesAndDisLikes(id);
-			setDislikesCount(res.total_dislikes);
+  const handleDisLike = async () => {
+    try {
+      await addDisLike(filteredEvent.id, client.client.id);
+      const res = await getLikesAndDisLikes(id);
+      setDislikesCount(res.total_dislikes);
 
-			const hasLike = likesCount > 0;
-			if (hasLike) {
-				setLikesCount(res.total_likes);
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	};
+      const hasLike = likesCount > 0;
+      if (hasLike) {
+        setLikesCount(res.total_likes);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	const handleDeleteComment = async (commentId) => {
-		try {
-			await deleteComment(commentId, client.client.id);
-		} catch (error) {
-			console.error(error);
-		}
-	};
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment(commentId, client.client.id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	const handleEditComment = async (comment) => {
-		setEditingComment(comment);
-		setComment(comment.comment_text);
-	};
+  const handleEditComment = async (comment) => {
+    setEditingComment(comment);
+    setComment(comment.comment_text);
+  };
 
-	const handleCommentChange = (e) => {
-		setComment(e.target.value);
-	};
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
 
-	const showAlert = (message, type) => {
-		Swal.fire({
-			title: message,
-			icon: type,
-			color: '#ff9800',
-			iconColor: '#ff9800',
-			background: '#000000',
-			timer: 3000,
-			showConfirmButton: false,
-		});
-	};
+  const showAlert = (message, type) => {
+    Swal.fire({
+      title: message,
+      icon: type,
+      color: "#ff9800",
+      iconColor: "#ff9800",
+      background: "#000000",
+      timer: 3000,
+      showConfirmButton: false,
+    });
+  };
 
-	const settings = {
-		dots: true,
-		fade: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-		autoplaySpeed: 2000,
-	};
+  const settings = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
 
-	const handleCommentSubmit = async () => {
-		if (!isClientAuthenticated) {
-			showAlert('Debes iniciar sesión para comentar', 'error');
-			return;
-		}
+  const handleCommentSubmit = async () => {
+    if (!isClientAuthenticated) {
+      showAlert("Debes iniciar sesión para comentar", "error");
+      return;
+    }
 
-		try {
-			if (editingComment) {
-				await updateComment(editingComment.id, client.client.id, comment);
-				const updateComments = comments.map((c) =>
-					c.id === editingComment ? { ...c, comment_text: comment } : c,
-				);
-				setComment(updateComments);
-				setEditingComment(null);
-			} else {
-				if (isClientAuthenticated) {
-					await createComment(filteredEvent.id, comment, client.client.id);
-				}
-			}
-			await getComments(filteredEvent.id);
-			setComment('');
-		} catch (error) {
-			console.error(error);
-		}
-	};
+    try {
+      if (editingComment) {
+        await updateComment(editingComment.id, client.client.id, comment);
+        const updateComments = comments.map((c) =>
+          c.id === editingComment ? { ...c, comment_text: comment } : c
+        );
+        setComment(updateComments);
+        setEditingComment(null);
+      } else {
+        if (isClientAuthenticated) {
+          await createComment(filteredEvent.id, comment, client.client.id);
+        }
+      }
+      await getComments(filteredEvent.id);
+      setComment("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	return (
-		<>
-			<NavbarHome />
-			<div className='h-[1000px] w-full'>
-				<div className='w-full h-full'>
-					{filteredEvent ? (
-						<div className='flex w-full h-full bg-gradient-orange'>
-							<div className='w-[50%] h-full p-2 bg-[]'>
-								<div className='w-full h-1/2 mb-2'>
-									<img
-										className='w-full h-full rounded-xl'
-										src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-										alt='Cover Image'
-									/>
-								</div>
-								<div className='w-full h-1/2'>
-									<Slider className='w-full h-1/1 ' {...settings}>
-										{images?.images?.map((image, index) => (
-											<div className='w-full  h-1/2' key={index}>
-												<img
-													className='w-full h-[450px]  rounded-xl'
-													src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
-													alt={`Image ${index}`}
-												/>
-											</div>
-										))}
-									</Slider>
-								</div>
-							</div>
-							<div className='w-[25%] h-full bg-[] p-4 text-white flex items-start'>
-								<div className='w-full bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
-									<h2 className='mb-8 font-bold'>{filteredEvent.title}</h2>
-									<p className='font-bold'>Descripción del evento:</p>
-									<p className='mb-4'>{filteredEvent.description}</p>
-									<p className='font-bold'>Dirección del evento:</p>
-									<p className='mb-4'>{filteredEvent.address}</p>
-									<p className='font-bold'>Fecha del evento:</p>
-									<p>
-										{dayjs(filteredEvent.dates)
-											.utc()
-											.format('DD [de] MMMM [del] YYYY')}
-									</p>
-								</div>
-							</div>
-							<div className='w-[25%] h-full'>
-								<div className='bg-white text-textBlack p-4 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950'>
-									<div className='mt-4 overflow-hidden'>
-										<h2 className=''>Comentarios</h2>
-										<SimpleBar
-											autoHide
-											over
-											direction='vertical'
-											style={{ maxHeight: 600 }}
-										>
-											{comments.map((comment, index) => (
-												<div
-													key={index}
-													className='bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between'
-												>
-													<div className='w-2/3 break-words'>
-														<p className='font-bold '>{comment.client}</p>
-														<p className='w-full pl-2 text-wrap '>
-															{comment.comment_text}
-														</p>
-													</div>
-													<div className='w-1/3 flex justify-end flex-wrap text-amber-600'>
-														<p className='pr-2'>
-															{dayjs(comment.created_at).utc().format('HH:mm')}
-														</p>
-														<p className='pr-2'>
-															{dayjs(comment.created_at)
-																.utc()
-																.format('DD/MM/YYYY')}
-														</p>
-														{client && client.client.id === comment.client_id && (
-															<div className='flex'>
-																<button
-																	onClick={() =>
-																		handleDeleteComment(comment.id)
-																	}
-																	className='text-red-600 mx-2 text-sm'
-																>
-																	Eliminar
-																</button>
-																<span> | </span>
-																<button
-																	onClick={() => handleEditComment(comment)}
-																	className='text-[#AC703E] mx-2 text-sm'
-																>
-																	Editar
-																</button>
-															</div>
-														)}
-													</div>
-												</div>
-											))}
-										</SimpleBar>
-									</div>
-									<div>
-										<textarea
-											value={comment}
-											onChange={handleCommentChange}
-											className='w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 font-bold'
-											placeholder='Escribe tu comentario aquí...'
-										></textarea>
-										<div className='w-full h-[50%] flex justify-around items-center'>
-											<div className='w-1/4 h-full flex justify-start items-center'>
-												<button
-													className='flex flex-col justify-center items-center text-center'
-													onClick={() => handleLike(event)}
-												>
-													<div className='flex flex-col items-center justify-center text-center'>
-														<AiFillLike color='#ff9800' size={25} />
-														<span className='ml-2'>{likesCount}</span>
-													</div>
-												</button>
-												<button
-													className='flex flex-col justify-center items-center text-center'
-													onClick={() => handleDisLike(event)}
-												>
-													<div className='flex flex-col items-center justify-center text-center'>
-														<AiFillDislike color='#ff9800' size={25} />
-														<span className='ml-2'>{dislikesCount}</span>
-													</div>
-												</button>
-											</div>
-											<div className='w-3/4 flex justify-around'>
-												<button
-													onClick={handleCommentSubmit}
-													className='w-2/3 bg-amber-500 text-amber-950 font-bold p-2 rounded-lg hover:bg-amber-600 duration-300'
-												>
-													{editingComment ? 'Guardar cambios' : 'Comentar'}
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					) : (
-						<p>Cargando información del evento...</p>
-					)}
-				</div>
-				<div></div>
-			</div>
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <NavbarHome />
+      <div className="h-[1000px] w-full">
+        <div className="w-full h-full">
+          {filteredEvent ? (
+            <div className="flex w-full h-full bg-gradient-orange">
+              <div className="flex flex-col">
+                <div className="w-[50%] h-full p-2 bg-[]">
+                  <div className="w-full h-1/2 mb-2">
+                    <img
+                      className="w-full h-full rounded-xl"
+                      src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+                      alt="Cover Image"
+                    />
+                  </div>
+                  <div className="w-full h-1/2">
+                    <Slider className="w-full h-1/1 " {...settings}>
+                      {images?.images?.map((image, index) => (
+                        <div className="w-full  h-1/2" key={index}>
+                          <img
+                            className="w-full h-[450px]  rounded-xl"
+                            src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
+                            alt={`Image ${index}`}
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
+                </div>
+                <div className="w-[25%] h-full bg-[] p-4 text-white flex items-start">
+                  <div className="w-full bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
+                    <h2 className="mb-8 font-bold">{filteredEvent.title}</h2>
+                    <p className="font-bold">Descripción del evento:</p>
+                    <p className="mb-4">{filteredEvent.description}</p>
+                    <p className="font-bold">Dirección del evento:</p>
+                    <p className="mb-4">{filteredEvent.address}</p>
+                    <p className="font-bold">Fecha del evento:</p>
+                    <p>
+                      {dayjs(filteredEvent.dates)
+                        .utc()
+                        .format("DD [de] MMMM [del] YYYY")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="w-[25%] h-full">
+                <div className="bg-white text-textBlack p-4 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
+                  <div className="mt-4 overflow-hidden">
+                    <h2 className="">Comentarios</h2>
+                    <SimpleBar
+                      autoHide
+                      over
+                      direction="vertical"
+                      style={{ maxHeight: 600 }}
+                    >
+                      {comments.map((comment, index) => (
+                        <div
+                          key={index}
+                          className="bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                        >
+                          <div className="w-2/3 break-words">
+                            <p className="font-bold ">{comment.client}</p>
+                            <p className="w-full pl-2 text-wrap ">
+                              {comment.comment_text}
+                            </p>
+                          </div>
+                          <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
+                            <p className="pr-2">
+                              {dayjs(comment.created_at).utc().format("HH:mm")}
+                            </p>
+                            <p className="pr-2">
+                              {dayjs(comment.created_at)
+                                .utc()
+                                .format("DD/MM/YYYY")}
+                            </p>
+                            {client &&
+                              client.client.id === comment.client_id && (
+                                <div className="flex">
+                                  <button
+                                    onClick={() =>
+                                      handleDeleteComment(comment.id)
+                                    }
+                                    className="text-red-600 mx-2 text-sm"
+                                  >
+                                    Eliminar
+                                  </button>
+                                  <span> | </span>
+                                  <button
+                                    onClick={() => handleEditComment(comment)}
+                                    className="text-[#AC703E] mx-2 text-sm"
+                                  >
+                                    Editar
+                                  </button>
+                                </div>
+                              )}
+                          </div>
+                        </div>
+                      ))}
+                    </SimpleBar>
+                  </div>
+                  <div>
+                    <textarea
+                      value={comment}
+                      onChange={handleCommentChange}
+                      className="w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 font-bold"
+                      placeholder="Escribe tu comentario aquí..."
+                    ></textarea>
+                    <div className="w-full h-[50%] flex justify-around items-center">
+                      <div className="w-1/4 h-full flex justify-start items-center">
+                        <button
+                          className="flex flex-col justify-center items-center text-center"
+                          onClick={() => handleLike(event)}
+                        >
+                          <div className="flex flex-col items-center justify-center text-center">
+                            <AiFillLike color="#ff9800" size={25} />
+                            <span className="ml-2">{likesCount}</span>
+                          </div>
+                        </button>
+                        <button
+                          className="flex flex-col justify-center items-center text-center"
+                          onClick={() => handleDisLike(event)}
+                        >
+                          <div className="flex flex-col items-center justify-center text-center">
+                            <AiFillDislike color="#ff9800" size={25} />
+                            <span className="ml-2">{dislikesCount}</span>
+                          </div>
+                        </button>
+                      </div>
+                      <div className="w-3/4 flex justify-around">
+                        <button
+                          onClick={handleCommentSubmit}
+                          className="w-2/3 bg-amber-500 text-amber-950 font-bold p-2 rounded-lg hover:bg-amber-600 duration-300"
+                        >
+                          {editingComment ? "Guardar cambios" : "Comentar"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <p>Cargando información del evento...</p>
+          )}
+        </div>
+        <div></div>
+      </div>
+      <Footer />
+    </>
+  );
 }
 
 export default InfoEvents;
