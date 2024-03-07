@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import instance from "../api/axios";
 import { useComments } from "../context/CommentsContext";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
@@ -288,6 +287,7 @@ function InfoEvents() {
                                     <div>
                                       {dayjs(comment.created_at)
                                         .utc()
+                                        .local()
                                         .format("HH:mm")}{" "}
                                       {dayjs(comment.created_at)
                                         .utc()
@@ -330,6 +330,7 @@ function InfoEvents() {
                                     <div>
                                       {dayjs(comment.created_at)
                                         .utc()
+                                        .local()
                                         .format("HH:mm")}{" "}
                                       {dayjs(comment.created_at)
                                         .utc()
@@ -372,7 +373,10 @@ function InfoEvents() {
                           </div>
                           <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
                             <p className="pr-2">
-                              {dayjs(comment.created_at).utc().format("HH:mm")}
+                              {dayjs(comment.created_at)
+                                .utc()
+                                .local()
+                                .format("HH:mm")}
                             </p>
                             <p className="pr-2">
                               {dayjs(comment.created_at)
