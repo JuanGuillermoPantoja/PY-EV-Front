@@ -3,6 +3,8 @@ import axios from 'axios';
 import chatImg from '../img/bot-chat.png';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -13,6 +15,32 @@ function Chat() {
 	const [isBotResponding, setIsBotResponding] = useState(false);
 
 	const sendMessage = async () => {
+		const showAlert = (message, type) => {
+			let iconType = 'info';
+
+			if (type === 'error') {
+				iconType = 'error';
+			} else if (type === 'warning') {
+				iconType = 'warning';
+			} else if (type === 'success') {
+				iconType = 'success';
+			}
+
+			Swal.fire({
+				title: message,
+				icon: iconType,
+				color: '#ff9800',
+				iconColor: '#ff9800',
+				background: '#000000',
+				timer: 3000,
+				showConfirmButton: false,
+			});
+		};
+		if (message.trim() === '') {
+			showAlert('Debes preguntar algo primero!', 'error');
+			return; // Detener el envío del mensaje si está vacío
+		}
+
 		const requestBody = {
 			history: history,
 			question: message,
@@ -44,26 +72,27 @@ function Chat() {
 
 	return (
 		<>
-			<div className='fixed left-[80%] md:left-[85%] bottom-[2%] z-50 w-[18%]'>
-				<button  onClick={openModal}>
-					<img className='w-[100%] md:w-[80%] lg:w-[50%]' src={chatImg} alt='chatBot' />
-				</button>
-			</div>
+			{!isModalOpen && (
+				<div className='fixed left-[80%] md:left-[85%] bottom-[2%] z-50 w-[18%]'>
+					<button onClick={openModal}>
+						<img className='w-[100%] md:w-[80%] lg:w-[50%]' src={chatImg} alt='chatBot' />
+					</button>
+				</div>
+			)}
 			{isModalOpen && (
-				<div className='fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70'>
+				<div className='fixed top-0 left-0 w-full h-full flex items-end justify-end bottom-0 bg-black bg-opacity-70'>
 					<div className='bg-primary text-acent border-2 flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[40%]'>
 						<h1 className='text-xl my-4'>Charla con nosotros!</h1>
 
-						<div className='animate-fade-in flex justify-center items-center flex-col w-full bg-primary rounded-sm'>
+						<div className='animate-fade-in flex justify-center items-center flex-col w-full bg-[#9b9b9b] rounded-t-md'>
 							<SimpleBar autoHide className='w-full' style={{ maxHeight: 300 }}>
 								{history.map((item, index) => (
 									<div key={index} className='flex'>
 										<div
-											className={`p-2 m-2 text-base font-semibold rounded-xl ${
-												item.role === 'user'
+											className={`p-2 m-2 text-base font-semibold rounded-xl ${item.role === 'user'
 													? 'bg-acent text-textBlack'
 													: 'bg-gold text-textBlack'
-											}`}
+												}`}
 											style={{
 												alignSelf:
 													item.role === 'user' ? 'flex-start' : 'flex-end',
@@ -74,13 +103,13 @@ function Chat() {
 									</div>
 								))}
 								{/* Mostrar puntos animados si el bot está respondiendo */}
-                                {isBotResponding && (
-                                    <div className="text-acent flex justify-center bg-none text-3xl">
+								{isBotResponding && (
+									<div className="text-acent flex justify-center bg-none text-3xl">
 										<div className='animate-bouncing animate-delay-100 animate-iteration-count-infinite'>.</div>
 										<div className='animate-bouncing animate-delay-200 animate-iteration-count-infinite'>.</div>
 										<div className='animate-bouncing animate-delay-300 animate-iteration-count-infinite'>.</div>
 									</div>
-                                )}
+								)}
 							</SimpleBar>
 						</div>
 						<div className='flex justify-center w-full'>
