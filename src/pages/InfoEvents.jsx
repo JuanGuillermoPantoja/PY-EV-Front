@@ -39,6 +39,8 @@ function InfoEvents() {
   const filteredEvent = events.find((event) => event.id === parseInt(id));
   const [likesCount, setLikesCount] = useState(null);
   const [dislikesCount, setDislikesCount] = useState(null);
+  const [showPositiveComments, setShowPositiveComments] = useState(false); // Estado para controlar la visualización de los comentarios positivos
+  const [showNegativeComments, setShowNegativeComments] = useState(false); // Estado para controlar la visualización de los comentarios negativos
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -195,21 +197,21 @@ function InfoEvents() {
         <div className="w-full h-full">
           {filteredEvent ? (
             <div className="flex w-full h-full bg-gradient-orange">
-              <div className="flex flex-col">
-                <div className="w-[50%] h-full p-2 bg-[]">
-                  <div className="w-full h-1/2 mb-2">
+              <div className="w-[75%] flex flex-col">
+                <div className="flex justify-center w-[100%] h-full p-2 ">
+                  <div className="w-[45%] h-[500px]">
                     <img
-                      className="w-full h-full rounded-xl"
+                      className="w-[480px] h-[450px]  rounded-xl"
                       src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
                       alt="Cover Image"
                     />
                   </div>
-                  <div className="w-full h-1/2">
-                    <Slider className="w-full h-1/1 " {...settings}>
+                  <div className="w-[45%] h-1/2">
+                    <Slider className="" {...settings}>
                       {images?.images?.map((image, index) => (
-                        <div className="w-full  h-1/2" key={index}>
+                        <div className="" key={index}>
                           <img
-                            className="w-full h-[450px]  rounded-xl"
+                            className="w-[900px] h-[450px]  rounded-xl"
                             src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
                             alt={`Image ${index}`}
                           />
@@ -218,19 +220,132 @@ function InfoEvents() {
                     </Slider>
                   </div>
                 </div>
-                <div className="w-[25%] h-full bg-[] p-4 text-white flex items-start">
-                  <div className="w-full bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
-                    <h2 className="mb-8 font-bold">{filteredEvent.title}</h2>
-                    <p className="font-bold">Descripción del evento:</p>
-                    <p className="mb-4">{filteredEvent.description}</p>
-                    <p className="font-bold">Dirección del evento:</p>
-                    <p className="mb-4">{filteredEvent.address}</p>
-                    <p className="font-bold">Fecha del evento:</p>
-                    <p>
-                      {dayjs(filteredEvent.dates)
-                        .utc()
-                        .format("DD [de] MMMM [del] YYYY")}
-                    </p>
+                <div className="w-[100%] h-full p-4 text-white flex justify-center">
+                  <div className="flex justify-center w-[100%] h-full p-2 ">
+                    <div className="w-[40%] bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
+                      <h2 className="mb-8 font-bold">{filteredEvent.title}</h2>
+                      <p className="font-bold">Descripción del evento:</p>
+                      <p className="mb-4">{filteredEvent.description}</p>
+                      <p className="font-bold">Dirección del evento:</p>
+                      <p className="mb-4">{filteredEvent.address}</p>
+                      <p className="font-bold">Fecha del evento:</p>
+                      <p>
+                        {dayjs(filteredEvent.dates)
+                          .utc()
+                          .format("DD [de] MMMM [del] YYYY")}
+                      </p>
+                    </div>
+                    <div className="w-[60%] bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
+                      <div className="flex w-full justify-center gap-4">
+                        <button
+                          className={`bg-slate-500 rounded-md p-2 mb-2 ${
+                            showPositiveComments
+                              ? "bg-opacity-100"
+                              : "bg-opacity-50"
+                          }`}
+                          onClick={() => (
+                            setShowPositiveComments(true),
+                            setShowNegativeComments(false)
+                          )}
+                        >
+                          <h1 className="text-xl">Comentarios positivos</h1>
+                        </button>
+                        <button
+                          className={`bg-slate-700 rounded-md p-2 mb-2 ${
+                            showNegativeComments
+                              ? "bg-opacity-100"
+                              : "bg-opacity-50"
+                          }`}
+                          onClick={() => (
+                            setShowNegativeComments(true),
+                            setShowPositiveComments(false)
+                          )}
+                        >
+                          <h1 className="text-xl">Comentarios negativos</h1>
+                        </button>
+                      </div>
+                      {console.log("comentarios", comments)}
+                      {showPositiveComments && comments ? (
+                        comments.filter(
+                          (comment) =>
+                            comment.possitive_comments && comment.created_at
+                        ).length > 0 ? (
+                          <SimpleBar
+                            direction="vertical"
+                            style={{ maxHeight: 350 }}
+                          >
+                            {comments.map(
+                              (comment, index) =>
+                                comment.possitive_comments &&
+                                comment.created_at && (
+                                  <div
+                                    key={index}
+                                    className="bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                  >
+                                    <div className="w-2/3 break-words">
+                                      {comment.possitive_comments}
+                                    </div>
+                                    <div>
+                                      {dayjs(comment.created_at)
+                                        .utc()
+                                        .format("HH:mm")}{" "}
+                                      {dayjs(comment.created_at)
+                                        .utc()
+                                        .format("DD/MM/YYYY")}
+                                    </div>
+                                  </div>
+                                )
+                            )}
+                          </SimpleBar>
+                        ) : (
+                          <p>No hay comentarios positivos</p>
+                        )
+                      ) : comments ? null : (
+                        <p className="text-white">Cargando comentarios...</p>
+                      )}
+
+                      {showNegativeComments && comments ? (
+                        comments.filter(
+                          (comment) =>
+                            comment.negative_comments && comment.created_at
+                        ).length > 0 ? (
+                          <SimpleBar
+                            autoHide
+                            over
+                            direction="vertical"
+                            style={{ maxHeight: 600 }}
+                          >
+                            {comments.map(
+                              (comment, index) =>
+                                comment.negative_comments &&
+                                comment.created_at && (
+                                  <div
+                                    key={index}
+                                    className="bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                  >
+                                    <div className="w-2/3 break-words">
+                                      {comment.negative_comments}
+                                      {console.log("comment", comment)}
+                                    </div>
+                                    <div>
+                                      {dayjs(comment.created_at)
+                                        .utc()
+                                        .format("HH:mm")}{" "}
+                                      {dayjs(comment.created_at)
+                                        .utc()
+                                        .format("DD/MM/YYYY")}
+                                    </div>
+                                  </div>
+                                )
+                            )}
+                          </SimpleBar>
+                        ) : (
+                          <p>No hay comentarios negativos</p>
+                        )
+                      ) : comments ? null : (
+                        <p className="text-white">Cargando comentarios...</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -334,7 +449,6 @@ function InfoEvents() {
             <p>Cargando información del evento...</p>
           )}
         </div>
-        <div></div>
       </div>
       <Footer />
     </>

@@ -68,27 +68,50 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import SimpleBar from "simplebar-react";
 import Swal from "sweetalert2";
+import React from "react";
 
 function EventsFormImages() {
-
-	const [images, setimages] = useState([]);
+  const [images, setImages] = useState([]);
+  const [fileInputRefs, setFileInputRefs] = useState([]);
+  const [files, setFiles] = useState([null]);
+  const [selectedFile, setSelectedFile] = useState(
+    Array(files.length).fill(null)
+  );
+  const [isUploadImage, setIsUploadImage] = useState(false);
 
   const changeInput = (e) => {
-    //esto es el indice que se le dará a cada imagen, a partir del indice de la ultima foto
-    let indexImg;
+    const selectedFiles = e.target.files;
+    const newFiles = [...files];
+    const newSelectedFiles = [...selectedFile];
+    const newImages = [];
 
-    //aquí evaluamos si ya hay imagenes antes de este input, para saber en dónde debe empezar el index del proximo array
-    if (images.length > 0) {
-      indexImg = images[images.length - 1].index + 1;
-    } else {
-      indexImg = 0;
+    // Itera sobre los archivos seleccionados y actualiza los arrays de archivos y nombres de archivos seleccionados
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const index = files.length + i; // Calcula el índice en base a la longitud actual de los archivos
+      newFiles[index] = selectedFiles[i];
+      newSelectedFiles[index] = selectedFiles[i] ? selectedFiles[i].name : null;
+
+      const url = URL.createObjectURL(selectedFiles[i]);
+      newImages.push({
+        index: index,
+        name: selectedFiles[i].name,
+        url: url,
+        file: selectedFiles[i],
+      });
     }
 
-    let newImgsToState = readmultifiles(e, indexImg);
-    let newImgsState = [...images, ...newImgsToState];
-    setimages(newImgsState);
+    setFiles(newFiles);
+    setSelectedFile(newSelectedFiles);
+    setImages([...images, ...newImages]);
 
-    console.log(newImgsState);
+    // Asegúrate de que el número de inputs refleje la cantidad de archivos seleccionados
+    const numInputs = selectedFiles.length;
+    if (numInputs > 1) {
+      const newInputRefs = Array.from({ length: numInputs - 1 }, () =>
+        React.createRef()
+      );
+      setFileInputRefs([...fileInputRefs, ...newInputRefs]);
+    }
   };
 
   function readmultifiles(e, indexInicial) {
@@ -107,7 +130,7 @@ function EventsFormImages() {
         index: indexInicial,
         name: file.name,
         url,
-        file
+        file,
       });
 
       indexInicial++;
@@ -117,20 +140,19 @@ function EventsFormImages() {
     return arrayImages;
   }
 
-  function deleteImg(indice) {
-    //console.log("borrar img " + indice);
-
-    const newImgs = images.filter(function (element) {
-      return element.index !== indice;
+  function deleteImg(index) {
+    const newImgs = images.filter(function (imagen) {
+      return imagen.index !== index;
     });
-    console.log(newImgs);
-    setimages(newImgs);
+
+    const newFiles = files.filter(function (file, i) {
+      return i !== index;
+    });
+
+    setImages(newImgs);
+    setFiles(newFiles);
   }
-	////////////////////////////////////////////////////////
-  const [files, setFiles] = useState([null]);
-  const [selectedFile, setSelectedFile] = useState(
-    Array(files.length).fill(null)
-  );
+
   const params = useParams();
   const fileInputRef = useRef([]);
 
@@ -194,6 +216,7 @@ function EventsFormImages() {
     axios
       .post("https://events-cqtw.onrender.com/uploadImgIA", formdata)
       .then((res) => {
+        setIsUploadImage(false);
         console.log("respuesta", res);
         if (res.data.Status === "Success") {
           showAlert("las imagenes se agregaron correctamente", "success");
@@ -201,64 +224,60 @@ function EventsFormImages() {
           showAlert("Fallo al agregar las imagenes", "error");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(setIsUploadImage(true));
   };
 
   return (
     <div className="h-[400px] multi-image-upload-form flex flex-col justify-around  items-center">
       <SimpleBar className="bg-transparent w-[400px] bg-fixed bg-cover bg-center h-[200px]">
-        {files.map((file, index) => (
-          <div key={index} className="flex items-center justify-center w-full">
-            {/* <button
-							onClick={() => handleFileButtonClick(index)}
-							className='bg-gray-500 hover:bg-gray-600 w-1/2 p-2 h-10 rounded-lg text-xs my-1'
-						>
-							<input
-								ref={(el) => (fileInputRef.current[index] = el)} // Asegúrate de asignar el elemento solo si el ref no es nulo
-								type='file'
-								onChange={(e) => handleFileChange(index, e)}
-								accept='image/*'
-								multiple
-								style={{ display: 'none' }}
-							/>
-							Seleccionar archivo
-						</button> */}
-            <label className="btn btn-warning">
-              <span>Seleccionar archivos </span>
-              <input hidden type="file" multiple onChange={changeInput}></input>
-            </label>
-
-            <div className="row">
-              {images.map((imagen) => (
-                <div
-                  className="col-6 col-sm-4 col-lg-3 square"
-                  key={imagen.index}
+        <div className="row">
+          {images.map((imagen, index) => (
+            <div
+              className="col-6 col-sm-4 col-lg-3 square"
+              key={`${imagen.name}_${index}`}
+            >
+              <div className="content_img">
+                <button
+                  className="position-absolute btn btn-danger"
+                  onClick={() => deleteImg(imagen.index)}
                 >
-                  <div className="content_img">
-                    <button
-                      className="position-absolute btn btn-danger"
-                      onClick={deleteImg.bind(this, imagen.index)}
-                    >
-                      x
-                    </button>
-                    <img
-                      alt="algo"
-                      src={imagen.url}
-                      data-toggle="modal"
-                      data-target="#ModalPreViewImg"
-                      className="img-responsive"
-                    ></img>
-                  </div>
-                </div>
-              ))}
+                  x
+                </button>
+                <img
+                  alt="algo"
+                  src={imagen.url}
+                  data-toggle="modal"
+                  data-target="#ModalPreViewImg"
+                  className="img-responsive"
+                ></img>
+              </div>
             </div>
-
-            {selectedFile[index] && (
-              <p className="ml-2 w-full text-xs">{`Archivo seleccionado: ${selectedFile[index]}`}</p>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </SimpleBar>
+      <label className="btn btn-warning">
+        <span>Seleccionar archivos </span>
+        <input
+          hidden
+          type="file"
+          multiple
+          onChange={(e) => changeInput(e)}
+        ></input>
+      </label>
+      {isUploadImage && (
+        <div className="text-acent flex justify-center bg-none text-3xl">
+          <div className="animate-bouncing animate-delay-100 animate-iteration-count-infinite">
+            .
+          </div>
+          <div className="animate-bouncing animate-delay-200 animate-iteration-count-infinite">
+            .
+          </div>
+          <div className="animate-bouncing animate-delay-300 animate-iteration-count-infinite">
+            .
+          </div>
+        </div>
+      )}
       <button
         onClick={handleUpload}
         className="bg-acent font-bold mx-auto w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"

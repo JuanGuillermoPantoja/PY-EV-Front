@@ -12,9 +12,9 @@ import bgCard from "../img/bg-card.png";
 import threeGrainCoffe from "../img/3grain-coffe.png";
 import coffeGrain from "../img/Coffe-grano.png";
 import coffe from "../img/coffe.png";
-import 'dayjs/locale/es'; // Importa el idioma español
+import "dayjs/locale/es"; // Importa el idioma español
 
-dayjs.locale('es');
+dayjs.locale("es");
 dayjs.extend(utc);
 
 function EventsClients() {
@@ -62,8 +62,9 @@ function EventsClients() {
             </div>
           </div>
 
-
-          <h1 className="text-left w-[80%] text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">Eventos disponibles</h1>
+          <h1 className="text-left w-[80%] text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">
+            Eventos disponibles
+          </h1>
           <div className="w-[80%]  h-[550px] flex justify-center sm:justify-between items-center flex-wrap">
             {events.length === 0 && (
               <h1 className="h-screen bg-cover w-full bg-center text-center text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">
@@ -104,7 +105,7 @@ function EventsClients() {
                           {event.title}
                         </h2>
                         <p className="h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
-                          { event.promotion }
+                          {event.promotion}
                         </p>
                         <p className="h-10% bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
                           {dayjs(event.dates)
@@ -116,7 +117,8 @@ function EventsClients() {
                         <p className="bg-primary w-[75%] text-base xl:text-base h-[40%] text-white">
                           {event.address}
                         </p>
-                        <button className="bg-acent rounded-md text-base xl:text-base my-2 p-2 text-black hover:bg-gold"
+                        <button
+                          className="bg-acent rounded-md text-base xl:text-base my-2 p-2 text-black hover:bg-gold"
                           onClick={() => {
                             handleMoreInfoClick(event.id);
                           }}
