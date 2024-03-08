@@ -192,77 +192,69 @@ function InfoEvents() {
   return (
     <>
       <NavbarHome />
-      <div className="h-[1000px] w-full">
-        <div className="w-full h-full">
-          {filteredEvent ? (
-            <div className="flex w-full h-full bg-gradient-orange">
-              <div className="w-[75%] flex flex-col">
-                <div className="flex justify-center w-[100%] h-full p-2 ">
-                  <div className="w-[45%] h-[500px]">
-                    <img
-                      className="w-[480px] h-[450px]  rounded-xl"
-                      src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-                      alt="Cover Image"
-                    />
-                  </div>
-                  <div className="w-[45%] h-1/2">
-                    <Slider className="" {...settings}>
-                      {images?.images?.map((image, index) => (
-                        <div className="" key={index}>
-                          <img
-                            className="w-[900px] h-[450px]  rounded-xl"
-                            src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
-                            alt={`Image ${index}`}
-                          />
-                        </div>
-                      ))}
-                    </Slider>
-                  </div>
-                </div>
-                <div className="w-[100%] h-full p-4 text-white flex justify-center">
-                  <div className="flex justify-center w-[100%] h-full p-2 ">
-                    <div className="w-[40%] bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
-                      <h2 className="mb-8 font-bold">{filteredEvent.title}</h2>
-                      <p className="font-bold">Descripción del evento:</p>
-                      <p className="mb-4">{filteredEvent.description}</p>
-                      <p className="font-bold">Dirección del evento:</p>
-                      <p className="mb-4">{filteredEvent.address}</p>
-                      <p className="font-bold">Fecha del evento:</p>
-                      <p>
-                        {dayjs(filteredEvent.dates)
-                          .utc()
-                          .format("DD [de] MMMM [del] YYYY")}
-                      </p>
-                    </div>
-                    <div className="w-[60%] bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
-                      <div className="flex w-full justify-center gap-4">
-                        <button
-                          className={`bg-slate-500 rounded-md p-2 mb-2 ${
-                            showPositiveComments
-                              ? "bg-opacity-100"
-                              : "bg-opacity-50"
-                          }`}
-                          onClick={() => (
-                            setShowPositiveComments(true),
-                            setShowNegativeComments(false)
-                          )}
-                        >
-                          <h1 className="text-xl">Comentarios positivos</h1>
-                        </button>
-                        <button
-                          className={`bg-slate-700 rounded-md p-2 mb-2 ${
-                            showNegativeComments
-                              ? "bg-opacity-100"
-                              : "bg-opacity-50"
-                          }`}
-                          onClick={() => (
-                            setShowNegativeComments(true),
-                            setShowPositiveComments(false)
-                          )}
-                        >
-                          <h1 className="text-xl">Comentarios negativos</h1>
-                        </button>
-                      </div>
+			<div className=' w-full'>
+				<div className='w-full h-full'>
+					{filteredEvent ? (
+						<div className='flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between'>
+							<div className='lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col'>
+								<div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-10 xl:flex-row'>
+									<div className='lg:w-full'>
+										<img
+											className=' lg:w-auto lg:h-auto rounded-xl'
+											src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+											alt='Cover Image'
+										/>
+									</div>
+									<div className='w-[90%] xl:w-[45%] lg:h-1/2 self-center'>
+										<Slider className='' {...settings}>
+											{images?.images?.map((image, index) => (
+												<div className='' key={index}>
+													<img
+														className='lg:h-[300px] md:w-full xl:h-[280px] 2xl:h-[400px] md:h-[350px] rounded-xl'
+														src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
+														alt={`Image ${index}`}
+													/>
+												</div>
+											))}
+										</Slider>
+									</div>
+								</div>
+
+
+
+                <div className='w-[100%] h-full p-4 md:p-0 md:mt-4 text-white flex justify-center'>
+									<div className='flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-full'>
+										<div className='lg:w-full self-center bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
+											<h2 className='mb-8 font-bold text-xl'>{filteredEvent.title}</h2>
+											<p className='font-bold'>Descripción del evento:</p>
+											<p className='mb-4'>{filteredEvent.description}</p>
+											<p className='font-bold'>Dirección del evento:</p>
+											<p className='mb-4'>{filteredEvent.address}</p>
+											<p className='font-bold'>Fecha del evento:</p>
+											<p>
+												{dayjs(filteredEvent.dates)
+													.utc()
+													.format('DD [de] MMMM [del] YYYY')}
+											</p>
+										</div>
+										<div className='lg:w-full bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
+											<div className='flex w-full justify-center gap-4'>
+												<button
+													className={`bg-slate-500 rounded-md p-2 mb-2 ${showPositiveComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
+													onClick={() => (setShowPositiveComments(true), setShowNegativeComments(false))}
+												>
+													<h1 className='text-base'>Comentarios positivos</h1>
+												</button>
+												<button
+													className={`bg-slate-700 rounded-md p-2 mb-2 ${showNegativeComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
+													onClick={() => (setShowNegativeComments(true), setShowPositiveComments(false))}
+												>
+													<h1 className='text-base'>Comentarios negativos</h1>
+												</button>
+											</div>
+
+
+
                       {console.log("comentarios", comments)}
                       {showPositiveComments && comments ? (
                         comments.filter(
@@ -350,8 +342,8 @@ function InfoEvents() {
                   </div>
                 </div>
               </div>
-              <div className="w-[25%] h-full">
-                <div className="bg-white text-textBlack p-4 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
+              <div className="w-[90%] self-center lg:self-start md:w-[88%] lg:w-[35%] lg:h-[700px] lg:m-2 xl:h-full xl:w-[27%] xl:m-0 mb-2">
+                <div className="bg-white text-textBlack p-4 xl:p-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
                   <div className="mt-4 overflow-hidden">
                     <h2 className="">Comentarios</h2>
                     <SimpleBar
