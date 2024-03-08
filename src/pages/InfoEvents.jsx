@@ -41,6 +41,10 @@ function InfoEvents() {
   const [showPositiveComments, setShowPositiveComments] = useState(false); // Estado para controlar la visualización de los comentarios positivos
   const [showNegativeComments, setShowNegativeComments] = useState(false); // Estado para controlar la visualización de los comentarios negativos
 
+  const [commentAdded, setCommentAdded] = useState(false);
+
+
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -93,6 +97,10 @@ function InfoEvents() {
 
   const handleLike = async () => {
     try {
+      if (!isClientAuthenticated) {
+        showAlert("Debes iniciar sesión para comentar o reaccionar al evento.", "error");
+        return;
+      }
       if (filteredEvent) {
         const hasDislike = dislikesCount > 0;
         await addLike(filteredEvent.id, client.client.id);
@@ -110,6 +118,10 @@ function InfoEvents() {
 
   const handleDisLike = async () => {
     try {
+      if (!isClientAuthenticated) {
+        showAlert("Debes iniciar sesión para comentar o reaccionar al evento.", "error");
+        return;
+      }
       await addDisLike(filteredEvent.id, client.client.id);
       const res = await getLikesAndDisLikes(id);
       setDislikesCount(res.total_dislikes);
@@ -138,6 +150,8 @@ function InfoEvents() {
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
+    // Si el comentario no está vacío, actualiza el estado para indicar que se ha agregado un comentario
+    setCommentAdded(!!e.target.value);
   };
 
   const showAlert = (message, type) => {
@@ -165,7 +179,13 @@ function InfoEvents() {
 
   const handleCommentSubmit = async () => {
     if (!isClientAuthenticated) {
-      showAlert("Debes iniciar sesión para comentar", "error");
+      showAlert("Debes iniciar sesión para comentar o reaccionar al evento.", "error");
+      return;
+    }
+
+    // Verifica si se ha agregado un comentario antes de continuar
+    if (!commentAdded) {
+      showAlert("Debes agregar un comentario antes de comentar", "error");
       return;
     }
 
@@ -184,6 +204,8 @@ function InfoEvents() {
       }
       await getComments(filteredEvent.id);
       setComment("");
+      // Después de enviar el comentario, actualiza el estado para indicar que no se ha agregado ningún comentario
+      setCommentAdded(false);
     } catch (error) {
       console.error(error);
     }
@@ -192,66 +214,66 @@ function InfoEvents() {
   return (
     <>
       <NavbarHome />
-			<div className=' w-full'>
-				<div className='w-full h-full'>
-					{filteredEvent ? (
-						<div className='flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between'>
-							<div className='lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col'>
-								<div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-10 xl:flex-row'>
-									<div className='w-[90%] lg:w-[90%] self-center'>
-										<img
-											className=' lg:w-auto lg:h-auto rounded-xl'
-											src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-											alt='Cover Image'
-										/>
-									</div>
-									<div className='w-[90%] xl:w-[45%] lg:h-1/2 self-center'>
-										<Slider className='' {...settings}>
-											{images?.images?.map((image, index) => (
-												<div className='' key={index}>
-													<img
-														className='lg:h-[300px] md:w-full xl:h-[280px] 2xl:h-[400px] md:h-[350px] rounded-xl'
-														src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
-														alt={`Image ${index}`}
-													/>
-												</div>
-											))}
-										</Slider>
-									</div>
-								</div>
+      <div className=' w-full'>
+        <div className='w-full h-full'>
+          {filteredEvent ? (
+            <div className='flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between'>
+              <div className='lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col'>
+                <div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-10 xl:flex-row'>
+                  <div className='w-[90%] lg:w-[90%] self-center'>
+                    <img
+                      className=' lg:w-auto lg:h-auto rounded-xl'
+                      src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+                      alt='Cover Image'
+                    />
+                  </div>
+                  <div className='w-[90%] xl:w-[45%] lg:h-1/2 self-center'>
+                    <Slider className='' {...settings}>
+                      {images?.images?.map((image, index) => (
+                        <div className='' key={index}>
+                          <img
+                            className='lg:h-[300px] md:w-full xl:h-[280px] 2xl:h-[400px] md:h-[350px] rounded-xl'
+                            src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
+                            alt={`Image ${index}`}
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
+                </div>
 
 
 
                 <div className='w-[100%] h-full p-4 md:p-0 md:mt-4 text-white flex justify-center'>
-									<div className='flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-full'>
-										<div className='lg:w-full self-center bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
-											<h2 className='mb-8 font-bold text-xl'>{filteredEvent.title}</h2>
-											<p className='font-bold'>Descripción del evento:</p>
-											<p className='mb-4'>{filteredEvent.description}</p>
-											<p className='font-bold'>Dirección del evento:</p>
-											<p className='mb-4'>{filteredEvent.address}</p>
-											<p className='font-bold'>Fecha del evento:</p>
-											<p>
-												{dayjs(filteredEvent.dates)
-													.utc()
-													.format('DD [de] MMMM [del] YYYY')}
-											</p>
-										</div>
-										<div className='lg:w-full bg-[#fdf7f7] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
-											<div className='flex w-full justify-center gap-4'>
-												<button
-													className={`bg-slate-500 rounded-md p-2 mb-2 ${showPositiveComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
-													onClick={() => (setShowPositiveComments(true), setShowNegativeComments(false))}
-												>
-													<h1 className='text-base'>Comentarios positivos</h1>
-												</button>
-												<button
-													className={`bg-slate-700 rounded-md p-2 mb-2 ${showNegativeComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
-													onClick={() => (setShowNegativeComments(true), setShowPositiveComments(false))}
-												>
-													<h1 className='text-base'>Comentarios negativos</h1>
-												</button>
-											</div>
+                  <div className='flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-full'>
+                    <div className='lg:w-full self-center bg-[#fef8ec] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
+                      <h2 className='mb-8 font-bold text-xl'>{filteredEvent.title}</h2>
+                      <p className='font-bold'>Descripción del evento:</p>
+                      <p className='mb-4'>{filteredEvent.description}</p>
+                      <p className='font-bold'>Dirección del evento:</p>
+                      <p className='mb-4'>{filteredEvent.address}</p>
+                      <p className='font-bold'>Fecha del evento:</p>
+                      <p>
+                        {dayjs(filteredEvent.dates)
+                          .utc()
+                          .format('DD [de] MMMM [del] YYYY')}
+                      </p>
+                    </div>
+                    <div className='lg:w-full bg-[#fef8ec] rounded-sm shadow-inner p-2 shadow-amber-950'>
+                      <div className='flex w-full justify-center gap-4'>
+                        <button
+                          className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${showPositiveComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
+                          onClick={() => (setShowPositiveComments(true), setShowNegativeComments(false))}
+                        >
+                          <h1 className='text-base'>Comentarios positivos</h1>
+                        </button>
+                        <button
+                          className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${showNegativeComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
+                          onClick={() => (setShowNegativeComments(true), setShowPositiveComments(false))}
+                        >
+                          <h1 className='text-base'>Comentarios negativos</h1>
+                        </button>
+                      </div>
 
 
 
@@ -271,7 +293,7 @@ function InfoEvents() {
                                 comment.created_at && (
                                   <div
                                     key={index}
-                                    className="bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                    className="bg-amber-200 font-semibold p-2 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
                                   >
                                     <div className="w-2/3 break-words">
                                       {comment.possitive_comments}
@@ -290,7 +312,7 @@ function InfoEvents() {
                             )}
                           </SimpleBar>
                         ) : (
-                          <p>No hay comentarios positivos</p>
+                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">No hay comentarios positivos</p>
                         )
                       ) : comments ? null : (
                         <p className="text-white">Cargando comentarios...</p>
@@ -313,7 +335,7 @@ function InfoEvents() {
                                 comment.created_at && (
                                   <div
                                     key={index}
-                                    className="bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                    className="bg-amber-200 font-semibold p-2 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
                                   >
                                     <div className="w-2/3 break-words">
                                       {comment.negative_comments}
@@ -333,7 +355,7 @@ function InfoEvents() {
                             )}
                           </SimpleBar>
                         ) : (
-                          <p>No hay comentarios negativos</p>
+                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">No hay comentarios negativos</p>
                         )
                       ) : comments ? null : (
                         <p className="text-white">Cargando comentarios...</p>
@@ -343,7 +365,7 @@ function InfoEvents() {
                 </div>
               </div>
               <div className="w-[90%] self-center lg:self-start md:w-[88%] lg:w-[35%] lg:h-[700px] lg:m-2 xl:h-full xl:w-[27%] xl:m-0 mb-2">
-                <div className="bg-white text-textBlack p-4 xl:px-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
+                <div className="bg-[#fef8ec] text-textBlack p-4 xl:px-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
                   <div className="mt-4 overflow-hidden">
                     <h2 className="">Comentarios</h2>
                     <SimpleBar
@@ -355,11 +377,11 @@ function InfoEvents() {
                       {comments.map((comment, index) => (
                         <div
                           key={index}
-                          className="bg-amber-200 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                          className="bg-amber-200 p-2 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
                         >
                           <div className="w-2/3 break-words">
                             <p className="font-bold ">{comment.client}</p>
-                            <p className="w-full pl-2 text-wrap ">
+                            <p className="w-full pl-2 text-wrap font-semibold">
                               {comment.comment_text}
                             </p>
                           </div>
@@ -404,18 +426,18 @@ function InfoEvents() {
                     <textarea
                       value={comment}
                       onChange={handleCommentChange}
-                      className="w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 font-bold"
+                      className="w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
                       placeholder="Escribe tu comentario aquí..."
                     ></textarea>
                     <div className="w-full h-[50%] flex justify-around items-center">
                       <div className="w-1/4 h-full flex justify-start items-center">
                         <button
                           className="flex flex-col justify-center items-center text-center"
-                          onClick={() => handleLike(event)}
+                          onClick={() => (handleLike(event))}
                         >
                           <div className="flex flex-col items-center justify-center text-center">
                             <AiFillLike color="#ff9800" size={25} />
-                            <span className="ml-2">{likesCount}</span>
+                            <span className="ml-2 text-sm font-bold">{likesCount}</span>
                           </div>
                         </button>
                         <button
@@ -424,7 +446,7 @@ function InfoEvents() {
                         >
                           <div className="flex flex-col items-center justify-center text-center">
                             <AiFillDislike color="#ff9800" size={25} />
-                            <span className="ml-2">{dislikesCount}</span>
+                            <span className="ml-2 text-sm font-bold">{dislikesCount}</span>
                           </div>
                         </button>
                       </div>

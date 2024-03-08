@@ -81,16 +81,16 @@ function Chat() {
 			)}
 			{isModalOpen && (
 				<div className='fixed top-0 left-0 w-full h-full flex items-end justify-end bottom-0 bg-black bg-opacity-70'>
-					<div className='bg-primary text-acent border-2 flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[40%]'>
+					<div className='bg-[#fcedc9] text-[#742d13] border-2 flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[40%]'>
 						<h1 className='text-xl my-4'>Charla con nosotros!</h1>
 
-						<div className='animate-fade-in flex justify-center items-center flex-col w-full bg-[#9b9b9b] rounded-t-md'>
+						<div className='animate-fade-in flex justify-center items-center flex-col w-full bg-[#fef8ec] rounded-t-md'>
 							<SimpleBar autoHide className='w-full' style={{ maxHeight: 300 }}>
 								{history.map((item, index) => (
 									<div key={index} className='flex'>
 										<div
 											className={`p-2 m-2 text-base font-semibold rounded-xl ${item.role === 'user'
-													? 'bg-acent text-textBlack'
+													? 'bg-[#fcedc9] text-textBlack'
 													: 'bg-gold text-textBlack'
 												}`}
 											style={{
@@ -104,7 +104,7 @@ function Chat() {
 								))}
 								{/* Mostrar puntos animados si el bot está respondiendo */}
 								{isBotResponding && (
-									<div className="text-acent flex justify-center bg-none text-3xl">
+									<div className="text-[#742d13] flex justify-center bg-none text-3xl">
 										<div className='animate-bouncing animate-delay-100 animate-iteration-count-infinite'>.</div>
 										<div className='animate-bouncing animate-delay-200 animate-iteration-count-infinite'>.</div>
 										<div className='animate-bouncing animate-delay-300 animate-iteration-count-infinite'>.</div>
@@ -115,7 +115,7 @@ function Chat() {
 						<div className='flex justify-center w-full'>
 							<input
 								type='text'
-								className='w-full bg-acent rounded-sm  text-textBlack placeholder:text-gold p-2 mt-2 font-bold '
+								className='w-full bg-[#f8d98f] rounded-sm outline-none text-[#742d13] placeholder:text-gold p-2 mt-2 font-bold '
 								placeholder='Pregunta aquí!'
 								value={message}
 								onChange={(e) => setMessage(e.target.value)}
@@ -124,7 +124,7 @@ function Chat() {
 						<div className='w-auto gap-x-1 flex justify-around'>
 							<button
 								onClick={sendMessage}
-								className='bg-acent h-10 text-primary text-base font-bold mt-4 p-2 rounded-xl hover:bg-gold hover:text-black duration-300'
+								className='bg-[#ad4610] h-10 text-[#eb8715] text-base font-bold mt-4 p-2 rounded-xl'
 							>
 								Preguntar
 							</button>
