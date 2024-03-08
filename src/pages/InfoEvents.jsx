@@ -198,7 +198,7 @@ function InfoEvents() {
 						<div className='flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between'>
 							<div className='lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col'>
 								<div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-10 xl:flex-row'>
-									<div className='lg:w-full'>
+									<div className='w-[90%] lg:w-[90%] self-center'>
 										<img
 											className=' lg:w-auto lg:h-auto rounded-xl'
 											src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
@@ -263,7 +263,7 @@ function InfoEvents() {
                         ).length > 0 ? (
                           <SimpleBar
                             direction="vertical"
-                            style={{ maxHeight: 350 }}
+                            style={{ maxHeight: 250 }}
                           >
                             {comments.map(
                               (comment, index) =>
@@ -305,7 +305,7 @@ function InfoEvents() {
                             autoHide
                             over
                             direction="vertical"
-                            style={{ maxHeight: 600 }}
+                            style={{ maxHeight: 250 }}
                           >
                             {comments.map(
                               (comment, index) =>
@@ -343,7 +343,7 @@ function InfoEvents() {
                 </div>
               </div>
               <div className="w-[90%] self-center lg:self-start md:w-[88%] lg:w-[35%] lg:h-[700px] lg:m-2 xl:h-full xl:w-[27%] xl:m-0 mb-2">
-                <div className="bg-white text-textBlack p-4 xl:p-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
+                <div className="bg-white text-textBlack p-4 xl:px-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
                   <div className="mt-4 overflow-hidden">
                     <h2 className="">Comentarios</h2>
                     <SimpleBar
