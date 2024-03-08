@@ -171,7 +171,7 @@ function EventsFormPage() {
 							Descripción del evento:
 						</label>
 						<textarea
-							className='w-full h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base'
+							className='w-full h-[200px] text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base'
 							name='description'
 							id=''
 							cols=''

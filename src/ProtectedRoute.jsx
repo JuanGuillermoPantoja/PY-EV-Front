@@ -7,25 +7,28 @@ function ProtectedRoute() {
 		return (
 			<div className='h-screen flex text-[60px] justify-center items-center bg-yellow-900'>
 				<div className='animate-bouncing animate-delay-100 animate-iteration-count-infinite'>
-					L
+					C
 				</div>
 				<div className='animate-bouncing animate-delay-150 animate-iteration-count-infinite'>
-					o
-				</div>
-				<div className='animate-bouncing animate-delay-200 animate-iteration-count-infinite'>
 					a
 				</div>
+				<div className='animate-bouncing animate-delay-200 animate-iteration-count-infinite'>
+					r
+				</div>
 				<div className='animate-bouncing animate-delay-250 animate-iteration-count-infinite'>
-					d
+					g
 				</div>
 				<div className='animate-bouncing animate-delay-300 animate-iteration-count-infinite'>
-					i
+					a
 				</div>
 				<div className='animate-bouncing animate-delay-400 animate-iteration-count-infinite'>
 					n
 				</div>
 				<div className='animate-bouncing animate-delay-500 animate-iteration-count-infinite'>
-					g
+					d
+				</div>
+				<div className='animate-bouncing animate-delay-500 animate-iteration-count-infinite'>
+					o
 				</div>
 				<div className='animate-bouncing animate-delay-700 animate-iteration-count-infinite'>
 					.
