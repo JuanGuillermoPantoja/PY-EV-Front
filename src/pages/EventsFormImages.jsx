@@ -171,7 +171,7 @@ function EventsFormImages() {
     }
   };
 
-  const showAlert = (message, type) => {
+  const showAlert = (message, type, time, confirmation) => {
     let iconType = "info";
 
     if (type === "error") {
@@ -188,8 +188,8 @@ function EventsFormImages() {
       color: "#ff9800",
       iconColor: "#ff9800",
       background: "#000000",
-      timer: 3000,
-      showConfirmButton: false,
+      timer: time,
+      showConfirmButton: confirmation,
     });
   };
 
@@ -217,16 +217,38 @@ function EventsFormImages() {
       .post("https://events-cqtw.onrender.com/uploadImgIA", formdata)
       .then((res) => {
         setIsUploadImage(false);
-        console.log("respuesta", res);
         if (res.data.Status === "Success") {
           showAlert("las imagenes se agregaron correctamente", "success");
         } else {
-          showAlert("Fallo al agregar las imagenes", "error");
+          console.log(res);
+          const failedImages = res.data.failedImages;
+          if (failedImages.length > 0) {
+            const errorMessage = failedImages
+              .map((error) => {
+                const failedImage = images.find(
+                  (image) => image.index === error.index + 1
+                );
+                if (failedImage) {
+                  return `<div>
+                    <p>Error al subir las siguientes imagenes:</p>
+                    <img src="${failedImage.url}" style="max-width: 100px; max-height: 100px;" />
+                  </div>`;
+                }
+              })
+              .join("\n");
+            showAlert(errorMessage, "error");
+          } else {
+            showAlert("Fallo al agregar las imagenes", "error", false, true);
+          }
         }
       })
       .catch((err) => console.log(err))
       .finally(setIsUploadImage(true));
   };
+
+  {
+    console.log(images);
+  }
 
   return (
     <div className="h-[400px] multi-image-upload-form flex flex-col justify-around  items-center">
