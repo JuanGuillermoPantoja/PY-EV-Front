@@ -36,7 +36,7 @@ function EventsPage() {
 			<Navbar />
 			<SimpleBar className='bg-white w-full bg-fixed bg-cover bg-center h-screen'>
 				<div className='h-full pb-4 bg-cover bg-center flex flex-col justify-center items-center'>
-					<h1 className='text-textBlack text-center text-[60px] w-1/2 bg-gradient-orange rounded-br-full rounded-bl-full mb-4'>
+					<h1 className='text-textBlack text-center text-xl xl:text-[60px] w-1/2 bg-gradient-orange rounded-br-full rounded-bl-full mb-4'>
 						Mis eventos
 					</h1>
 					<div className='w-full flex h-[550px] justify-center items-center gap-3 flex-wrap'>
@@ -50,7 +50,7 @@ function EventsPage() {
 							events.map((event) => (
 								<div
 									key={event.id}
-									className='w-[24%] h-[80%] rounded-2xl text-primary my-2 shadow-complete shadow-black'
+									className='w-4/5 xl:w-[24%] h-[80%] rounded-2xl text-primary my-2 shadow-complete shadow-black'
 								>
 									{/* <img
 										className='w-full h-2/5 border-[#AC703E] rounded-t-lg'
@@ -82,13 +82,13 @@ function EventsPage() {
 														}}
 													>
 														<div className='bg-black h-full w-full absolute opacity-40'></div>
-														<h2 className='text-center h-[20%] w-[75%] text-white flex justify-center items-center relative bottom-10 z-10'>
+														<h2 className='text-center h-[20%] w-[75%] text-white text-lg flex justify-center items-center relative bottom-10 z-10'>
 															{event.title}
 														</h2>
-														<p className='h-[20%] bg-acent text-textBlack  w-[75%] flex justify-center items-center relative z-10'>
+														<p className='h-[23%] line-clamp-2 bg-acent text-textBlack text-base w-[75%] flex justify-center items-center relative z-10'>
 															{event.promotion}
 														</p>
-														<p className='text-center h-10% bg-textBlack text-acent w-[75%] relative z-10'>
+														<p className='h-[15%] text-center bg-textBlack text-base text-acent w-[75%] relative z-10'>
 															{dayjs(event.dates)
 																.utc()
 																.format('DD [de] MMMM [del] YYYY')}
@@ -123,7 +123,7 @@ function EventsPage() {
 														{event.description}
 													</p> */}
 														<div className='w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10'>
-															<p className='bg-primary text-center w-[75%] h-[40%] text-white'>
+															<p className='bg-primary text-center w-[75%] h-[60%] line-clamp-3 text-white'>
 																{event.address}
 															</p>
 														</div>
@@ -131,15 +131,15 @@ function EventsPage() {
 												</div>
 											</div>
 										</button>
-										<div className='w-full flex justify-between items-center'>
+										<div className='w-full flex justify-between items-center my-2 px-1 gap-2'>
 											<Link
-												className='flex items-center justify-center bg-acent text-center text-black text-base m-2 font-bold h-8 w-1/2 rounded-md mt-2 hover:bg-gold hover:text-[#FFEEB3] duration-300'
+												className='flex items-center justify-center bg-acent text-center text-black text-base  font-bold h-8 w-auto rounded-md hover:bg-gold hover:text-[#FFEEB3] duration-300'
 												to={`/events/${event.id}`}
 											>
 												Editar evento
 											</Link>
 											<button
-												className='bg-red-500 text-white text-base m-2 font-bold h-8 w-1/3 rounded-md mt-2 hover:bg-red-700 hover:text-[#FFEEB3] duration-300'
+												className='bg-red-500 text-white text-base  font-bold h-8 w-auto rounded-md  hover:bg-red-700 hover:text-[#FFEEB3] duration-300'
 												onClick={() => {
 													deleteEvent(event.id);
 												}}
@@ -151,8 +151,8 @@ function EventsPage() {
 											<button
 												className={
 													event.done === 1
-														? 'bg-green-700 text-white text-base m-2 font-bold h-8 w-1/3 rounded-md mt-2 duration-300 '
-														: 'bg-acent text-black text-base m-2 font-bold h-8 w-1/3 rounded-md mt-2 duration-300 '
+														? 'bg-green-700 text-white text-base  font-bold h-8 w-1/3 rounded-md  duration-300 '
+														: 'bg-acent text-black text-base  font-bold h-8 w-1/3 rounded-md duration-300 '
 												}
 												onClick={() => changeColor(event.id)}
 											>

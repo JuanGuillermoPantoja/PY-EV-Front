@@ -73,7 +73,7 @@ function EventsClients() {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="w-4/5 sm:w-[49%] lg:w-[32%] xl:w-[30%] 2xl:w-[24%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
+                className="w-5/6 sm:w-[49%] lg:w-[32%] xl:w-[30%] 2xl:w-[24%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
               >
                 {/* <div className=' w-full h-full bg-primary rounded-t-lg'>
 									<img
