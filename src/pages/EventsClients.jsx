@@ -62,10 +62,9 @@ function EventsClients() {
             </div>
           </div>
 
-          <h1 className="text-left w-[80%] text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">
-            Eventos disponibles
-          </h1>
-          <div className="w-[80%]  h-[550px] flex justify-center sm:justify-between items-center flex-wrap">
+
+          <h1 className="text-left w-[80%] text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">Eventos disponibles</h1>
+          <div className="w-[80%]  h-[550px] flex justify-center sm:justify-start sm:gap-2 items-center flex-wrap">
             {events.length === 0 && (
               <h1 className="h-screen bg-cover w-full bg-center text-center text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">
                 No se han agregado eventos
@@ -74,7 +73,7 @@ function EventsClients() {
             {events.map((event) => (
               <div
                 key={event.id}
-                className=" w-3/4 sm:w-[49%] lg:w-[32%] xl:w-[30%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
+                className="w-4/5 sm:w-[49%] lg:w-[32%] xl:w-[30%] 2xl:w-[24%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
               >
                 {/* <div className=' w-full h-full bg-primary rounded-t-lg'>
 									<img
@@ -104,8 +103,8 @@ function EventsClients() {
                         <h2 className="h-[20%] w-[75%] text-white text-lg xl:text-xl flex justify-center items-center relative bottom-10 z-10">
                           {event.title}
                         </h2>
-                        <p className="h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
-                          {event.promotion}
+                        <p className="h-[25%] md:h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
+                          { event.promotion }
                         </p>
                         <p className="h-10% bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
                           {dayjs(event.dates)
@@ -114,7 +113,7 @@ function EventsClients() {
                         </p>
                       </div>
                       <div className="w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10">
-                        <p className="bg-primary w-[75%] text-base xl:text-base h-[40%] text-white">
+                        <p className="bg-primary w-[75%] text-base h-[35%] md:h-[40%] md:line-clamp-4 text-white line-clamp-3">
                           {event.address}
                         </p>
                         <button
