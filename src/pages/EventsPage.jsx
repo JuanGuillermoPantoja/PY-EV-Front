@@ -1,35 +1,35 @@
-import { useEffect, useState } from 'react';
-import { useEvents } from '../context/EventContext';
-import { Link, useNavigate } from 'react-router-dom';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import Navbar from '../components/Navbar';
-import FooterAdmin from '../components/FooterAdmin';
-import bgCard from '../img/bg-card.png';
-import 'dayjs/locale/es'; // Importa el idioma español
+import { useEffect, useState } from "react";
+import { useEvents } from "../context/EventContext";
+import { Link, useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import Navbar from "../components/Navbar";
+import FooterAdmin from "../components/FooterAdmin";
+import bgCard from "../img/bg-card.png";
+import "dayjs/locale/es"; // Importa el idioma español
 
-dayjs.locale('es');
+dayjs.locale("es");
 
-import SimpleBar from 'simplebar-react';
-import 'simplebar-react/dist/simplebar.min.css';
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
 dayjs.extend(utc);
 
 function EventsPage() {
-	const { getEvents, events, deleteEvent, toggleEventDone } = useEvents();
-	const navigate = useNavigate();
-	const changeColor = async (eventId) => {
-		await toggleEventDone(eventId);
-		getEvents();
-	};
+  const { getEvents, events, deleteEvent, toggleEventDone } = useEvents();
+  const navigate = useNavigate();
+  const changeColor = async (eventId) => {
+    await toggleEventDone(eventId);
+    getEvents();
+  };
 
-	useEffect(() => {
-		getEvents();
-	}, []);
+  useEffect(() => {
+    getEvents();
+  }, []);
 
-	const handleMoreInfoClick = (eventId) => {
-		// Navega a la ruta de InfoEvents con el ID del evento como parámetro
-		navigate(`/info-events/${eventId}`);
-	};
+  const handleMoreInfoClick = (eventId) => {
+    // Navega a la ruta de InfoEvents con el ID del evento como parámetro
+    navigate(`/info-events/${eventId}`);
+  };
 
 	return (
 		<>
@@ -95,8 +95,8 @@ function EventsPage() {
 														</p>
 													</div>
 
-													<div className='flex flex-col justify-between items-center h-[60%] w-full'>
-														{/* <div className='flex-col bg-black w-full h-2/5'>
+                          <div className="flex flex-col justify-between items-center h-[60%] w-full">
+                            {/* <div className='flex-col bg-black w-full h-2/5'>
 											<div className='flex justify-between w-full h-[50%] mb-2'>
 												<div className='w-[60%]'>
 													<p className='text-left font-bold'>
@@ -116,14 +116,14 @@ function EventsPage() {
 											<p className='text-left font-bold '>Direccion:</p>
 											<p className='text-left'>{event.address}</p>
 										</div> */}
-														{/* <p className='text-center h-10% bg-primary text-white w-[75%] relative z-10'>
+                            {/* <p className='text-center h-10% bg-primary text-white w-[75%] relative z-10'>
 														Descripción:
 													</p>
 													<p className='text-center h-10% bg-primary text-white w-[75%] relative z-10'>
 														{event.description}
 													</p> */}
 														<div className='w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10'>
-															<p className='bg-primary text-center w-[75%] h-[65%] md:h-[80%] xl:h-[81%] xl:line-clamp-4 md:line-clamp-4 line-clamp-3 text-white'>
+															<p className='bg-primary text-center w-[75%] h-[65%] md:h-[87%] xl:h-[81%] md:line-clamp-4  line-clamp-3 text-white'>
 																{event.address}
 															</p>
 														</div>
