@@ -172,6 +172,7 @@ function InfoEvents() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
+    arrows:false,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -219,20 +220,20 @@ function InfoEvents() {
           {filteredEvent ? (
             <div className='flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between'>
               <div className='lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col'>
-                <div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-10 xl:flex-row'>
-                  <div className='w-[90%] lg:w-[90%] self-center'>
+                <div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-4 xl:flex-row'>
+                  <div className='w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center'>
                     <img
-                      className=' lg:w-auto lg:h-auto rounded-xl'
+                      className='border-2 w-full h-full rounded-xl'
                       src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
                       alt='Cover Image'
                     />
                   </div>
-                  <div className='w-[90%] xl:w-[45%] lg:h-1/2 self-center'>
+                  <div className='w-[88%] sm:w-[95%] md:w-full lg:w-full xl:w-[49%] self-center'>
                     <Slider className='' {...settings}>
                       {images?.images?.map((image, index) => (
                         <div className='' key={index}>
                           <img
-                            className='lg:h-[300px] md:w-full xl:h-[280px] 2xl:h-[400px] md:h-[350px] rounded-xl'
+                            className='border-2 h-[180px] sm:h-[280px] md:h-[320px] xl:h-[290px] 2xl:h-[400px] w-full rounded-xl'
                             src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
                             alt={`Image ${index}`}
                           />
@@ -364,9 +365,9 @@ function InfoEvents() {
                   </div>
                 </div>
               </div>
-              <div className="w-[90%] self-center lg:self-start md:w-[88%] lg:w-[35%] lg:h-[700px] lg:m-2 xl:h-full xl:w-[27%] xl:m-0 mb-2">
+              <div className="w-[90%] self-center lg:self-start md:w-[88%] lg:w-[35%] h-[460px] m-2 lg:h-auto xl:w-[27%] mb-2">
                 <div className="bg-[#fef8ec] text-textBlack p-4 xl:px-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
-                  <div className="mt-4 overflow-hidden">
+                  <div className="overflow-hidden">
                     <h2 className="">Comentarios</h2>
                     <SimpleBar
                       autoHide

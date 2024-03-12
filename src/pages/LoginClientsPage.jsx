@@ -32,7 +32,7 @@ function LoginClientsPage() {
 		<>
 			<div className='flex flex-col items-center justify-center h-screen bg-gradient-orange'>
 				<div className='flex justify-center flex-col md:flex-row items-center h-full md:h-[80%] lg:h-[90%] md:w-[80%] lg:w-[65%] 2xl:w-[55%] 2xl:h-[80%] mb-4'>
-					<div className='relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2  h-1/2 md:h-2/3 bg-transparent md:border-acent md:border-t-2 md:border-l-2 md:border-b-2 md:rounded-l-2xl md:shadow-complete shadow-primary'>
+					<div className='relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2  h-1/2 md:h-2/3 bg-transparent md:border-acent md:border-t-2 md:border-l-2 md:border-b-2 md:rounded-l-2xl shadow-complete shadow-primary'>
 						<div className='absolute h-full w-full  md:bg-black opacity-50'></div>
 
 						<Link to='/'>
