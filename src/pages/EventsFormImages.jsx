@@ -229,7 +229,7 @@ function EventsFormImages() {
                   (image) => image.index === error.index + 1
                 );
                 if (failedImage) {
-                  return `<div>
+                  return `<div style="flex justify-center items-center w-full">
                     <p>Error al subir las siguientes imagenes:</p>
                     <img src="${failedImage.url}" style="max-width: 100px; max-height: 100px;" />
                   </div>`;
