@@ -39,7 +39,7 @@ function EventsPage() {
 					<h1 className='text-textBlack text-center text-xl md:text-3xl xl:text-4xl 2xl:text-5xl w-1/2 md:w-1/3 bg-gradient-orange rounded-br-full rounded-bl-full mb-4'>
 						Mis eventos
 					</h1>
-					<div className='w-full flex h-[550px] justify-center sm:justify-start sm:ml-[18%] lg:ml-[11%] xl:ml-[18%] 2xl:ml-[15%] items-center gap-3 flex-wrap'>
+					<div className='w-full flex h-[550px] justify-center sm:justify-start sm:ml-[18%] lg:ml-[11%] xl:ml-[18%] 2xl:ml-[17%] items-center gap-3 flex-wrap'>
 						{events.length === 0 && (
 							<h1 className='h-screen bg-cover w-full bg-center text-center text-xl md:text-3xl xl:text-4xl 2xl:text-5xl'>
 								No se han agregado eventos
@@ -50,7 +50,7 @@ function EventsPage() {
 							events.map((event) => (
 								<div
 									key={event.id}
-									className='w-3/4 sm:w-2/5 lg:w-[29%] xl:w-[27%] 2xl:w-[21%] h-[70%] rounded-xl text-primary my-2 shadow-complete shadow-black'
+									className='w-3/4 sm:w-2/5 lg:w-[29%] xl:w-[27%] 2xl:w-[20%] h-[70%] xl:h-[80%] 2xl:h-[85%] rounded-xl text-primary my-2 shadow-complete shadow-black'
 								>
 									{/* <img
 										className='w-full h-2/5 border-[#AC703E] rounded-t-lg'
