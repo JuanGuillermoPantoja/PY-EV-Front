@@ -49,10 +49,10 @@ function EventsClients() {
   return (
     <>
       <NavbarHome />
-      <SimpleBar className="bg-[#fef8ec] w-full bg-fixed bg-cover bg-center h-screen">
+      <SimpleBar className="bg-white w-full bg-fixed bg-cover bg-center h-screen">
         <div className="h-full w-full text-center text-textBlack flex flex-col justify-center items-center">
           <div className="h-screen w-full flex flex-col items-center justify-center bg-gradient-orange">
-            <div className="bg-[#fef8ec] h-full w-full rounded-tr-[300px] rounded-bl-[300px] sm:rounded-tr-[350px] sm:rounded-bl-[350px] md:rounded-tr-[450px] md:rounded-bl-[450px] lg:rounded-tr-full lg:rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700">
+            <div className="bg-white h-full w-full rounded-tr-[300px] rounded-bl-[300px] sm:rounded-tr-[350px] sm:rounded-bl-[350px] md:rounded-tr-[450px] md:rounded-bl-[450px] lg:rounded-tr-full lg:rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700">
               <h1 className="text-textBlack lg:text-6xl xl:text-7xl 2xl:text-8xl">
                 Bienvenidos a <span className="text-acent">EventsBrew</span>
               </h1>
@@ -63,17 +63,17 @@ function EventsClients() {
           </div>
 
 
-          <h1 className="text-left mt-8 mb-8 w-[80%] text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">Eventos disponibles</h1>
-          <div className="w-[80%]  h-[550px] flex justify-center sm:justify-start sm:gap-2 items-center flex-wrap">
+          <h1 className="text-left w-[80%] text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">Eventos disponibles</h1>
+          <div className="w-[90%] sm:w-[80%] xl:w-[85%] xl:ml-[5%] 2xl:w-[80%] 2xl:ml-0 h-[550px] flex justify-center sm:justify-start sm:gap-2 lg:gap-3 xl:jus items-center flex-wrap">
             {events.length === 0 && (
-              <h1 className="h-screen bg-cover w-full bg-center text-center text-xl sm:text-3xl lg:text-4xl 2xl:text-5xl">
+              <h1 className="h-screen bg-cover w-full bg-center text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
                 No se han agregado eventos
               </h1>
             )}
             {events.map((event) => (
               <div
                 key={event.id}
-                className="w-5/6 sm:w-[49%] lg:w-[32%] xl:w-[30%] 2xl:w-[24%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
+                className="w-4/5 sm:w-[49%] lg:w-[32%] xl:w-[30%] 2xl:w-[24%] h-[70%] md:h-[80%] 2xl:h-[85%] rounded-2xl text-primary my-2 shadow-complete shadow-gray-400"
               >
                 {/* <div className=' w-full h-full bg-primary rounded-t-lg'>
 									<img
@@ -103,10 +103,10 @@ function EventsClients() {
                         <h2 className="h-[20%] w-[75%] text-white text-lg xl:text-xl flex justify-center items-center relative bottom-10 z-10">
                           {event.title}
                         </h2>
-                        <p className="h-[25%] md:h-[20%] font-semibold bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
+                        <p className="h-[25%] md:h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
                           { event.promotion }
                         </p>
-                        <p className="h-10% bg-textBlack p-2 text-acent text-base xl:text-base w-[75%] relative z-10">
+                        <p className="h-10% bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
                           {dayjs(event.dates)
                             .utc()
                             .format("DD [de] MMMM [del] YYYY")}
@@ -117,7 +117,7 @@ function EventsClients() {
                           {event.address}
                         </p>
                         <button
-                          className="bg-acent rounded-md font-semibold text-base xl:text-base my-2 p-2 text-black hover:bg-gold"
+                          className="bg-acent rounded-md text-base my-2 p-2 text-black hover:bg-gold"
                           onClick={() => {
                             handleMoreInfoClick(event.id);
                           }}
