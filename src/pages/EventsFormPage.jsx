@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 import FooterAdmin from "../components/FooterAdmin";
 import EventsFormImages from "./EventsFormImages";
 import Swal from "sweetalert2";
+import defaultImage from "../img/img-default.png";
 dayjs.extend(utc);
 
 function EventsFormPage() {
@@ -18,6 +19,7 @@ function EventsFormPage() {
   const params = useParams();
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [coverImagePreview, setCoverImagePreview] = useState(defaultImage);
 
   //imagen upload
   const [file, setFile] = useState();
@@ -30,6 +32,16 @@ function EventsFormPage() {
     setSelectedFile(file ? file.name : null);
     // Aquí puedes realizar cualquier otra lógica que necesites con el archivo seleccionado
     setFile(event.target.files[0]);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCoverImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setCoverImagePreview(defaultImage);
+    }
   };
 
   const handleFileButtonClick = () => {
@@ -166,12 +178,11 @@ function EventsFormPage() {
               {...register("dates")}
             />
 
-<<<<<<< HEAD
             <label className="text-left w-full text-xl" htmlFor="description">
               Descripción del evento:
             </label>
             <textarea
-              className="w-full h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
+              className="w-full h-[200px] text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
               name="description"
               id=""
               cols=""
@@ -196,32 +207,35 @@ function EventsFormPage() {
             <h2 className="font-bold">imagenes</h2>
             <div className="w-[50%] bg-acent h-[1px] mb-4"></div>
             <div className="flex flex-col w-[400px]">
-              <div className="flex items-center">
-                <button
-                  onClick={handleFileButtonClick}
-                  className="m-1 text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600"
-                >
-                  <input
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                    style={{ display: "none" }}
-                    type="file"
+              <div className="flex flex-col items-center">
+                <div>
+                  <img
+                    className="h-[200px] w-[200px] mb-2"
+                    src={coverImagePreview}
                   />
-                  Seleccionar archivo
-                </button>
-                {selectedFile && (
-                  <p className="text-xs">
-                    Archivo seleccionado: {selectedFile}
-                  </p>
-                )}
+                </div>
+                <div className="flex justify-center items-center w-full">
+                  <button
+                    onClick={handleFileButtonClick}
+                    className="text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600"
+                  >
+                    <input
+                      ref={fileInputRef}
+                      onChange={handleFileChange}
+                      style={{ display: "none" }}
+                      type="file"
+                    />
+                    Seleccionar archivo
+                  </button>
+                  <button
+                    onSubmit={onSubmit}
+                    onClick={handleUpload}
+                    className="ml-1 text-base bg-acent font-bold w-[60%] h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
+                  >
+                    Actulizar imagen de portada
+                  </button>
+                </div>
               </div>
-              <button
-                onSubmit={onSubmit}
-                onClick={handleUpload}
-                className="mx-auto text-base bg-acent font-bold w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
-              >
-                Actulizar imagen de portada
-              </button>
             </div>
             <EventsFormImages />
           </div>
@@ -230,71 +244,6 @@ function EventsFormPage() {
       <FooterAdmin></FooterAdmin>
     </>
   );
-=======
-						<label className='text-left w-full text-xl' htmlFor='description'>
-							Descripción del evento:
-						</label>
-						<textarea
-							className='w-full h-[200px] text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base'
-							name='description'
-							id=''
-							cols=''
-							rows='5'
-							placeholder='Descripción del evento'
-							{...register('description')}
-						></textarea>
-						<div className=''>
-							<div className='w-full flex flex-col items-center'>
-								<button
-									onSubmit={onSubmit}
-									className='bg-acent font-bold w-full mb-2 text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600 max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl'
-								>
-									Añadir evento
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				{params.id && (
-					<div className='flex flex-col justify-start items-center bg-[#0000007b] w-2/5 h-3/4 rounded-2xl'>
-						<h2 className='font-bold'>imagenes</h2>
-						<div className='w-[50%] bg-acent h-[1px] mb-4'></div>
-						<div className='flex flex-col w-[400px]'>
-							<div className='flex items-center'>
-								<button
-									onClick={handleFileButtonClick}
-									className='m-1 text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600'
-								>
-									<input
-										ref={fileInputRef}
-										onChange={handleFileChange}
-										style={{ display: 'none' }}
-										type='file'
-									/>
-									Seleccionar archivo
-								</button>
-								{selectedFile && (
-									<p className='text-xs'>
-										Archivo seleccionado: {selectedFile}
-									</p>
-								)}
-							</div>
-							<button
-								onSubmit={onSubmit}
-								onClick={handleUpload}
-								className='mx-auto text-base bg-acent font-bold w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl'
-							>
-								Actulizar imagen de portada
-							</button>
-						</div>
-						<EventsFormImages />
-					</div>
-				)}
-			</div>
-			<FooterAdmin></FooterAdmin>
-		</>
-	);
->>>>>>> 0801bf689da763522caf7ae8877b459aa7cdd3e9
 }
 
 export default EventsFormPage;

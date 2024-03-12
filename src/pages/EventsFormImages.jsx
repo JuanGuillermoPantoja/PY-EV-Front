@@ -69,9 +69,12 @@ import axios from "axios";
 import SimpleBar from "simplebar-react";
 import Swal from "sweetalert2";
 import React from "react";
+import defaultImage from "../img/img-default.png";
 
 function EventsFormImages() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([
+    { index: 0, name: "default", url: defaultImage },
+  ]);
   const [fileInputRefs, setFileInputRefs] = useState([]);
   const [files, setFiles] = useState([null]);
   const [selectedFile, setSelectedFile] = useState(
@@ -84,6 +87,14 @@ function EventsFormImages() {
     const newFiles = [...files];
     const newSelectedFiles = [...selectedFile];
     const newImages = [];
+
+    console.log("files", newFiles);
+
+    if (images.length === 1 && images[0]?.name === "default") {
+      images.splice(0, 1);
+      setFiles(newFiles);
+      setSelectedFile(newSelectedFiles);
+    }
 
     // Itera sobre los archivos seleccionados y actualiza los arrays de archivos y nombres de archivos seleccionados
     for (let i = 0; i < selectedFiles.length; i++) {
@@ -198,8 +209,8 @@ function EventsFormImages() {
   };
 
   const handleUpload = () => {
-    if (!params.id || isNaN(params.id)) {
-      console.error("ID del evento no proporcionado o no válido");
+    if (images.length === 1 && images[0].name === "default") {
+      showAlert("Debe seleccionar al menos una imagen", "warning", 3000);
       return;
     }
 
@@ -251,21 +262,20 @@ function EventsFormImages() {
   }
 
   return (
-    <div className="mt-4">
-      <SimpleBar className="bg-transparent w-[600px] bg-fixed bg-cover bg-center h-[400px]">
-        <div className="flex flex-wrap">
+    <div className="mt-2">
+      <SimpleBar className="bg-transparent w-[600px] bg-fixed bg-cover bg-center h-[200px]">
+        <div className="flex justify-center flex-wrap">
           {images.map((imagen, index) => (
-            <div
-              className=""
-              key={`${imagen.name}_${index}`}
-            >
+            <div className="" key={`${imagen.name}_${index}`}>
               <div className="">
-                <button
-                  className="absolute w-8 bg-red-800"
-                  onClick={() => deleteImg(imagen.index)}
-                >
-                  x
-                </button>
+                {imagen.name !== "default" ? (
+                  <button
+                    className="absolute w-8 bg-red-800"
+                    onClick={() => deleteImg(imagen.index)}
+                  >
+                    x
+                  </button>
+                ) : null}
                 <img
                   alt="algo"
                   src={imagen.url}
@@ -291,26 +301,29 @@ function EventsFormImages() {
           </div>
         </div>
       )}
-      <label className="btn btn-warning">
+      <div className="flex justify-center items-center w-full">
+        <label className="btn btn-warning">
+          <button
+            className="m-1 p-2 text-xs bg-gray-500 w-full h-10 rounded-lg hover:bg-gray-600"
+            onClick={handleFileButtonClick}
+          >
+            <span>Seleccionar archivos </span>
+            <input
+              hidden
+              type="file"
+              multiple
+              ref={fileInputRef}
+              onChange={(e) => changeInput(e)}
+            ></input>
+          </button>
+        </label>
         <button
-          className="m-1 text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600"
-          onClick={handleFileButtonClick}>
-          <span>Seleccionar archivos </span>
-          <input
-            hidden
-            type="file"
-            multiple
-            ref={fileInputRef}
-            onChange={(e) => changeInput(e)}
-          ></input>
+          onClick={handleUpload}
+          className="bg-acent font-bold ml-2 w-[30%] h-10 text-textBlack  shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
+        >
+          Subir imágenes
         </button>
-      </label>
-      <button
-        onClick={handleUpload}
-        className="bg-acent font-bold mx-auto w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
-      >
-        Subir imágenes
-      </button>
+      </div>
     </div>
   );
 }
