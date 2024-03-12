@@ -258,9 +258,11 @@ function EventsFormImages() {
   };
 
   return (
-    <div className="mt-2">
-      <SimpleBar className="bg-transparent w-[600px] bg-fixed bg-cover bg-center h-[200px]">
-        <div className="flex justify-center flex-wrap">
+    <div className="mt-4 flex flex-col justify-center items-center">
+      <h2 className="font-bold">Mostar más imagenes</h2>
+            <div className="w-[50%] bg-acent h-[1px] mb-4"></div>
+      <SimpleBar className="bg-[#4b1e00] p-2 w-[600px] bg-fixed rounded-md bg-cover bg-center h-[200px]">
+        <div className="flex gap-4 justify-center flex-wrap">
           {images.map((imagen, index) => (
             <div className="" key={`${imagen.name}_${index}`}>
               <div className="">
@@ -277,7 +279,7 @@ function EventsFormImages() {
                   src={imagen.url}
                   data-toggle="modal"
                   data-target="#ModalPreViewImg"
-                  className="w-[200px] h-[200px]"
+                  className="w-[180px] h-[200px]"
                 ></img>
               </div>
             </div>
@@ -315,7 +317,7 @@ function EventsFormImages() {
         </label>
         <button
           onClick={handleUpload}
-          className="bg-acent font-bold ml-2 w-[30%] h-10 text-textBlack  shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
+          className="bg-acent font-bold ml-2 w-[30%] h-10 text-textBlack  shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
         >
           Subir imágenes
         </button>

@@ -206,12 +206,12 @@ function EventsFormPage() {
           </form>
         </div>
         {params.id && (
-          <div className="flex flex-col justify-start items-center bg-[#0000007b] w-2/5 h-3/4 rounded-2xl">
-            <h2 className="font-bold">imagenes</h2>
+          <div className="flex flex-col justify-center  items-center bg-[#0000007b] w-2/5 h-3/4 rounded-2xl">
+            <h2 className="font-bold">Imagen de portada</h2>
             <div className="w-[50%] bg-acent h-[1px] mb-4"></div>
             <div className="flex flex-col w-[400px]">
               <div className="flex flex-col items-center">
-                <div>
+                <div className="bg-[#4b1e00] p-2 w-[600px] rounded-md flex justify-center">
                   <img
                     className="h-[200px] w-[200px] mb-2"
                     src={coverImagePreview}
@@ -230,7 +230,7 @@ function EventsFormPage() {
                     </div>
                   </div>
                 )}
-                <div className="flex justify-center items-center w-full">
+                <div className="flex justify-center mt-1 items-center w-full">
                   <button
                     onClick={handleFileButtonClick}
                     className="text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600"
@@ -246,9 +246,9 @@ function EventsFormPage() {
                   <button
                     onSubmit={onSubmit}
                     onClick={handleUpload}
-                    className="ml-1 text-base bg-acent font-bold w-[60%] h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
+                    className="ml-1 text-base bg-acent font-bold w-[40%] p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
                   >
-                    Actulizar imagen de portada
+                    Actualizar portada
                   </button>
                 </div>
               </div>
