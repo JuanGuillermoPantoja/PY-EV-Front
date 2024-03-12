@@ -252,8 +252,8 @@ function EventsFormImages() {
 
   return (
     <div className="mt-4">
-      <SimpleBar className="bg-transparent w-[600px] bg-fixed bg-cover bg-center h-[400px]">
-        <div className="flex flex-wrap">
+      <SimpleBar className="bg-[#4b1e00] p-2 w-[600px] bg-fixed rounded-md bg-cover bg-center h-[200px]">
+        <div className="flex gap-4 justify-center flex-wrap">
           {images.map((imagen, index) => (
             <div
               className=""
@@ -271,7 +271,7 @@ function EventsFormImages() {
                   src={imagen.url}
                   data-toggle="modal"
                   data-target="#ModalPreViewImg"
-                  className="w-[200px] h-[200px]"
+                  className="w-[180px] h-[200px]"
                 ></img>
               </div>
             </div>
