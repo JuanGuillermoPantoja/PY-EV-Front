@@ -163,15 +163,15 @@ function LoginPage() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-gradient-orange">
-        <div className="flex justify-center flex-col md:flex-row items-center h-full md:h-[80%] lg:h-[90%] md:w-[80%] lg:w-[65%] 2xl:w-[55%] 2xl:h-[80%] mb-4">
-          <div className="relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2  h-1/2 md:h-2/3 bg-transparent md:border-acent md:border-t-2 md:border-l-2 md:border-b-2 md:rounded-l-2xl md:shadow-complete shadow-primary">
-            <div className="absolute h-full w-full  md:bg-black opacity-50"></div>
+      <div className='flex flex-col items-center justify-center h-screen bg-gradient-orange'>
+				<div className='flex justify-center flex-col md:flex-row items-center h-full gap-10 md:gap-0 md:h-[80%] lg:h-[90%] md:w-[80%] lg:w-[65%] 2xl:w-[55%] 2xl:h-[80%] mb-4'>
+					<div className='relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2  h-[25%] md:h-2/3 bg-transparent md:border-acent md:border-t-2 md:border-l-2 md:border-b-2 md:rounded-l-2xl md:shadow-complete '>
+						<div className='absolute h-full w-full  md:bg-black opacity-50'></div>
 
             <Link to="/" className="">
               <div className="flex justify-center items-center md:animate-bouncing animate-iteration-count-infinite">
                 <img
-                  className="w-full animate-bouncing animate-iteration-count-infinite sm:w-[90%] lg:w-[60%] md:w-2/3 shadow-black drop-shadow-complete"
+                  className="w-full sm:w-[90%] lg:w-[60%] md:w-2/3 drop-shadow-complete"
                   src={logoeventBrew}
                   alt=""
                 />
@@ -180,7 +180,7 @@ function LoginPage() {
           </div>
 
           <form
-            className="flex flex-col items-center w-3/4 md:w-1/2 h-2/3 rounded-r-2xl shadow-complete shadow-black"
+            className="flex flex-col items-center w-[80%] md:w-1/2 h-1/2 md:h-2/3 rounded-r-2xl shadow-complete"
             onSubmit={onSubmit}
           >
             <div className="bg-black bg-opacity-90 md:rounded-r-xl flex flex-col justify-center items-center w-full h-full border-acent border-t-2 border-b-2 border-r-2 border-l-2">
@@ -225,7 +225,7 @@ function LoginPage() {
               )}
 
               <button
-                className="bg-acent font-bold w-1/3 text-base text-textBlack mt-2 p-2 shadow-gold shadow-inner rounded-xl hover:bg-gold"
+                className="bg-acent font-bold w-[45%] xl:w-1/3 text-base text-textBlack mt-2 p-2 shadow-gold shadow-inner rounded-xl hover:bg-gold"
                 type="submit"
               >
                 Iniciar sesión

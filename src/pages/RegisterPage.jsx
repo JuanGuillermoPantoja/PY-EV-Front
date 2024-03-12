@@ -34,8 +34,8 @@ function RegisterPage() {
 	return (
 		<>
 			<div className='flex flex-col items-center justify-center h-screen bg-gradient-orange'>
-				<div className='flex justify-center flex-col md:flex-row items-center h-full md:h-[80%] lg:h-[90%] md:w-[80%] lg:w-[65%] 2xl:w-[55%] 2xl:h-[80%] mb-4'>
-					<div className='relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2  h-1/2 md:h-2/3 bg-transparent md:border-acent md:border-t-2 md:border-l-2 md:border-b-2 md:rounded-l-2xl md:shadow-complete shadow-primary'>
+				<div className='flex justify-center flex-col md:flex-row items-center h-full gap-10 md:gap-0 md:h-[80%] lg:h-[90%] md:w-[80%] lg:w-[65%] 2xl:w-[55%] 2xl:h-[80%] mb-4'>
+					<div className='relative z-0 overflow-hidden flex flex-col justify-center items-center w-1/2  h-[25%] md:h-2/3 bg-transparent md:border-acent md:border-t-2 md:border-l-2 md:border-b-2 md:rounded-l-2xl md:shadow-complete '>
 						<div className='absolute h-full w-full  md:bg-black opacity-50'></div>
 						<Link to='/'>
 							<div className='flex justify-center items-center md:animate-bouncing animate-iteration-count-infinite'>
@@ -50,7 +50,7 @@ function RegisterPage() {
 					</div>
 
 					<form
-						className='flex flex-col items-center w-3/4 md:w-1/2 h-2/3 rounded-r-2xl shadow-complete shadow-primary'
+						className='flex flex-col items-center w-[90%] md:w-1/2 h-2/3 rounded-r-2xl shadow-complete '
 						onSubmit={onSubmit}
 					>
 						<div className='bg-black bg-opacity-90 md:rounded-r-xl flex flex-col justify-center items-center w-full h-full border-acent border-t-2 border-b-2 border-r-2 border-l-2'>
