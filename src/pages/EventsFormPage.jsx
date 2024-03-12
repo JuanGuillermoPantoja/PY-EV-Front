@@ -20,6 +20,7 @@ function EventsFormPage() {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [coverImagePreview, setCoverImagePreview] = useState(defaultImage);
+  const [isUploadImage, setIsUploadImage] = useState(false);
 
   //imagen upload
   const [file, setFile] = useState();
@@ -83,13 +84,15 @@ function EventsFormPage() {
     axios
       .post("https://events-cqtw.onrender.com/upload", formdata)
       .then((res) => {
+        setIsUploadImage(false);
         if (res.data.Status === "Success") {
           showAlert("Se actualizo la imagen correctamente", "success");
         } else {
           showAlert("La imagen no cumple con los requerimientos", "error");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(setIsUploadImage(true));
   };
 
   useEffect(() => {
@@ -214,6 +217,19 @@ function EventsFormPage() {
                     src={coverImagePreview}
                   />
                 </div>
+                {isUploadImage && (
+                  <div className="text-acent flex justify-center bg-none text-3xl">
+                    <div className="animate-bouncing animate-delay-100 animate-iteration-count-infinite">
+                      .
+                    </div>
+                    <div className="animate-bouncing animate-delay-200 animate-iteration-count-infinite">
+                      .
+                    </div>
+                    <div className="animate-bouncing animate-delay-300 animate-iteration-count-infinite">
+                      .
+                    </div>
+                  </div>
+                )}
                 <div className="flex justify-center items-center w-full">
                   <button
                     onClick={handleFileButtonClick}

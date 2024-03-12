@@ -257,10 +257,6 @@ function EventsFormImages() {
       .finally(setIsUploadImage(true));
   };
 
-  {
-    console.log(images);
-  }
-
   return (
     <div className="mt-2">
       <SimpleBar className="bg-transparent w-[600px] bg-fixed bg-cover bg-center h-[200px]">
