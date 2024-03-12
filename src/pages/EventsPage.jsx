@@ -34,14 +34,14 @@ function EventsPage() {
 	return (
 		<>
 			<Navbar />
-			<SimpleBar className='bg-white w-full bg-fixed bg-cover bg-center h-screen'>
+			<SimpleBar className='bg-[#fef8ec] w-full bg-fixed bg-cover bg-center h-screen'>
 				<div className='h-full pb-4 bg-cover bg-center flex flex-col justify-center items-center'>
 					<h1 className='text-textBlack text-center text-[60px] w-1/2 bg-gradient-orange rounded-br-full rounded-bl-full mb-4'>
 						Mis eventos
 					</h1>
 					<div className='w-full flex h-[550px] justify-center items-center gap-3 flex-wrap'>
 						{events.length === 0 && (
-							<h1 className='h-screen bg-cover w-full bg-center text-center'>
+							<h1 className='h-screen bg-cover text-[#742d13] w-full bg-center text-center'>
 								No se han agregado eventos
 							</h1>
 						)}
@@ -123,7 +123,7 @@ function EventsPage() {
 														{event.description}
 													</p> */}
 														<div className='w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10'>
-															<p className='bg-primary text-center w-[75%] h-[40%] text-white'>
+															<p className='bg-primary text-center w-[75%] h-[80%] text-white'>
 																{event.address}
 															</p>
 														</div>

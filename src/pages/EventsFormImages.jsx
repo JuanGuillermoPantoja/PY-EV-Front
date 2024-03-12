@@ -194,7 +194,7 @@ function EventsFormImages() {
   };
 
   const handleFileButtonClick = (index) => {
-    fileInputRef.current[index].click();
+    fileInputRef.current.click();
   };
 
   const handleUpload = () => {
@@ -218,7 +218,7 @@ function EventsFormImages() {
       .then((res) => {
         setIsUploadImage(false);
         if (res.data.Status === "Success") {
-          showAlert("las imagenes se agregaron correctamente", "success");
+          showAlert("las imagenes se agregaron correctamente", "success", 1200);
         } else {
           console.log(res);
           const failedImages = res.data.failedImages;
@@ -251,17 +251,17 @@ function EventsFormImages() {
   }
 
   return (
-    <div className="h-[400px] multi-image-upload-form flex flex-col justify-around  items-center">
-      <SimpleBar className="bg-transparent w-[400px] bg-fixed bg-cover bg-center h-[200px]">
-        <div className="row">
+    <div className="mt-4">
+      <SimpleBar className="bg-transparent w-[600px] bg-fixed bg-cover bg-center h-[400px]">
+        <div className="flex flex-wrap">
           {images.map((imagen, index) => (
             <div
-              className="col-6 col-sm-4 col-lg-3 square"
+              className=""
               key={`${imagen.name}_${index}`}
             >
-              <div className="content_img">
+              <div className="">
                 <button
-                  className="position-absolute btn btn-danger"
+                  className="absolute w-8 bg-red-800"
                   onClick={() => deleteImg(imagen.index)}
                 >
                   x
@@ -271,22 +271,13 @@ function EventsFormImages() {
                   src={imagen.url}
                   data-toggle="modal"
                   data-target="#ModalPreViewImg"
-                  className="img-responsive"
+                  className="w-[200px] h-[200px]"
                 ></img>
               </div>
             </div>
           ))}
         </div>
       </SimpleBar>
-      <label className="btn btn-warning">
-        <span>Seleccionar archivos </span>
-        <input
-          hidden
-          type="file"
-          multiple
-          onChange={(e) => changeInput(e)}
-        ></input>
-      </label>
       {isUploadImage && (
         <div className="text-acent flex justify-center bg-none text-3xl">
           <div className="animate-bouncing animate-delay-100 animate-iteration-count-infinite">
@@ -300,6 +291,20 @@ function EventsFormImages() {
           </div>
         </div>
       )}
+      <label className="btn btn-warning">
+        <button
+          className="m-1 text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600"
+          onClick={handleFileButtonClick}>
+          <span>Seleccionar archivos </span>
+          <input
+            hidden
+            type="file"
+            multiple
+            ref={fileInputRef}
+            onChange={(e) => changeInput(e)}
+          ></input>
+        </button>
+      </label>
       <button
         onClick={handleUpload}
         className="bg-acent font-bold mx-auto w-[60%] text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600   max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
