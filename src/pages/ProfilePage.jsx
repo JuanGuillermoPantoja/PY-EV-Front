@@ -4,11 +4,15 @@ import { useAuth } from "../context/AuthContext";
 
 function ProfilePage() {
   const { user } = useAuth();
-  const fileInputRef = useRef(null);
-  const [profileImage, setProfileImage] = useState();
+  const [isEditing, setIsEditing] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
+  const [username, setUsername] = useState(user.user.username);
+  const [email, setEmail] = useState(user.user.email);
+  const fileInputRef = useRef();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    console.log("file", file);
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -22,45 +26,69 @@ function ProfilePage() {
     fileInputRef.current.click();
   };
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    // Aquí podrías enviar los datos actualizados al servidor
+    setIsEditing(false);
+  };
+
   return (
     <>
       <Navbar />
       <div className="h-screen bg-black">
         <div>
           <div>
-            {profileImage && (
-              <div>
-                <img
-                  className="h-[200px] w-[200px] rounded-full"
-                  src={profileImage}
-                  alt="Previsualización"
-                />
-              </div>
-            )}
-          </div>
-          <div>
             <button onClick={handleButtonClick}>
               <input
                 ref={fileInputRef}
                 onChange={handleFileChange}
-                type="file"
                 style={{ display: "none" }}
+                type="file"
               />
-              Seleccionar archivo
+              Seleccionar imagen
             </button>
           </div>
-        </div>
-        <div>
-          <label htmlFor="">Nombre</label>
-          <input
-            className="text-black"
-            type="text"
-            placeholder={user.user.username}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Correo electronico</label>
-          <input type="email" placeholder={user.user.email} />
+          {profileImage && (
+            <div>
+              <img
+                className="h-[200px] w-[200px] rounded-full"
+                src={profileImage}
+                alt="Previsualización"
+              />
+            </div>
+          )}
+          <div>
+            <button onClick={handleEditClick} disabled={isEditing}>
+              Editar
+            </button>
+          </div>
+          <div>
+            <label htmlFor="">Nombre</label>
+            <input
+              className="text-black"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              disabled={!isEditing}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Correo electronico</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={!isEditing}
+            />
+          </div>
+          {isEditing && (
+            <div>
+              <button onClick={handleSaveClick}>Guardar</button>
+            </div>
+          )}
         </div>
       </div>
     </>
