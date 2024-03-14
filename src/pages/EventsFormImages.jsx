@@ -258,17 +258,17 @@ function EventsFormImages() {
   };
 
   return (
-    <div className="mt-4 flex flex-col justify-center items-center">
-      <h2 className="font-bold">Mostar más imagenes</h2>
-      <div className="w-[50%] bg-acent h-[1px] mb-4"></div>
-      <SimpleBar className="bg-[#4b1e00] p-2 w-[600px] bg-fixed rounded-md bg-cover bg-center h-[200px]">
-        <div className="flex gap-4 justify-center flex-wrap">
+    <div className="mt-4 2xl:mt-0 lg:pb-1 flex flex-col justify-center  items-center w-full">
+      <h2 className="font-bold text-lg">Mostrar más imagenes</h2>
+            <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
+      <SimpleBar className="bg-[#4b1e00] p-2 w-[70%] sm:w-[60%] md:h-[160px] rounded-md bg-cover bg-center h-[145px] lg:w-[50%] lg:h-[150px] xl:w-[70%] 2xl:w-[60%] 2xl:h-[200px]">
+        <div className="flex gap-4 justify-center flex-wrap lg:w-full">
           {images.map((imagen, index) => (
-            <div className="" key={`${imagen.name}_${index}`}>
-              <div className="">
+            <div className="w-[95%]" key={`${imagen.name}_${index}`}>
+              <div className="flex justify-center lg:w-full">
                 {imagen.name !== "default" ? (
                   <button
-                    className="absolute w-8 bg-red-800"
+                    className="absolute w-8 right-[23.5%] sm:right-[27.5%] md:right-[29.7%] lg:right-[23.5%] xl:right-[27.5%] 2xl:right-[27 %] bg-red-800"
                     onClick={() => deleteImg(imagen.index)}
                   >
                     x
@@ -279,9 +279,8 @@ function EventsFormImages() {
                   src={imagen.url}
                   data-toggle="modal"
                   data-target="#ModalPreViewImg"
-                  className="w-[180px] h-[200px]"
+                  className="w-[60%] sm:w-[50%] md:w-[45%] lg:w-[60%] xl:w-[50%]"
                 ></img>
-                {console.log(imagen)}
               </div>
             </div>
           ))}
@@ -300,10 +299,10 @@ function EventsFormImages() {
           </div>
         </div>
       )}
-      <div className="flex justify-center items-center w-full">
+      <div className="flex justify-center items-center w-full mt-2 mb-2">
         <label className="btn btn-warning">
           <button
-            className="m-1 p-2 text-xs bg-gray-500 w-full h-10 rounded-lg hover:bg-gray-600"
+            className="p-2 text-xs bg-gray-500 w-auto h-10 rounded-lg hover:bg-gray-600"
             onClick={handleFileButtonClick}
           >
             <span>Seleccionar archivos </span>
@@ -318,7 +317,7 @@ function EventsFormImages() {
         </label>
         <button
           onClick={handleUpload}
-          className="bg-acent font-bold ml-2 w-[30%] h-10 text-textBlack  shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
+          className="bg-acent font-bold text-base ml-1 w-[50%] sm:w-2/6 h-10 text-textBlack  shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
         >
           Subir imágenes
         </button>

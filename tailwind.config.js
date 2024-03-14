@@ -7,6 +7,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      darkMode: 'selector',
       backgroundImage: (theme) => ({
         "gradient-orange": "linear-gradient(to right, #ff9800,#bb4c02)",
         "gradient-top-amber": "linear-gradient(to bottom, #e27100 ,#bb4c02)",
