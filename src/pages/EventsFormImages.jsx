@@ -268,7 +268,7 @@ function EventsFormImages() {
               <div className="flex justify-center lg:w-full">
                 {imagen.name !== "default" ? (
                   <button
-                    className="absolute w-8 right-[23.5%] sm:right-[27.5%] md:right-[29.7%] lg:right-[23.5%] xl:right-[27.5%] 2xl:right-[27%] bg-red-800"
+                    className="absolute w-8 right-[23.5%] sm:right-[27.5%] md:right-[29.7%] lg:right-[23.5%] xl:right-[27.5%] 2xl:right-[27 %] bg-red-800"
                     onClick={() => deleteImg(imagen.index)}
                   >
                     x

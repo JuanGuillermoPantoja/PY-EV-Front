@@ -211,7 +211,7 @@ function EventsFormPage() {
             <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
             <div className="flex flex-col w-[100%] 2xl:h-[42%] h-full">
               <div className="flex flex-col items-center">
-                <div className="bg-[#4b1e00] p-2 w-[70%] h-[145px] sm:w-[60%] sm:h-[200px] md:h-[240px] lg:h-[150px] lg:w-[50%] xl:w-[60%] 2xl:h-[200px] rounded-md flex justify-center items-center">
+                <div className="bg-[#4b1e00] p-2 w-[70%] h-[145px] sm:w-[60%] sm:h-[200px] md:h-[240px] lg:h-[150px] lg:w-[50%] xl:w-[60%] 2xl:h-[220px] rounded-md flex justify-center items-center">
                   <img
                     className="w-[70%] h-[100px] sm:h-[140px] md:w-[70%] md:h-[180px] lg:h-[90%] lg:w-[80%] xl:w-[60%] 2xl:w-[50%]"
                     src={coverImagePreview}

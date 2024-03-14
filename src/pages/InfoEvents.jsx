@@ -40,10 +40,8 @@ function InfoEvents() {
   const [dislikesCount, setDislikesCount] = useState(null);
   const [showPositiveComments, setShowPositiveComments] = useState(false); // Estado para controlar la visualización de los comentarios positivos
   const [showNegativeComments, setShowNegativeComments] = useState(false); // Estado para controlar la visualización de los comentarios negativos
-
+  const [showAllComments, setShowAllComments] = useState(false);
   const [commentAdded, setCommentAdded] = useState(false);
-
-
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -98,7 +96,10 @@ function InfoEvents() {
   const handleLike = async () => {
     try {
       if (!isClientAuthenticated) {
-        showAlert("Debes iniciar sesión para comentar o reaccionar al evento.", "error");
+        showAlert(
+          "Debes iniciar sesión para comentar o reaccionar al evento.",
+          "error"
+        );
         return;
       }
       if (filteredEvent) {
@@ -119,7 +120,10 @@ function InfoEvents() {
   const handleDisLike = async () => {
     try {
       if (!isClientAuthenticated) {
-        showAlert("Debes iniciar sesión para comentar o reaccionar al evento.", "error");
+        showAlert(
+          "Debes iniciar sesión para comentar o reaccionar al evento.",
+          "error"
+        );
         return;
       }
       await addDisLike(filteredEvent.id, client.client.id);
@@ -169,10 +173,11 @@ function InfoEvents() {
   const settings = {
     dots: true,
     fade: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    arrows:false,
+    arrows: false,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -180,7 +185,10 @@ function InfoEvents() {
 
   const handleCommentSubmit = async () => {
     if (!isClientAuthenticated) {
-      showAlert("Debes iniciar sesión para comentar o reaccionar al evento.", "error");
+      showAlert(
+        "Debes iniciar sesión para comentar o reaccionar al evento.",
+        "error"
+      );
       return;
     }
 
@@ -215,25 +223,25 @@ function InfoEvents() {
   return (
     <>
       <NavbarHome />
-      <div className=' w-full'>
-        <div className='w-full h-full'>
+      <div className=" w-full">
+        <div className="w-full h-full">
           {filteredEvent ? (
-            <div className='flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between'>
-              <div className='lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col'>
-                <div className='flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-4 xl:flex-row'>
-                  <div className='w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center'>
+            <div className="flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between">
+              <div className="lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col">
+                <div className="flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-4 xl:flex-row">
+                  <div className="w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center">
                     <img
-                      className='border-2 w-full h-full rounded-xl'
+                      className="border-2 w-full h-full rounded-xl"
                       src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-                      alt='Cover Image'
+                      alt="Cover Image"
                     />
                   </div>
-                  <div className='w-[88%] sm:w-[95%] md:w-full lg:w-full xl:w-[49%] self-center'>
-                    <Slider className='' {...settings}>
+                  <div className="w-[88%] sm:w-[95%] md:w-full lg:w-full xl:w-[49%] self-center">
+                    <Slider className="" {...settings}>
                       {images?.images?.map((image, index) => (
-                        <div className='' key={index}>
+                        <div className="" key={index}>
                           <img
-                            className='border-2 h-[180px] sm:h-[280px] md:h-[320px] xl:h-[290px] 2xl:h-[400px] w-full rounded-xl'
+                            className="border-2 h-[180px] sm:h-[280px] md:h-[320px] xl:h-[290px] 2xl:h-[400px] w-full rounded-xl"
                             src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
                             alt={`Image ${index}`}
                           />
@@ -243,42 +251,139 @@ function InfoEvents() {
                   </div>
                 </div>
 
-
-
-                <div className='w-[100%] h-full p-4 md:p-0 md:mt-4 text-white flex justify-center'>
-                  <div className='flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-full'>
-                    <div className='lg:w-full self-center bg-[#fef8ec] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950'>
-                      <h2 className='mb-8 font-bold text-xl'>{filteredEvent.title}</h2>
-                      <p className='font-bold'>Descripción del evento:</p>
-                      <p className='mb-4'>{filteredEvent.description}</p>
-                      <p className='font-bold'>Dirección del evento:</p>
-                      <p className='mb-4'>{filteredEvent.address}</p>
-                      <p className='font-bold'>Fecha del evento:</p>
+                <div className="w-[100%] h-full p-4 md:p-0 md:mt-4 text-white flex justify-center">
+                  <div className="flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-full">
+                    <div className="lg:w-full self-center bg-[#fef8ec] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
+                      <h2 className="mb-8 font-bold text-xl">
+                        {filteredEvent.title}
+                      </h2>
+                      <p className="font-bold">Descripción del evento:</p>
+                      <p className="mb-4">{filteredEvent.description}</p>
+                      <p className="font-bold">Dirección del evento:</p>
+                      <p className="mb-4">{filteredEvent.address}</p>
+                      <p className="font-bold">Fecha del evento:</p>
                       <p>
                         {dayjs(filteredEvent.dates)
                           .utc()
-                          .format('DD [de] MMMM [del] YYYY')}
+                          .format("DD [de] MMMM [del] YYYY")}
                       </p>
                     </div>
-                    <div className='lg:w-full bg-[#fef8ec] rounded-sm shadow-inner p-2 shadow-amber-950'>
-                      <div className='flex w-full justify-center gap-4'>
-                        <button
-                          className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${showPositiveComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
-                          onClick={() => (setShowPositiveComments(true), setShowNegativeComments(false))}
-                        >
-                          <h1 className='text-base'>Comentarios positivos</h1>
-                        </button>
-                        <button
-                          className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${showNegativeComments ? 'bg-opacity-100' : 'bg-opacity-50'}`}
-                          onClick={() => (setShowNegativeComments(true), setShowPositiveComments(false))}
-                        >
-                          <h1 className='text-base'>Comentarios negativos</h1>
-                        </button>
+                    <div className="lg:w-full bg-[#fef8ec] rounded-sm shadow-inner p-2 shadow-amber-950">
+                      <div className="flex w-full justify-center gap-4">
+                        <div className="w-full self-center lg:self-start md:w-[88%] lg:w-[35%] h-[460px] m-2 lg:h-auto xl:w-[95%] mb-2">
+                          <div className="bg-[#fef8ec] text-textBlack p-4  w-full h-full flex flex-col justify-between shadow-sm ">
+                            <div className="overflow-hidden flex justify-center gap-2 w-full">
+                              <button
+                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${
+                                  showAllComments
+                                    ? "bg-opacity-100"
+                                    : "bg-opacity-50"
+                                }`}
+                                onClick={() => (
+                                  setShowAllComments(true),
+                                  setShowNegativeComments(false),
+                                  setShowPositiveComments(false)
+                                )}
+                              >
+                                Comentarios
+                              </button>
+                              <button
+                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${
+                                  showPositiveComments
+                                    ? "bg-opacity-100"
+                                    : "bg-opacity-50"
+                                }`}
+                                onClick={() => (
+                                  setShowPositiveComments(true),
+                                  setShowAllComments(false),
+                                  setShowNegativeComments(false)
+                                )}
+                              >
+                                <h1 className="text-base">
+                                  Comentarios positivos
+                                </h1>
+                              </button>
+                              <button
+                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-2 mb-2 ${
+                                  showNegativeComments
+                                    ? "bg-opacity-100"
+                                    : "bg-opacity-50"
+                                }`}
+                                onClick={() => (
+                                  setShowNegativeComments(true),
+                                  setShowAllComments(false),
+                                  setShowPositiveComments(false)
+                                )}
+                              >
+                                <h1 className="text-base">
+                                  Comentarios negativos
+                                </h1>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
 
+                      {showAllComments ? (
+                        <SimpleBar
+                          autoHide
+                          over
+                          direction="vertical"
+                          style={{ maxHeight: 100 }}
+                        >
+                          {comments.map((comment, index) => (
+                            <div
+                              key={index}
+                              className="bg-amber-200 p-2 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                            >
+                              <div className="w-2/3 break-words">
+                                <p className="font-bold ">{comment.client}</p>
+                                <p className="w-full pl-2 text-wrap font-semibold">
+                                  {comment.comment_text}
+                                </p>
+                              </div>
+                              <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
+                                <p className="pr-2">
+                                  {dayjs(comment.created_at)
+                                    .utc()
+                                    .local()
+                                    .format("HH:mm")}
+                                </p>
+                                <p className="pr-2">
+                                  {dayjs(comment.created_at)
+                                    .utc()
+                                    .format("DD/MM/YYYY")}
+                                </p>
+                                {client &&
+                                  client.client.id === comment.client_id && (
+                                    <div className="flex">
+                                      <button
+                                        onClick={() =>
+                                          handleDeleteComment(comment.id)
+                                        }
+                                        className="text-red-600 mx-2 text-sm"
+                                      >
+                                        Eliminar
+                                      </button>
+                                      <span> | </span>
+                                      <button
+                                        onClick={() =>
+                                          handleEditComment(comment)
+                                        }
+                                        className="text-[#AC703E] mx-2 text-sm"
+                                      >
+                                        Editar
+                                      </button>
+                                    </div>
+                                  )}
+                              </div>
+                            </div>
+                          ))}
+                        </SimpleBar>
+                      ) : (
+                        <p>No hay comentarios</p>
+                      )}
 
-
-                      {console.log("comentarios", comments)}
                       {showPositiveComments && comments ? (
                         comments.filter(
                           (comment) =>
@@ -286,7 +391,7 @@ function InfoEvents() {
                         ).length > 0 ? (
                           <SimpleBar
                             direction="vertical"
-                            style={{ maxHeight: 250 }}
+                            style={{ maxHeight: 100 }}
                           >
                             {comments.map(
                               (comment, index) =>
@@ -313,7 +418,9 @@ function InfoEvents() {
                             )}
                           </SimpleBar>
                         ) : (
-                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">No hay comentarios positivos</p>
+                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">
+                            No hay comentarios positivos
+                          </p>
                         )
                       ) : comments ? null : (
                         <p className="text-white">Cargando comentarios...</p>
@@ -328,7 +435,7 @@ function InfoEvents() {
                             autoHide
                             over
                             direction="vertical"
-                            style={{ maxHeight: 250 }}
+                            style={{ maxHeight: 100 }}
                           >
                             {comments.map(
                               (comment, index) =>
@@ -356,108 +463,55 @@ function InfoEvents() {
                             )}
                           </SimpleBar>
                         ) : (
-                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">No hay comentarios negativos</p>
+                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">
+                            No hay comentarios negativos
+                          </p>
                         )
                       ) : comments ? null : (
                         <p className="text-white">Cargando comentarios...</p>
                       )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-[90%] self-center lg:self-start md:w-[88%] lg:w-[35%] h-[460px] m-2 lg:h-auto xl:w-[27%] mb-2">
-                <div className="bg-[#fef8ec] text-textBlack p-4 xl:px-2 w-full h-full flex flex-col justify-between shadow-sm shadow-amber-950">
-                  <div className="overflow-hidden">
-                    <h2 className="">Comentarios</h2>
-                    <SimpleBar
-                      autoHide
-                      over
-                      direction="vertical"
-                      style={{ maxHeight: 600 }}
-                    >
-                      {comments.map((comment, index) => (
-                        <div
-                          key={index}
-                          className="bg-amber-200 p-2 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
-                        >
-                          <div className="w-2/3 break-words">
-                            <p className="font-bold ">{comment.client}</p>
-                            <p className="w-full pl-2 text-wrap font-semibold">
-                              {comment.comment_text}
-                            </p>
+
+                      <div>
+                        <textarea
+                          value={comment}
+                          onChange={handleCommentChange}
+                          className="w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
+                          placeholder="Escribe tu comentario aquí..."
+                        ></textarea>
+                        <div className="w-full h-[50%] flex justify-around items-center">
+                          <div className="w-1/4 h-full flex justify-start items-center">
+                            <button
+                              className="flex flex-col justify-center items-center text-center"
+                              onClick={() => handleLike(event)}
+                            >
+                              <div className="flex flex-col items-center justify-center text-center">
+                                <AiFillLike color="#ff9800" size={25} />
+                                <span className="ml-2 text-sm font-bold">
+                                  {likesCount}
+                                </span>
+                              </div>
+                            </button>
+                            <button
+                              className="flex flex-col justify-center items-center text-center"
+                              onClick={() => handleDisLike(event)}
+                            >
+                              <div className="flex flex-col items-center justify-center text-center">
+                                <AiFillDislike color="#ff9800" size={25} />
+                                <span className="ml-2 text-sm font-bold">
+                                  {dislikesCount}
+                                </span>
+                              </div>
+                            </button>
                           </div>
-                          <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                            <p className="pr-2">
-                              {dayjs(comment.created_at)
-                                .utc()
-                                .local()
-                                .format("HH:mm")}
-                            </p>
-                            <p className="pr-2">
-                              {dayjs(comment.created_at)
-                                .utc()
-                                .format("DD/MM/YYYY")}
-                            </p>
-                            {client &&
-                              client.client.id === comment.client_id && (
-                                <div className="flex">
-                                  <button
-                                    onClick={() =>
-                                      handleDeleteComment(comment.id)
-                                    }
-                                    className="text-red-600 mx-2 text-sm"
-                                  >
-                                    Eliminar
-                                  </button>
-                                  <span> | </span>
-                                  <button
-                                    onClick={() => handleEditComment(comment)}
-                                    className="text-[#AC703E] mx-2 text-sm"
-                                  >
-                                    Editar
-                                  </button>
-                                </div>
-                              )}
+                          <div className="w-3/4 flex justify-around">
+                            <button
+                              onClick={handleCommentSubmit}
+                              className="w-2/3 bg-amber-500 text-amber-950 font-bold p-2 rounded-lg hover:bg-amber-600 duration-300"
+                            >
+                              {editingComment ? "Guardar cambios" : "Comentar"}
+                            </button>
                           </div>
                         </div>
-                      ))}
-                    </SimpleBar>
-                  </div>
-                  <div>
-                    <textarea
-                      value={comment}
-                      onChange={handleCommentChange}
-                      className="w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
-                      placeholder="Escribe tu comentario aquí..."
-                    ></textarea>
-                    <div className="w-full h-[50%] flex justify-around items-center">
-                      <div className="w-1/4 h-full flex justify-start items-center">
-                        <button
-                          className="flex flex-col justify-center items-center text-center"
-                          onClick={() => (handleLike(event))}
-                        >
-                          <div className="flex flex-col items-center justify-center text-center">
-                            <AiFillLike color="#ff9800" size={25} />
-                            <span className="ml-2 text-sm font-bold">{likesCount}</span>
-                          </div>
-                        </button>
-                        <button
-                          className="flex flex-col justify-center items-center text-center"
-                          onClick={() => handleDisLike(event)}
-                        >
-                          <div className="flex flex-col items-center justify-center text-center">
-                            <AiFillDislike color="#ff9800" size={25} />
-                            <span className="ml-2 text-sm font-bold">{dislikesCount}</span>
-                          </div>
-                        </button>
-                      </div>
-                      <div className="w-3/4 flex justify-around">
-                        <button
-                          onClick={handleCommentSubmit}
-                          className="w-2/3 bg-amber-500 text-amber-950 font-bold p-2 rounded-lg hover:bg-amber-600 duration-300"
-                        >
-                          {editingComment ? "Guardar cambios" : "Comentar"}
-                        </button>
                       </div>
                     </div>
                   </div>
