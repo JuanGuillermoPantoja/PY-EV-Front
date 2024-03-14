@@ -127,20 +127,20 @@ function EventsFormPage() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="h-screen bg-gradient-orange bg-cover bg-center flex justify-around items-center">
-        <div className="flex justify-around items-center bg-[#00000082] w-2/5 h-3/4 rounded-2xl ">
+      <div className="lg:h-screen bg-gradient-orange bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2  xl:justify-around items-center ">
+        <div className="flex justify-center items-center bg-[#00000082] h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-2xl xl:w-2/5 xl:h-[70%]">
           <form
-            className="flex flex-col h-full w-3/4 justify-center items-center mx-5"
+            className="flex flex-col h-full w-[85%] justify-center xl:items-center xl:w-3/4"
             onSubmit={onSubmit}
           >
-            <h2 className="font-bold">Formulario de evento</h2>
-            <div className="w-[50%] bg-acent h-[1px] mb-4"></div>
+            <h2 className="font-bold text-lg text-center">Formulario de evento</h2>
+            <div className="xl:w-[100%] bg-acent h-[1px] mb-4"></div>
 
-            <label className="text-left w-full text-xl" htmlFor="name">
+            <label className="text-left w-full text-base" htmlFor="name">
               Nombre del local:
             </label>
             <input
-              className="w-full h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
+              className="w-full h-12 text-base bg-white outline-none rounded-md text-textBlack  font-bold placeholder-primary placeholder:font-bold "
               type="text"
               name="title"
               placeholder="Nombre:"
@@ -148,44 +148,44 @@ function EventsFormPage() {
               autoFocus
             />
 
-            <label className="text-left w-full text-xl" htmlFor="name">
+            <label className="text-left w-full text-base" htmlFor="name">
               palabra clave:
             </label>
             <input
-              className="w-full h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
+              className="w-full h-12 text-base bg-white outline-none rounded-md text-textBlack font-bold placeholder-primary placeholder:font-bold"
               type="text"
               name="promotion"
               placeholder="ej: 2x1 en empanadas, evento musical..."
               {...register("promotion")}
             />
 
-            <label className="text-left w-full text-xl text-" htmlFor="address">
+            <label className="text-left w-full ttext-base text-" htmlFor="address">
               Dirección:
             </label>
             <input
-              className="w-full h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
+              className="w-full h-12 text-base bg-white outline-none rounded-md text-textBlack font-bold placeholder-primary placeholder:font-bold "
               type="text"
               name="address"
               placeholder="Direccion:"
               {...register("address")}
             />
 
-            <label className="text-left w-full text-xl " htmlFor="firstDate">
+            <label className="text-left w-full text-base " htmlFor="firstDate">
               Fecha:
             </label>
 
             <input
-              className="w-full h-12 text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
+              className="w-full h-12 text-base bg-white outline-none rounded-md text-textBlack font-bold placeholder-primary placeholder:font-bold "
               type="date"
               name="dates"
               {...register("dates")}
             />
 
-            <label className="text-left w-full text-xl" htmlFor="description">
+            <label className="text-left w-full text-base" htmlFor="description">
               Descripción del evento:
             </label>
             <textarea
-              className="w-full h-[200px] text-lg bg-white outline-none rounded-md text-textBlack pl-2 font-bold placeholder-primary placeholder:font-bold max-[768px]:w-3/4 max-[480px]:text-base"
+              className="w-full h-[200px] text-base bg-white outline-none rounded-md text-textBlack font-bold placeholder-primary placeholder:font-bold"
               name="description"
               id=""
               cols=""
@@ -197,7 +197,7 @@ function EventsFormPage() {
               <div className="w-full flex flex-col items-center">
                 <button
                   onSubmit={onSubmit}
-                  className="bg-acent font-bold w-full mb-2 text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600 max-[1024px]:w-1/3 max-[600px]:text-lg max-[600px]:h-10 max-[480px]:text-xl"
+                  className="bg-acent font-bold w-[60%] sm:w-2/5 md:w-4/12 xl:w-full text-base mb-2 text-textBlack mt-4 p-2 shadow-gold shadow-inner rounded-xl hover:bg-amber-600 "
                 >
                   Añadir evento
                 </button>
@@ -206,14 +206,14 @@ function EventsFormPage() {
           </form>
         </div>
         {params.id && (
-          <div className="flex flex-col justify-center  items-center bg-[#0000007b] w-2/5 h-3/4 rounded-2xl">
-            <h2 className="font-bold">Imagen de portada</h2>
-            <div className="w-[50%] bg-acent h-[1px] mb-4"></div>
-            <div className="flex flex-col w-[400px]">
+          <div className="flex flex-col justify-start mt-4 lg:mt-0 items-center w-[90%] sm:w-3/4 lg:h-3/4 lg:mb-0 mb-4 bg-[#0000007b] xl:w-2/5 xl:h-[70%] h-3/4 rounded-2xl">
+            <h2 className="font-bold text-lg 2xl:pt-2">Imagen de portada</h2>
+            <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
+            <div className="flex flex-col w-[100%] 2xl:h-[42%] h-full">
               <div className="flex flex-col items-center">
-                <div className="bg-[#4b1e00] p-2 w-[600px] rounded-md flex justify-center">
+                <div className="bg-[#4b1e00] p-2 w-[70%] h-[145px] sm:w-[60%] sm:h-[200px] md:h-[240px] lg:h-[150px] lg:w-[50%] xl:w-[60%] 2xl:h-[200px] rounded-md flex justify-center items-center">
                   <img
-                    className="h-[200px] w-[200px] mb-2"
+                    className="w-[70%] h-[100px] sm:h-[140px] md:w-[70%] md:h-[180px] lg:h-[90%] lg:w-[80%] xl:w-[60%] 2xl:w-[50%]"
                     src={coverImagePreview}
                   />
                 </div>
@@ -233,7 +233,7 @@ function EventsFormPage() {
                 <div className="flex justify-center mt-1 items-center w-full">
                   <button
                     onClick={handleFileButtonClick}
-                    className="text-xs bg-gray-500 w-1/3 h-10 rounded-lg hover:bg-gray-600"
+                    className="text-xs bg-gray-500 w-auto p-2 h-10 rounded-lg hover:bg-gray-600"
                   >
                     <input
                       ref={fileInputRef}
@@ -246,7 +246,7 @@ function EventsFormPage() {
                   <button
                     onSubmit={onSubmit}
                     onClick={handleUpload}
-                    className="ml-1 text-base bg-acent font-bold w-[40%] p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
+                    className="ml-1 text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
                   >
                     Actualizar portada
                   </button>

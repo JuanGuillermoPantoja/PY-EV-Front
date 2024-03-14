@@ -9,7 +9,7 @@ function Navbar() {
 		<>
 			{isAuthenticated ? (
 				<>
-					<nav className='bg-white w-full flex flex-col justify-between items-center self-center md:flex-row lg:px-4 h-[70px]  border-gray-200'>
+					<nav className='bg-white w-full flex flex-col justify-between items-center self-center md:flex-row md:px-4 h-[70px]  border-gray-200'>
 						<h1
 							className='text-textBlack font-lobster text-lg sm:text-xl md:text-3xl lg:text-4xl 2xl:text-5xl '
 						>
