@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import FooterAdmin from "../components/FooterAdmin";
+import Footer from "../components/Footer";
 import EventsFormImages from "./EventsFormImages";
 import Swal from "sweetalert2";
 import defaultImage from "../img/img-default.png";
@@ -257,7 +257,7 @@ function EventsFormPage() {
           </div>
         )}
       </div>
-      <FooterAdmin></FooterAdmin>
+      <Footer />
     </>
   );
 }
