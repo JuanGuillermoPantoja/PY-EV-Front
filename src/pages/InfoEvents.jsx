@@ -296,11 +296,10 @@ function InfoEvents() {
                           <div className="bg-[#fef8ec] text-textBlack p-2 w-full h-full flex flex-col justify-between shadow-sm ">
                             <div className="overflow-hidden flex justify-center gap-2 w-full">
                               <button
-                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${
-                                  showAllComments
-                                    ? "bg-opacity-100"
-                                    : "bg-opacity-50"
-                                }`}
+                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${showAllComments
+                                  ? "bg-opacity-100"
+                                  : "bg-opacity-50"
+                                  }`}
                                 onClick={() => (
                                   setShowAllComments(true),
                                   setShowNegativeComments(false),
@@ -310,11 +309,10 @@ function InfoEvents() {
                                 Comentarios
                               </button>
                               <button
-                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${
-                                  showPositiveComments
-                                    ? "bg-opacity-100"
-                                    : "bg-opacity-50"
-                                }`}
+                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${showPositiveComments
+                                  ? "bg-opacity-100"
+                                  : "bg-opacity-50"
+                                  }`}
                                 onClick={() => (
                                   setShowPositiveComments(true),
                                   setShowAllComments(false),
@@ -326,11 +324,10 @@ function InfoEvents() {
                                 </h1>
                               </button>
                               <button
-                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${
-                                  showNegativeComments
-                                    ? "bg-opacity-100"
-                                    : "bg-opacity-50"
-                                }`}
+                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${showNegativeComments
+                                  ? "bg-opacity-100"
+                                  : "bg-opacity-50"
+                                  }`}
                                 onClick={() => (
                                   setShowNegativeComments(true),
                                   setShowAllComments(false),
@@ -447,7 +444,7 @@ function InfoEvents() {
                                       </p>
                                       {client &&
                                         client.client.id ===
-                                          comment.client_id && (
+                                        comment.client_id && (
                                           <div className="flex">
                                             <button
                                               onClick={() =>
@@ -474,9 +471,12 @@ function InfoEvents() {
                             )}
                           </SimpleBar>
                         ) : (
-                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">
-                            No hay comentarios positivos
-                          </p>
+                          <div>
+                            <img src={gato} className="w-[20%] m-auto" alt="" />
+                            <p className="flex justify-center font-semibold text-xl text-[#742d13]">
+                              No hay comentarios positivos
+                            </p>
+                          </div>
                         )
                       ) : comments ? null : (
                         <p className="text-white">Cargando comentarios...</p>
@@ -518,7 +518,7 @@ function InfoEvents() {
                                       </p>
                                       {client &&
                                         client.client.id ===
-                                          comment.client_id && (
+                                        comment.client_id && (
                                           <div className="flex">
                                             <button
                                               onClick={() =>
@@ -545,9 +545,12 @@ function InfoEvents() {
                             )}
                           </SimpleBar>
                         ) : (
-                          <p className="flex justify-center font-semibold text-xl text-[#742d13] mt-8">
-                            No hay comentarios negativos
-                          </p>
+                          <div>
+                            <img src={gato} className="w-[20%] m-auto" alt="" />
+                            <p className="flex justify-center font-semibold text-xl text-[#742d13]">
+                              No hay comentarios negativos
+                            </p>
+                          </div>
                         )
                       ) : comments ? null : (
                         <p className="text-white">Cargando comentarios...</p>
