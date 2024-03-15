@@ -9,7 +9,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/profile");
+    navigate(`/profile/${user.user.id}`);
   };
 
   return (
@@ -33,8 +33,8 @@ function Navbar() {
                     onClick={handleClick}
                   >
                     <img
-                      className="h-3/4 hidden md:block md:h-full mr-1 md:mr-2"
-                      src={userIcon}
+                      className="h-3/4 hidden md:block md:h-full mr-1 md:mr-2 rounded-full"
+                      src={`https://events-cqtw.onrender.com/uploads/${user.user.img_profile}`}
                       alt="adminImg"
                     />
                   </button>
@@ -55,6 +55,7 @@ function Navbar() {
                     logout();
                   }}
                 >
+                  <li></li>
                   Salir
                 </Link>
               </li>

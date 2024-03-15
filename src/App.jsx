@@ -41,7 +41,7 @@ function App() {
                     path="/events/:id/add-eventImages"
                     element={<EventsFormImages />}
                   />
-                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/profile/:id" element={<ProfilePage />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>

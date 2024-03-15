@@ -12,6 +12,7 @@ import bgCard from "../img/bg-card.png";
 import threeGrainCoffe from "../img/3grain-coffe.png";
 import coffeGrain from "../img/Coffe-grano.png";
 import coffe from "../img/coffe.png";
+import notFound from "../img/not content.png";
 import "dayjs/locale/es"; // Importa el idioma español
 
 dayjs.locale("es");
@@ -53,7 +54,7 @@ function EventsClients() {
         <div className="h-full w-full text-center text-textBlack flex flex-col justify-center items-center">
           <div className="h-screen w-full flex flex-col items-center justify-center bg-gradient-orange">
             <div className="bg-white h-full w-full rounded-tr-[300px] rounded-bl-[300px] sm:rounded-tr-[350px] sm:rounded-bl-[350px] md:rounded-tr-[450px] md:rounded-bl-[450px] lg:rounded-tr-full lg:rounded-bl-full flex flex-col justify-center items-center animate-fade-in animate-duration-700">
-              <h1 className="text-textBlack lg:text-6xl xl:text-7xl 2xl:text-8xl">
+              <h1 className="text-textBlack lg:text-6xl xl:text-7xl 2xl:text-8xl animate-fade-in">
                 Bienvenidos a <span className="text-acent">EventsBrew</span>
               </h1>
               <h2 className="text-xl w-9/12 sm:w-full lg:text-2xl animate-slide-in-left">
@@ -61,15 +62,23 @@ function EventsClients() {
               </h2>
             </div>
           </div>
+          {events.length > 0 && (
+            <h1 className="text-left w-[80%] text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
+              Eventos disponibles
+            </h1>
+          )}
 
-
-          <h1 className="text-left w-[80%] text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">Eventos disponibles</h1>
           <div className="w-[90%] sm:w-[80%] xl:w-[85%] xl:ml-[5%] 2xl:w-[80%] 2xl:ml-0 h-[550px] flex justify-center sm:justify-start sm:gap-2 lg:gap-3 xl:jus items-center flex-wrap">
-            {events.length === 0 && (
-              <h1 className="h-screen bg-cover w-full bg-center text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
-                No se han agregado eventos
-              </h1>
-            )}
+            <div className="flex justify-center items-center w-full">
+              {events.length === 0 && (
+                <div className="flex flex-col justify-center items-center h-screen">
+                  <h1 className="bg-cover w-full text-amber-950 bg-center animate-pulse animate-iteration-count-infinite text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
+                    No se han agregado eventos.
+                  </h1>
+                  <img className="" src={notFound} alt="" />
+                </div>
+              )}
+            </div>
             {events.map((event) => (
               <div
                 key={event.id}
@@ -104,7 +113,7 @@ function EventsClients() {
                           {event.title}
                         </h2>
                         <p className="h-[25%] md:h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
-                          { event.promotion }
+                          {event.promotion}
                         </p>
                         <p className="h-10% bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
                           {dayjs(event.dates)

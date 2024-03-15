@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoEventBrew from "../img/logoeventsBrew.png";
 import { useClientAuth } from "../context/ClientContex";
 import userIcon from "../img/userIcon.png";
 
@@ -13,11 +12,13 @@ function NavbarHome() {
       {isClientAuthenticated ? (
         <>
           <nav className="bg-white w-full flex justify-between items-center px-4 h-[70px] border-b-[1px] border-gray-200 ">
-            <h1 className="text-textBlack font-lobste text-lg sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl">
-              <span className="text-acent font-lobster">E</span>v
-              <span className="text-primary font-lobster">en</span>ts
-              <span className="text-acent font-lobster">B</span>r
-              <span className="text-primary font-lobster">ew</span>
+            <h1 className="text-textBlack font-lobster text-lg sm:text-xl md:text-3xl lg:text-4xl 2xl:text-5xl ">
+              <Link to="/" className='text-textBlack font-lobster"'>
+                <span className="text-acent font-lobster">E</span>v
+                <span className="text-primary font-lobster">en</span>ts
+                <span className="text-acent font-lobster">B</span>r
+                <span className="text-primary font-lobster">ew</span>
+              </Link>
             </h1>
             {/* <img className='w-[20%]' src={logoEventBrew} alt='' /> */}
             <ul className="flex justify-center items-center gap-x-2 text-sm sm:text-base md:text-lg lg:text-xl text-black h-full">

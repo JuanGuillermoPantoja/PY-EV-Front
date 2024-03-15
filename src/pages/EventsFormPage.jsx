@@ -77,6 +77,8 @@ function EventsFormPage() {
       });
     };
 
+    console.log("filename", params.id);
+
     const formdata = new FormData();
     formdata.append("eventId", params.id);
     formdata.append("image", file);
@@ -133,7 +135,9 @@ function EventsFormPage() {
             className="flex flex-col h-full w-[85%] justify-center xl:items-center xl:w-3/4"
             onSubmit={onSubmit}
           >
-            <h2 className="font-bold text-lg text-center">Formulario de evento</h2>
+            <h2 className="font-bold text-lg text-center">
+              Formulario de evento
+            </h2>
             <div className="xl:w-[100%] bg-acent h-[1px] mb-4"></div>
 
             <label className="text-left w-full text-base" htmlFor="name">
@@ -159,7 +163,10 @@ function EventsFormPage() {
               {...register("promotion")}
             />
 
-            <label className="text-left w-full ttext-base text-" htmlFor="address">
+            <label
+              className="text-left w-full ttext-base text-"
+              htmlFor="address"
+            >
               Dirección:
             </label>
             <input
