@@ -4,12 +4,12 @@ function Footer() {
   return (
     <>
       <footer className="">
-        <div className="w-full bg-textBlack flex flex-col items-center justify-center lg:flex lg:items-start lg:flex-row">
+        <div className="w-full bg-amber-950 flex flex-col items-center justify-center lg:flex lg:items-start lg:flex-row">
           <div
             className="m-2 w-full flex flex-col items-center justify-center
           sm:w-full"
           >
-            <div className="w-full bg-primary rounded-md p-2 shadow-md shadow-black ">
+            <div className="w-full bg-amber-900 rounded-md p-2 shadow-md shadow-black ">
               <h2 className="text-xl text-start font-bold">EventsBrews</h2>
               <br />
               <p className="h-[10%] text-base ">

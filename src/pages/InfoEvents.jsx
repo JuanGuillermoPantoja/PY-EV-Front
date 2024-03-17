@@ -44,7 +44,7 @@ function InfoEvents() {
   const [dislikesCount, setDislikesCount] = useState(null);
   const [showPositiveComments, setShowPositiveComments] = useState(false); // Estado para controlar la visualización de los comentarios positivos
   const [showNegativeComments, setShowNegativeComments] = useState(false); // Estado para controlar la visualización de los comentarios negativos
-  const [showAllComments, setShowAllComments] = useState(false);
+  const [showAllComments, setShowAllComments] = useState(true);
   const [commentAdded, setCommentAdded] = useState(false);
 
   useEffect(() => {
@@ -235,35 +235,41 @@ function InfoEvents() {
     formContact(data);
   });
 
+  const handleSelectChange = (selectedOption) => {
+    if (selectedOption === "positive") {
+      setShowPositiveComments(true);
+      setShowNegativeComments(false);
+      setShowAllComments(false);
+    } else if (selectedOption === "negative") {
+      setShowPositiveComments(false);
+      setShowNegativeComments(true);
+      setShowAllComments(false);
+    } else {
+      setShowPositiveComments(false);
+      setShowNegativeComments(false);
+      setShowAllComments(true);
+    }
+  };
+
   return (
     <>
       <NavbarHome />
       <div className=" w-full flex">
         <div className="w-full h-full">
           {filteredEvent ? (
-            <div className="flex w-full h-full bg-gradient-orange flex-col lg:flex-row lg:justify-between">
+            <div className="flex w-full h-full bg-white flex-col lg:flex-row lg:justify-between">
               <div className="lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col">
                 <div className="flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-4 xl:flex-row">
-                  <div
-                    className="bg-contain bg-no-repeat bg-center bg-amber-900 rounded-xl w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
-                    style={{ backgroundImage: `url(${noContentImg})` }}
-                  >
-                    <img
-                      className="border-2 w-full h-full rounded-xl"
-                      src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-                      alt="Cover Image"
-                    />
-                  </div>
-                  <div className="w-[88%] sm:w-[95%] md:w-full lg:w-full xl:w-[49%] self-center">
+                  <div className="w-[88%] sm:w-[95%] md:w-full lg:w-full xl:w-[94%] self-center">
                     <Slider
-                      className="bg-amber-900 bg-contain bg-center bg-no-repeat h-[400px] rounded-xl"
+                      className="bg-amber-900 bg-contain bg-center bg-no-repeat h-[650px] rounded-xl"
                       {...settings}
                       style={{ backgroundImage: `url(${noContentImg})` }}
                     >
                       {images?.images?.map((image, index) => (
                         <div key={index}>
                           <img
-                            className="border-2 h-[180px] sm:h-[280px] md:h-[320px] xl:h-[290px] 2xl:h-[400px] w-full rounded-xl"
+                            className="border-2 h-[180px] sm:h-[280px] md:h-[320px] xl:h-[290px] 2xl:h-[650px] w-full rounded-xl"
                             src={`https://events-cqtw.onrender.com/uploads/${image}`} // Ruta de la imagen
                             alt={`Image ${index}`}
                           />
@@ -274,8 +280,8 @@ function InfoEvents() {
                 </div>
 
                 <div className="w-[100%] h-full p-4 md:p-0 md:mt-4 text-white flex justify-center">
-                  <div className="flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-full">
-                    <div className="h-[400px] lg:w-full self-center bg-[#fef8ec] text-textBlack rounded-sm shadow-inner p-2 shadow-amber-950">
+                  <div className="flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-[94%]">
+                    <div className="h-full lg:w-full self-center bg- text-textBlack rounded-sm p-2">
                       <h2 className="mb-8 font-bold text-xl">
                         {filteredEvent.title}
                       </h2>
@@ -289,282 +295,281 @@ function InfoEvents() {
                           .utc()
                           .format("DD [de] MMMM [del] YYYY")}
                       </p>
-                    </div>
-                    <div className="w-full flex flex-col justify-around h-[400px] lg:w-full bg-[#fef8ec] rounded-sm shadow-inner px-4 shadow-amber-950">
-                      <div className="flex w-full justify-center">
-                        <div className="w-full self-center lg:self-start md:w-[88%] lg:w-[35%] h-[460px] lg:h-auto xl:w-[95%] mb-2">
-                          <div className="bg-[#fef8ec] text-textBlack p-2 w-full h-full flex flex-col justify-between shadow-sm ">
-                            <div className="overflow-hidden flex justify-center gap-2 w-full">
-                              <button
-                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${showAllComments
-                                  ? "bg-opacity-100"
-                                  : "bg-opacity-50"
-                                  }`}
-                                onClick={() => (
-                                  setShowAllComments(true),
-                                  setShowNegativeComments(false),
-                                  setShowPositiveComments(false)
-                                )}
-                              >
-                                Comentarios
-                              </button>
-                              <button
-                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${showPositiveComments
-                                  ? "bg-opacity-100"
-                                  : "bg-opacity-50"
-                                  }`}
-                                onClick={() => (
-                                  setShowPositiveComments(true),
-                                  setShowAllComments(false),
-                                  setShowNegativeComments(false)
-                                )}
-                              >
-                                <h1 className="text-base">
-                                  Comentarios positivos
-                                </h1>
-                              </button>
-                              <button
-                                className={`bg-[#ad4610] text-[#f5c054] rounded-md p-1 mb-1 ${showNegativeComments
-                                  ? "bg-opacity-100"
-                                  : "bg-opacity-50"
-                                  }`}
-                                onClick={() => (
-                                  setShowNegativeComments(true),
-                                  setShowAllComments(false),
-                                  setShowPositiveComments(false)
-                                )}
-                              >
-                                <h1 className="text-base">
-                                  Comentarios negativos
-                                </h1>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="h-[1px] my-4 bg-black"></div>
+                      <div className="overflow-hidden flex justify-start gap-2 w-full">
+                        <select
+                          className="bg-amber-900 text-[#f5c054] rounded-md outline-none p-2 font-semibold mb-1"
+                          onChange={(e) => handleSelectChange(e.target.value)}
+                        >
+                          <option
+                            className="bg-amber-800 p-2 border-collapse border-2 border-black"
+                            value="all"
+                          >
+                            Comentarios
+                          </option>
+                          <option
+                            className="bg-amber-800 p-2 border-collapse border-2 border-black"
+                            value="positive"
+                          >
+                            Comentarios positivos
+                          </option>
+                          <option
+                            className="bg-amber-800 p-2 border-collapse border-2 border-black"
+                            value="negative"
+                          >
+                            Comentarios negativos
+                          </option>
+                        </select>
                       </div>
 
-                      {showAllComments && comments && comments.length > 0 ? (
-                        <SimpleBar
-                          autoHide
-                          over
-                          direction="vertical"
-                          style={{ maxHeight: 100 }}
-                        >
-                          {comments.map((comment, index) => (
-                            <div
-                              key={index}
-                              className="bg-amber-200 h-12 font-semibold text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
-                            >
-                              <div className="w-2/3 break-words">
-                                <p className="font-bold ">{comment.client}</p>
-                                <p className="w-full pl-2 text-wrap font-semibold">
-                                  {comment.comment_text}
-                                </p>
-                              </div>
-                              <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                                <p className="pr-2">
-                                  {dayjs(comment.created_at)
-                                    .utc()
-                                    .local()
-                                    .format("HH:mm")}
-                                </p>
-                                <p className="pr-2">
-                                  {dayjs(comment.created_at)
-                                    .utc()
-                                    .format("DD/MM/YYYY")}
-                                </p>
-                                {client &&
-                                  client.client.id === comment.client_id && (
-                                    <div className="flex">
-                                      <button
-                                        onClick={() =>
-                                          handleDeleteComment(comment.id)
-                                        }
-                                        className="text-red-600 mx-2 text-sm"
-                                      >
-                                        Eliminar
-                                      </button>
-                                      <span> | </span>
-                                      <button
-                                        onClick={() =>
-                                          handleEditComment(comment)
-                                        }
-                                        className="text-[#AC703E] mx-2 text-sm"
-                                      >
-                                        Editar
-                                      </button>
-                                    </div>
-                                  )}
-                              </div>
-                            </div>
-                          ))}
-                        </SimpleBar>
-                      ) : (
-                        showAllComments && (
-                          <div>
-                            <img src={gato} className="w-[20%] m-auto" alt="" />
-                            <p className="flex justify-center font-semibold text-xl text-[#742d13] ">
-                              No hay comentarios
-                            </p>
-                          </div>
-                        )
-                      )}
-
-                      {showPositiveComments && comments ? (
-                        comments.filter(
-                          (comment) =>
-                            comment.possitive_comments && comment.created_at
-                        ).length > 0 ? (
-                          <SimpleBar
-                            direction="vertical"
-                            style={{ maxHeight: 100 }}
-                          >
-                            {comments.map(
-                              (comment, index) =>
-                                comment.possitive_comments &&
-                                comment.created_at && (
-                                  <div
-                                    key={index}
-                                    className="bg-amber-200 h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
-                                  >
-                                    <div className="w-2/3 pl-2 font-semibold break-words">
-                                      {comment.possitive_comments}
-                                    </div>
-                                    <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                                      <p className="pr-2">
-                                        {dayjs(comment.created_at)
-                                          .utc()
-                                          .local()
-                                          .format("HH:mm")}
-                                      </p>
-                                      <p className="pr-2">
-                                        {dayjs(comment.created_at)
-                                          .utc()
-                                          .format("DD/MM/YYYY")}
-                                      </p>
-                                      {client &&
-                                        client.client.id ===
-                                        comment.client_id && (
-                                          <div className="flex">
-                                            <button
-                                              onClick={() =>
-                                                handleDeleteComment(comment.id)
-                                              }
-                                              className="text-red-600 mx-2 text-sm"
-                                            >
-                                              Eliminar
-                                            </button>
-                                            <span> | </span>
-                                            <button
-                                              onClick={() =>
-                                                handleEditComment(comment)
-                                              }
-                                              className="text-[#AC703E] mx-2 text-sm"
-                                            >
-                                              Editar
-                                            </button>
-                                          </div>
-                                        )}
-                                    </div>
-                                  </div>
-                                )
-                            )}
-                          </SimpleBar>
-                        ) : (
-                          <div>
-                            <img src={gato} className="w-[20%] m-auto" alt="" />
-                            <p className="flex justify-center font-semibold text-xl text-[#742d13]">
-                              No hay comentarios positivos
-                            </p>
-                          </div>
-                        )
-                      ) : comments ? null : (
-                        <p className="text-white">Cargando comentarios...</p>
-                      )}
-
-                      {showNegativeComments && comments ? (
-                        comments.filter(
-                          (comment) =>
-                            comment.negative_comments && comment.created_at
-                        ).length > 0 ? (
+                      <div className="bg-amber-100 p-4">
+                        {showAllComments && comments && comments.length > 0 ? (
                           <SimpleBar
                             autoHide
                             over
                             direction="vertical"
                             style={{ maxHeight: 100 }}
                           >
-                            {comments.map(
-                              (comment, index) =>
-                                comment.negative_comments &&
-                                comment.created_at && (
-                                  <div
-                                    key={index}
-                                    className="bg-amber-200 h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
-                                  >
-                                    <div className="w-2/3 pl-2 break-words font-semibold">
-                                      {comment.negative_comments}
-                                    </div>
-                                    <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                                      <p className="pr-2">
-                                        {dayjs(comment.created_at)
-                                          .utc()
-                                          .local()
-                                          .format("HH:mm")}
-                                      </p>
-                                      <p className="pr-2">
-                                        {dayjs(comment.created_at)
-                                          .utc()
-                                          .format("DD/MM/YYYY")}
-                                      </p>
-                                      {client &&
-                                        client.client.id ===
-                                        comment.client_id && (
-                                          <div className="flex">
-                                            <button
-                                              onClick={() =>
-                                                handleDeleteComment(comment.id)
-                                              }
-                                              className="text-red-600 mx-2 text-sm"
-                                            >
-                                              Eliminar
-                                            </button>
-                                            <span> | </span>
-                                            <button
-                                              onClick={() =>
-                                                handleEditComment(comment)
-                                              }
-                                              className="text-[#AC703E] mx-2 text-sm"
-                                            >
-                                              Editar
-                                            </button>
-                                          </div>
-                                        )}
-                                    </div>
-                                  </div>
-                                )
-                            )}
+                            {comments.map((comment, index) => (
+                              <div
+                                key={index}
+                                className="bg-amber-200 h-12 font-semibold text-amber-900 rounded-xl mb-1 flex w-full items-center justify-between"
+                              >
+                                <div className="w-2/3 break-words">
+                                  <p className="font-bold ">{comment.client}</p>
+                                  <p className="w-full pl-2 text-wrap font-semibold">
+                                    {comment.comment_text}
+                                  </p>
+                                </div>
+                                <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
+                                  <p className="pr-2">
+                                    {dayjs(comment.created_at)
+                                      .utc()
+                                      .local()
+                                      .format("HH:mm")}
+                                  </p>
+                                  <p className="pr-2">
+                                    {dayjs(comment.created_at)
+                                      .utc()
+                                      .format("DD/MM/YYYY")}
+                                  </p>
+                                  {client &&
+                                    client.client.id === comment.client_id && (
+                                      <div className="flex">
+                                        <button
+                                          onClick={() =>
+                                            handleDeleteComment(comment.id)
+                                          }
+                                          className="text-red-600 mx-2 text-sm"
+                                        >
+                                          Eliminar
+                                        </button>
+                                        <span> | </span>
+                                        <button
+                                          onClick={() =>
+                                            handleEditComment(comment)
+                                          }
+                                          className="text-[#AC703E] mx-2 text-sm"
+                                        >
+                                          Editar
+                                        </button>
+                                      </div>
+                                    )}
+                                </div>
+                              </div>
+                            ))}
                           </SimpleBar>
                         ) : (
-                          <div>
-                            <img src={gato} className="w-[20%] m-auto" alt="" />
-                            <p className="flex justify-center font-semibold text-xl text-[#742d13]">
-                              No hay comentarios negativos
-                            </p>
-                          </div>
-                        )
-                      ) : comments ? null : (
-                        <p className="text-white">Cargando comentarios...</p>
-                      )}
+                          showAllComments && (
+                            <div>
+                              <img
+                                src={gato}
+                                className="w-[20%] m-auto"
+                                alt=""
+                              />
+                              <p className="flex justify-center font-semibold text-xl text-[#742d13] ">
+                                No hay comentarios
+                              </p>
+                            </div>
+                          )
+                        )}
 
-                      <div>
+                        {showPositiveComments && comments ? (
+                          comments.filter(
+                            (comment) =>
+                              comment.possitive_comments && comment.created_at
+                          ).length > 0 ? (
+                            <SimpleBar
+                              direction="vertical"
+                              style={{ maxHeight: 100 }}
+                            >
+                              {comments.map(
+                                (comment, index) =>
+                                  comment.possitive_comments &&
+                                  comment.created_at && (
+                                    <div
+                                      key={index}
+                                      className="bg-amber-200 h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                    >
+                                      <div className="w-2/3 pl-2 font-semibold break-words">
+                                        {comment.possitive_comments}
+                                      </div>
+                                      <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
+                                        <p className="pr-2">
+                                          {dayjs(comment.created_at)
+                                            .utc()
+                                            .local()
+                                            .format("HH:mm")}
+                                        </p>
+                                        <p className="pr-2">
+                                          {dayjs(comment.created_at)
+                                            .utc()
+                                            .format("DD/MM/YYYY")}
+                                        </p>
+                                        {client &&
+                                          client.client.id ===
+                                            comment.client_id && (
+                                            <div className="flex">
+                                              <button
+                                                onClick={() =>
+                                                  handleDeleteComment(
+                                                    comment.id
+                                                  )
+                                                }
+                                                className="text-red-600 mx-2 text-sm"
+                                              >
+                                                Eliminar
+                                              </button>
+                                              <span> | </span>
+                                              <button
+                                                onClick={() =>
+                                                  handleEditComment(comment)
+                                                }
+                                                className="text-[#AC703E] mx-2 text-sm"
+                                              >
+                                                Editar
+                                              </button>
+                                            </div>
+                                          )}
+                                      </div>
+                                    </div>
+                                  )
+                              )}
+                            </SimpleBar>
+                          ) : (
+                            <div>
+                              <img
+                                src={gato}
+                                className="w-[20%] m-auto"
+                                alt=""
+                              />
+                              <p className="flex justify-center font-semibold text-xl text-[#742d13]">
+                                No hay comentarios positivos
+                              </p>
+                            </div>
+                          )
+                        ) : comments ? null : (
+                          <p className="text-white">Cargando comentarios...</p>
+                        )}
+
+                        {showNegativeComments && comments ? (
+                          comments.filter(
+                            (comment) =>
+                              comment.negative_comments && comment.created_at
+                          ).length > 0 ? (
+                            <SimpleBar
+                              autoHide
+                              over
+                              direction="vertical"
+                              style={{ maxHeight: 100 }}
+                            >
+                              {comments.map(
+                                (comment, index) =>
+                                  comment.negative_comments &&
+                                  comment.created_at && (
+                                    <div
+                                      key={index}
+                                      className="bg-amber-200 h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                    >
+                                      <div className="w-2/3 pl-2 break-words font-semibold">
+                                        {comment.negative_comments}
+                                      </div>
+                                      <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
+                                        <p className="pr-2">
+                                          {dayjs(comment.created_at)
+                                            .utc()
+                                            .local()
+                                            .format("HH:mm")}
+                                        </p>
+                                        <p className="pr-2">
+                                          {dayjs(comment.created_at)
+                                            .utc()
+                                            .format("DD/MM/YYYY")}
+                                        </p>
+                                        {client &&
+                                          client.client.id ===
+                                            comment.client_id && (
+                                            <div className="flex">
+                                              <button
+                                                onClick={() =>
+                                                  handleDeleteComment(
+                                                    comment.id
+                                                  )
+                                                }
+                                                className="text-red-600 mx-2 text-sm"
+                                              >
+                                                Eliminar
+                                              </button>
+                                              <span> | </span>
+                                              <button
+                                                onClick={() =>
+                                                  handleEditComment(comment)
+                                                }
+                                                className="text-[#AC703E] mx-2 text-sm"
+                                              >
+                                                Editar
+                                              </button>
+                                            </div>
+                                          )}
+                                      </div>
+                                    </div>
+                                  )
+                              )}
+                            </SimpleBar>
+                          ) : (
+                            <div>
+                              <img
+                                src={gato}
+                                className="w-[20%] m-auto"
+                                alt=""
+                              />
+                              <p className="flex justify-center font-semibold text-xl text-[#742d13]">
+                                No hay comentarios negativos
+                              </p>
+                            </div>
+                          )
+                        ) : comments ? null : (
+                          <p className="text-white">Cargando comentarios...</p>
+                        )}
+                      </div>
+
+                      <div className="flex justify-center items-center ">
                         <textarea
                           value={comment}
                           onChange={handleCommentChange}
-                          className="w-full bg-amber-200 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
+                          className="w-[80%] bg- rounded-xl border-2 border-amber-950 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
                           placeholder="Escribe tu comentario aquí..."
                         ></textarea>
-                        <div className="w-full h-[50%] flex justify-start items-center">
-                          <div className="h-full flex justify-start items-center">
+                        <div className="w-[20%] h-[50%] flex justify-center items-center">
+                          <div className="w-full ml-2 mt-4">
+                            <button
+                              onClick={handleCommentSubmit}
+                              className="w-full bg-amber-950 text-[#f5c054] font-bold p-2 rounded-lg hover:bg-amber-800 duration-300"
+                            >
+                              {editingComment ? "Guardar cambios" : "Comentar"}
+                            </button>
+                          </div>
+                          <div className="h-full flex justify-start mt-6 items-center">
                             <button
                               className="flex flex-col justify-center items-center text-center"
                               onClick={() => handleLike(event)}
@@ -588,14 +593,6 @@ function InfoEvents() {
                               </div>
                             </button>
                           </div>
-                          <div className="w-3/4 ml-2">
-                            <button
-                              onClick={handleCommentSubmit}
-                              className="w-1/4 bg-amber-500 text-amber-950 font-bold p-2 rounded-lg hover:bg-amber-600 duration-300"
-                            >
-                              {editingComment ? "Guardar cambios" : "Comentar"}
-                            </button>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -603,8 +600,21 @@ function InfoEvents() {
                 </div>
               </div>
               <div className="p-4 w-full lg:w-1/2 sm:w-11/12">
+                <h2 className="mb-4 text-amber-950 font-bold text-2xl">
+                  {filteredEvent.title}
+                </h2>
+                <div
+                  className="bg-contain bg-no-repeat bg-center bg-amber-900 mb-4 rounded-xl w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
+                  style={{ backgroundImage: `url(${noContentImg})` }}
+                >
+                  <img
+                    className="border-2 w-full h-full rounded-xl"
+                    src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+                    alt="Cover Image"
+                  />
+                </div>
                 <form
-                  className=" bg-primary flex flex-col justify-between h-full rounded-md p-2 shadow-complete shadow-black"
+                  className=" bg-amber-950 flex flex-col justify-between h-[60%] rounded-md p-2 shadow-complete shadow-black"
                   onSubmit={onSubmit}
                 >
                   <img src={logoeventBrew} className="m-auto w-[40%] " alt="" />
@@ -630,7 +640,7 @@ function InfoEvents() {
                       </label>
                       <input
                         type="text"
-                        className="bg-white text-textBlack pl-2"
+                        className="bg-amber-100 text-textBlack pl-2"
                         {...register("name", { required: true })}
                       />
                     </div>
@@ -647,7 +657,7 @@ function InfoEvents() {
                       </label>
                       <input
                         type="text"
-                        className="bg-white text-textBlack pl-2"
+                        className="bg-amber-100 text-textBlack pl-2"
                         {...register("email", {
                           required: true,
                           pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // Expresión regular para validar el formato del correo electrónico
@@ -668,7 +678,7 @@ function InfoEvents() {
                       <textarea
                         cols="10"
                         rows="3"
-                        className="bg-white text-textBlack pl-2"
+                        className="bg-amber-100 text-textBlack pl-2"
                         {...register("content", { required: true })}
                       ></textarea>
                     </div>
