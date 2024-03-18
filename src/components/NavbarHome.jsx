@@ -24,11 +24,6 @@ function NavbarHome() {
             <ul className="flex justify-center items-center gap-x-2 text-sm sm:text-base md:text-lg lg:text-xl text-black h-full">
               {clientName && (
                 <li className="font-bold text-white rounded-xl p-2 h-2/3 flex items-center">
-                  <img
-                    className="h-3/4 sm:h-full mr-1  md:mr-2"
-                    src={userIcon}
-                    alt=""
-                  />
                   {clientName}
                 </li>
               )}

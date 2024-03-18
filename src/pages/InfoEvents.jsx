@@ -264,7 +264,7 @@ function InfoEvents() {
                     <Slider
                       className="bg-amber-900 bg-contain bg-center bg-no-repeat h-[650px] rounded-xl"
                       {...settings}
-                      style={{ backgroundImage: `url(${noContentImg})` }}
+                      style={{ backgroundImage: 'white' }}
                     >
                       {images?.images?.map((image, index) => (
                         <div key={index}>

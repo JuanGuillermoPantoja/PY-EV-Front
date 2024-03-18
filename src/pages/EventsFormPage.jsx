@@ -129,16 +129,16 @@ function EventsFormPage() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="lg:h-screen bg-gradient-orange bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2  xl:justify-around items-center ">
-        <div className="flex justify-center items-center bg-[#00000082] h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-2xl xl:w-2/5 xl:h-[70%]">
+      <div className="lg:h-screen bg-gradient-orange bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2  xl:justify-center items-center ">
+        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-sm xl:w-[30%] xl:h-[70%]">
           <form
-            className="flex flex-col h-full w-[85%] justify-center xl:items-center xl:w-3/4"
+            className="flex flex-col h-full w-[85%] justify-center xl:w-3/4"
             onSubmit={onSubmit}
           >
-            <h2 className="font-bold text-lg text-center">
+            <h2 className="font-bold text-lg text-start">
               Formulario de evento
             </h2>
-            <div className="xl:w-[100%] bg-acent h-[1px] mb-4"></div>
+            <div className="2xl:w-[100%] bg-acent h-[1px] mb-4"></div>
 
             <label className="text-left w-full text-base" htmlFor="name">
               Nombre del local:
@@ -213,14 +213,14 @@ function EventsFormPage() {
           </form>
         </div>
         {params.id && (
-          <div className="flex flex-col justify-start mt-4 lg:mt-0 items-center w-[90%] sm:w-3/4 lg:h-3/4 lg:mb-0 mb-4 bg-[#0000007b] xl:w-2/5 xl:h-[70%] h-3/4 rounded-2xl">
-            <h2 className="font-bold text-lg 2xl:pt-2">Imagen de portada</h2>
+          <div className="flex flex-col justify-start mt-4 lg:mt-0 items-center w-[90%] sm:w-3/4 lg:h-3/4 lg:mb-0 mb-4 bg-amber-950 xl:w-[30%] xl:h-[70%] h-3/4 rounded-sm">
+            <h2 className="font-bold text-start text-lg 2xl:pt-4">Imagen de portada</h2>
             <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
-            <div className="flex flex-col w-[100%] 2xl:h-[42%] h-full">
+            <div className="flex flex-col w-[100%] 2xl:h-[42%] h-full mb-4">
               <div className="flex flex-col items-center">
-                <div className="bg-[#4b1e00] p-2 w-[70%] h-[145px] sm:w-[60%] sm:h-[200px] md:h-[240px] lg:h-[150px] lg:w-[50%] xl:w-[60%] 2xl:h-[220px] rounded-md flex justify-center items-center">
+                <div className="bg-white p-2 w-[70%] h-[145px] sm:w-[60%] sm:h-[200px] md:h-[240px] lg:h-[150px] lg:w-[50%] xl:w-[60%] 2xl:h-[220px] rounded-md flex justify-center items-center">
                   <img
-                    className="w-[70%] h-[100px] sm:h-[140px] md:w-[70%] md:h-[180px] lg:h-[90%] lg:w-[80%] xl:w-[60%] 2xl:w-[50%]"
+                    className="w-[70%] h-[100px] sm:h-[140px] md:w-[70%] md:h-[180px] lg:h-[90%] lg:w-[80%] xl:w-[60%] 2xl:w-[100%] 2xl:h-[200px]"
                     src={coverImagePreview}
                   />
                 </div>
