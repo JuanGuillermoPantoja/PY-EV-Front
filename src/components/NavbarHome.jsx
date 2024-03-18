@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useClientAuth } from "../context/ClientContex";
-import userIcon from "../img/userIcon.png";
+import userIcon from "../img/userIconWhite.png";
 
 function NavbarHome() {
   const { isClientAuthenticated, client, clientLogout } = useClientAuth();

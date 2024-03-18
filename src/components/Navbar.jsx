@@ -1,12 +1,21 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import userIcon from "../img/userIcon.png";
+import userIcon from "../img/userIconWhite.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
   const userName = user && user.user && user.user.username;
+  const [imageProfile, setImageProfile] = useState(userIcon);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated && user.user.img_profile) {
+      const image = `https://events-cqtw.onrender.com/uploads/${user.user.img_profile}`;
+      setImageProfile(image);
+    }
+  }, [isAuthenticated, user.user.img_profile]);
 
   const handleClick = () => {
     navigate(`/profile/${user.user.id}`);
@@ -26,7 +35,7 @@ function Navbar() {
               </Link>
             </h1>
             <ul className="flex justify-center items-center gap-x-1 sm:gap-x-2 text-xs sm:text-base md:text-lg lg:text-xl text-black h-full">
-              {userName && ( // Verificar si userName está definido
+              {user.user.username && (
                 <li className="font-bold text-white rounded-xl p-[6px] sm:p-[2px] h-2/3 flex items-center line-clamp-1">
                   <button
                     className="h-3/4 hidden md:block md:h-full"
@@ -34,11 +43,11 @@ function Navbar() {
                   >
                     <img
                       className="h-3/4 hidden md:block md:h-full mr-1 md:mr-2 rounded-full"
-                      src={`https://events-cqtw.onrender.com/uploads/${user.user.img_profile}`}
+                      src={imageProfile}
                       alt="adminImg"
                     />
                   </button>
-                  {userName}
+                  {user.user.username}
                 </li>
               )}
               <div className="h-[60%] w-[1px] bg-gray-200"></div>
