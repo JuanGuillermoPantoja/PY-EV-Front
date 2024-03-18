@@ -67,14 +67,13 @@ function Chat() {
     setIsModalOpen(false);
   };
 
-<<<<<<< HEAD
   return (
     <>
       {!isModalOpen && (
-        <div className="fixed left-[80%] md:left-[85%] bottom-[2%] z-50 w-[18%]">
+        <div className="fixed left-[80%] md:left-[90%] bottom-[2%] z-50 w-[18%]">
           <button onClick={openModal}>
             <img
-              className="w-[100%] md:w-[80%] lg:w-[50%] opacity-30 hover:opacity-100"
+              className="w-[100%] md:w-[80%] lg:w-[50%] opacity-25 hover:opacity-100"
               src={chatImg}
               alt="chatBot"
             />
@@ -82,18 +81,18 @@ function Chat() {
         </div>
       )}
       {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-end justify-end bottom-0 bg-black bg-opacity-70">
-          <div className="bg-[#fcedc9] text-[#742d13] border-2 flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[40%]">
+        <div className="fixed top-0 left-0 w-full h-full flex items-end justify-end bottom-0 animate-slide-in-bottom animate-duration-1000">
+          <div className='bg-[url("https://img.freepik.com/premium-photo/detailed-grunge-background-with-scratches-stains_1048-13431.jpg")] text-[#f8d98f] border-2 border-b-0 rounded-b-none flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[20%]'>
             <h1 className="text-xl my-4">Charla con nosotros!</h1>
 
-            <div className="animate-fade-in flex justify-center items-center flex-col w-full bg-[#fef8ec] rounded-t-md">
+            <div className='animate-fade-in flex justify-center items-center flex-col w-full bg-[url("https://png.pngtree.com/background/20210717/original/pngtree-old-paper-texture-vintage-background-design-concept-picture-image_1416483.jpg")] rounded-t-md'>
               <SimpleBar autoHide className="w-full" style={{ maxHeight: 300 }}>
                 {history.map((item, index) => (
                   <div key={index} className="flex">
                     <div
                       className={`p-2 m-2 text-base font-semibold rounded-xl ${
                         item.role === "user"
-                          ? "bg-[#fcedc9] text-textBlack"
+                          ? "bg-[#f49d0c] text-textBlack"
                           : "bg-gold text-textBlack"
                       }`}
                       style={{
@@ -133,7 +132,7 @@ function Chat() {
             <div className="w-auto gap-x-1 flex justify-around">
               <button
                 onClick={sendMessage}
-                className="bg-[#ad4610] h-10 text-[#eb8715] text-base font-bold mt-4 p-2 rounded-xl"
+                className="bg-[#fde58a] h-10 text-[#5e3c15] text-base font-bold mt-4 p-2 rounded-xl"
               >
                 Preguntar
               </button>
@@ -149,78 +148,6 @@ function Chat() {
       )}
     </>
   );
-=======
-	return (
-		<>
-			{!isModalOpen && (
-				<div className='fixed left-[80%] md:left-[90%] bottom-[2%] z-50 w-[18%]'>
-					<button onClick={openModal}>
-						<img className='w-[100%] md:w-[80%] lg:w-[50%] opacity-25 hover:opacity-100' src={chatImg} alt='chatBot' />
-					</button>
-				</div>
-			)}
-			{isModalOpen && (
-				<div className='fixed top-0 left-0 w-full h-full flex items-end justify-end bottom-0 animate-slide-in-bottom animate-duration-1000'>
-					<div className='bg-[url("https://img.freepik.com/premium-photo/detailed-grunge-background-with-scratches-stains_1048-13431.jpg")] text-[#f8d98f] border-2 border-b-0 rounded-b-none flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[20%]'>
-						<h1 className='text-xl my-4'>Charla con nosotros!</h1>
-
-						<div className='animate-fade-in flex justify-center items-center flex-col w-full bg-[url("https://png.pngtree.com/background/20210717/original/pngtree-old-paper-texture-vintage-background-design-concept-picture-image_1416483.jpg")] rounded-t-md'>
-							<SimpleBar autoHide className='w-full' style={{ maxHeight: 300 }}>
-								{history.map((item, index) => (
-									<div key={index} className='flex'>
-										<div
-											className={`p-2 m-2 text-base font-semibold rounded-xl ${item.role === 'user'
-													? 'bg-[#f49d0c] text-textBlack'
-													: 'bg-gold text-textBlack'
-												}`}
-											style={{
-												alignSelf:
-													item.role === 'user' ? 'flex-start' : 'flex-end',
-											}}
-										>
-											{item.parts}
-										</div>
-									</div>
-								))}
-								{/* Mostrar puntos animados si el bot está respondiendo */}
-								{isBotResponding && (
-									<div className="text-[#742d13] flex justify-center bg-none text-3xl">
-										<div className='animate-bouncing animate-delay-100 animate-iteration-count-infinite'>.</div>
-										<div className='animate-bouncing animate-delay-200 animate-iteration-count-infinite'>.</div>
-										<div className='animate-bouncing animate-delay-300 animate-iteration-count-infinite'>.</div>
-									</div>
-								)}
-							</SimpleBar>
-						</div>
-						<div className='flex justify-center w-full'>
-							<input
-								type='text'
-								className='w-full bg-[#f8d98f] rounded-sm outline-none text-[#742d13] placeholder:text-gold p-2 mt-2 font-bold '
-								placeholder='Pregunta aquí!'
-								value={message}
-								onChange={(e) => setMessage(e.target.value)}
-							/>
-						</div>
-						<div className='w-auto gap-x-1 flex justify-around'>
-							<button
-								onClick={sendMessage}
-								className='bg-[#fde58a] h-10 text-[#5e3c15] text-base font-bold mt-4 p-2 rounded-xl'
-							>
-								Preguntar
-							</button>
-							<button
-								onClick={closeModal}
-								className='bg-red-600 h-10 w-full text-white text-base font-bold mt-4 p-2 rounded-xl hover:bg-red-700 duration-300'
-							>
-								Cerrar Chat
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
-		</>
-	);
->>>>>>> 63d5ad865b88f7fe188f3c19d6675f75fc4c191f
 }
 
 export default Chat;
