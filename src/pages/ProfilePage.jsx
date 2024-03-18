@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import bcrypt from "bcryptjs";
 import userIcon from "../img/userIconWhite.png";
+import Footer from "../components/Footer";
 
 function ProfilePage() {
   const { user } = useAuth();
@@ -71,7 +72,8 @@ function ProfilePage() {
     // Aquí podrías enviar los datos actualizados al servidor
     try {
       const res = await axios.put(
-        `https://events-cqtw.onrender.com/uploadInfoProfile/${params.id}`
+        `https://events-cqtw.onrender.com/uploadInfoProfile/${params.id}`,
+        { username, email }
       );
       console.log(res);
     } catch (error) {
@@ -135,138 +137,178 @@ function ProfilePage() {
   return (
     <>
       <Navbar />
-      <div className="h-screen bg-black">
-        <div>
-          <div>
-            <button onClick={handleButtonClick}>
-              <input
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-                type="file"
-              />
-              Seleccionar imagen
-            </button>
-            <button onClick={handleUpload} className="ml-4">
-              Actualizar imagen
-            </button>
-          </div>
+      <div className="w-full flex flex-col items-center justify-center bg-white">
+        <div className="h-[680px] text-black flex justify-between items-center w-[50%]">
+          <div className="flex justify-center items-center flex-col">
+            <div className="mb-4">
+              {profileImage ? (
+                <img
+                  className="h-[250px] w-[250px] border-2 border-amber-950"
+                  src={profileImage}
+                  alt="Imagen de perfil"
+                />
+              ) : user.user.img_profile ? (
+                <img
+                  className="h-[250px] w-[250px] rounded-full border-2 border-amber-950"
+                  src={`https://events-cqtw.onrender.com/uploads/${user.user.img_profile}`}
+                  alt="Imagen de perfil"
+                />
+              ) : (
+                <img
+                  className="h-[250px] w-[250px] rounded-full"
+                  src={userIcon}
+                  alt="Previsualización"
+                />
+              )}
+            </div>
 
-          <div>
-            {profileImage ? (
-              <img
-                className="h-[500px] w-[500px]"
-                src={profileImage}
-                alt="Imagen de perfil"
-              />
-            ) : user.user.img_profile ? (
-              <img
-                className="h-[500px] w-[500px]"
-                src={`https://events-cqtw.onrender.com/uploads/${user.user.img_profile}`}
-                alt="Imagen de perfil"
-              />
-            ) : (
-              <img
-                className="h-[200px] w-[200px] rounded-full"
-                src={userIcon}
-                alt="Previsualización"
-              />
-            )}
+            <div>
+              <button
+                onClick={handleButtonClick}
+                className="ml-1 text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
+              >
+                <input
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                  type="file"
+                />
+                Seleccionar imagen
+              </button>
+              <button
+                onClick={handleUpload}
+                className="ml-1 text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
+              >
+                Actualizar imagen
+              </button>
+            </div>
           </div>
-
-          <div>
-            <button onClick={handleEditClick} disabled={isEditing}>
-              Editar
-            </button>
-          </div>
-          <div className="mb-2">
-            <label htmlFor="nameProfile" className="mr-2">
-              Nombre:
-            </label>
-            <input
-              id="nameProfile"
-              className="text-black pl-1"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="mb-2">
-            <label htmlFor="emailProfile" className="mr-2">
-              Correo electronico
-            </label>
-            <input
-              id="emailProfile"
-              className="text-black pl-1"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={!isEditing}
-            />
-          </div>
-          <div className="mb-2">
-            <h3>Cambio de Contraseña:</h3>
-            {isEditing && (
+          <div className="w-[50%]">
+            <div className="mb-4">
               <div>
-                <button onClick={handleEditPasswordClick}>
+                <button
+                  onClick={handleEditClick}
+                  disabled={isEditing}
+                  className="w-full text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-md rounded-b-none hover:bg-amber-600"
+                >
+                  Editar información
+                </button>
+              </div>
+              <div className="w-full">
+                {/* <label htmlFor="nameProfile" className="mr-2">
+                Nombre:
+              </label> */}
+                <input
+                  id="nameProfile"
+                  className={
+                    isEditing
+                      ? "bg-amber-100 pl-1 border-amber-950  border-[1px]  rounded-b-none  w-full p-2 h-10 outline-none"
+                      : "bg-amber-100 text-gray-400 pl-1 border-amber-950  border-[1px]  rounded-b-none  w-full p-2 h-10 outline-none"
+                  }
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  disabled={!isEditing}
+                />
+              </div>
+              <div className="">
+                {/* <label htmlFor="emailProfile" className="mr-2">
+                Correo electronico
+              </label> */}
+                <input
+                  id="emailProfile"
+                  className={
+                    isEditing
+                      ? "bg-amber-100 pl-1 border-amber-950  border-[1px] border-y-0 rounded-b-none  w-full p-2 h-10 outline-none"
+                      : "bg-amber-100 text-gray-400 pl-1 border-amber-950  border-[1px] border-y-0 rounded-b-none  w-full p-2 h-10 outline-none"
+                  }
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={!isEditing}
+                />
+              </div>
+
+              <div className="flex">
+                <button
+                  onClick={handleSaveClick}
+                  className="w-[50%] text-base mb-4 bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-amber-600"
+                >
+                  Guardar
+                </button>
+                <button
+                  className="w-[50%] text-base mb-4 bg-amber-600 font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-red-700"
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+            <div className="mb-2 w-full">
+              {/* <h3 className="font-semibold">Cambio de Contraseña:</h3> */}
+              <div>
+                <button
+                  onClick={handleEditPasswordClick}
+                  className="w-full text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-md rounded-b-none hover:bg-amber-600"
+                >
                   Editar contraseña
                 </button>
               </div>
-            )}
-            <div>
-              <label htmlFor="currentPassword" className="mr-2">
-                Contraseña Actual:
-              </label>
-              <input
-                className="text-black pl-1"
-                type="password"
-                id="currentPassword"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                disabled={!isEditingPassword}
-              />
-            </div>
-            <div>
-              <label htmlFor="newPassword" className="mr-2">
-                Nueva Contraseña:
-              </label>
-              <input
-                className="text-black pl-1"
-                type="password"
-                id="newPassword"
-                value={password}
-                onChange={(e) => setNewPassword(e.target.value)}
-                disabled={!isEditingPassword}
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmNewPassword" className="mr-2">
-                Confirmar Nueva Contraseña:
-              </label>
-              <input
-                className="text-black pl-1"
-                type="password"
-                id="confirmNewPassword"
-                value={confirmNewPassword}
-                onChange={(e) => setConfirmNewPassword(e.target.value)}
-                disabled={!isEditingPassword}
-              />
-            </div>
-            {isEditingPassword && (
+
               <div>
-                <button onClick={handleChangePassword}>
+                {/* <label htmlFor="currentPassword" className="mr-2">
+                  Contraseña Actual:
+                </label> */}
+                <input
+                  className="bg-amber-100 pl-1 border-amber-950  border-[1px]  rounded-b-none  w-full p-2 h-10 outline-none"
+                  type="password"
+                  id="currentPassword"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  disabled={!isEditingPassword}
+                  placeholder="Contraseña actual"
+                />
+              </div>
+              <div>
+                {/* <label htmlFor="newPassword" className="mr-2">
+                  Nueva Contraseña:
+                </label> */}
+                <input
+                  className="bg-amber-100 pl-1 border-amber-950  border-[1px] border-t-0  rounded-b-none  w-full p-2 h-10 outline-none"
+                  type="password"
+                  id="newPassword"
+                  value={password}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  disabled={!isEditingPassword}
+                  placeholder="Nueva contraseña"
+                />
+              </div>
+              <div>
+                {/* <label htmlFor="confirmNewPassword" className="mr-2">
+                  Confirmar Nueva Contraseña:
+                </label> */}
+                <input
+                  className="bg-amber-100 pl-1 border-amber-950  border-x-[1px]  rounded-b-none  w-full p-2 h-10 outline-none"
+                  type="password"
+                  id="confirmNewPassword"
+                  value={confirmNewPassword}
+                  onChange={(e) => setConfirmNewPassword(e.target.value)}
+                  disabled={!isEditingPassword}
+                  placeholder="Confirmar contraseña"
+                />
+              </div>
+              <div>
+                <button
+                  onClick={handleChangePassword}
+                  className="w-full text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-amber-600"
+                >
                   Cambiar Contraseña
                 </button>
               </div>
-            )}
-          </div>
-          {isEditing && (
-            <div>
-              <button onClick={handleSaveClick}>Guardar</button>
             </div>
-          )}
+          </div>
         </div>
+        <Footer />
       </div>
     </>
   );
