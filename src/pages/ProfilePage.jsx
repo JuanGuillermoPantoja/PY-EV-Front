@@ -143,8 +143,8 @@ function ProfilePage() {
 	return (
 		<>
 			<Navbar />
-			<div className='w-full flex flex-col items-center justify-center bg-white'>
-				<div className='h-[680px] text-black flex justify-between items-center w-[80%]'>
+			<div className='w-full h-[80vh] flex flex-col items-center justify-center bg-white '>
+				<div className='h-[90%] p-4 bg-gray-50 shadow-complete shadow-gray-200 text-black flex justify-between items-center w-[90%] rounded-xl'>
 					<div className='flex justify-center items-center flex-col w-[30%]'>
 						<div className='mb-4'>
 							{profileImage ? (
@@ -271,7 +271,7 @@ function ProfilePage() {
                 </label> */}
 								{isEditingPassword && (
 									<input
-										className='bg-amber-100 pl-1 border-amber-950  border-[1px]  rounded-b-none  w-full p-2 h-10 outline-none'
+										className='bg-amber-100 pl-1 border-amber-950  border-[1px]  rounded-b-none  w-full p-2 h-10 outline-none animate-slide-in-top animate-duration-300'
 										type='password'
 										id='currentPassword'
 										value={currentPassword}
@@ -287,7 +287,7 @@ function ProfilePage() {
                 </label> */}
 								{isEditingPassword && (
 									<input
-										className='bg-amber-100 pl-1 border-amber-950  border-[1px] border-t-0  rounded-b-none  w-full p-2 h-10 outline-none'
+										className='bg-amber-100 pl-1 border-amber-950  border-[1px] border-t-0  rounded-b-none  w-full p-2 h-10 outline-none animate-slide-in-top animate-duration-300'
 										type='password'
 										id='newPassword'
 										value={password}
@@ -303,7 +303,7 @@ function ProfilePage() {
                 </label> */}
 								{isEditingPassword && (
 									<input
-										className='bg-amber-100 pl-1 border-amber-950  border-x-[1px]  rounded-b-none  w-full p-2 h-10 outline-none'
+										className='bg-amber-100 pl-1 border-amber-950  border-x-[1px]  rounded-b-none  w-full p-2 h-10 outline-none animate-slide-in-top animate-duration-300'
 										type='password'
 										id='confirmNewPassword'
 										value={confirmNewPassword}
@@ -317,12 +317,12 @@ function ProfilePage() {
 							{isEditingPassword && (<div className='flex'>
 								<button
 									onClick={handleChangePassword}
-									className='w-[50%] text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-amber-600'
+									className='w-[50%] text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-amber-600 animate-slide-in-top animate-duration-300'
 								>
 									Cambiar Contraseña
 								</button>
 								<button
-									className='w-[50%] text-base bg-amber-600 font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-red-700'
+									className='w-[50%] text-base bg-amber-600 font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-red-700 animate-slide-in-top animate-duration-300'
 									onClick={() => setIsEditingPassword(false)}
 								>
 									Cancelar
@@ -332,8 +332,8 @@ function ProfilePage() {
 						</div>
 					</div>
 				</div>
-				<Footer />
 			</div>
+				<Footer />
 		</>
 	);
 }
