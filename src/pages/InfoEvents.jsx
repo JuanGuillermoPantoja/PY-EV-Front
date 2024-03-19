@@ -257,15 +257,30 @@ function InfoEvents() {
       <div className=" w-full flex">
         <div className="w-full h-full">
           {filteredEvent ? (
+            
             <div className="flex w-full h-full bg-white flex-col lg:flex-row lg:justify-between">
               <div className="lg:w-[60%] xl:w-[70%] md:w-[90%] md:self-center flex flex-col">
                 <div className="flex justify-center w-full h-full p-2 flex-col gap-2 xl:gap-4 xl:flex-row">
                   <div className="w-[88%] sm:w-[95%] md:w-full lg:w-full xl:w-[94%] self-center">
+                  <h2 className="ml-1 mb-2 text-amber-950 font-bold text-lg xl:text-2xl">
+                  {filteredEvent.title}
+                </h2>
+                  <div
+                  className=" bg-contain bg-no-repeat bg-center bg-amber-900 mb-4 rounded-xl w-full sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
+                  style={{ backgroundImage: `url(${noContentImg})` }}
+                >
+                  <img
+                    className="border-2 w-full h-full rounded-xl"
+                    src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+                    alt="Cover Image"
+                  />
+                </div>
                     <Slider
-                      className="bg-amber-900 bg-contain bg-center bg-no-repeat h-[650px] rounded-xl"
+                      className="bg-amber-900 h-[180px] bg-contain bg-center bg-no-repeat 2xlh-[650px] rounded-xl"
                       {...settings}
                       style={{ backgroundImage: 'white' }}
                     >
+                      
                       {images?.images?.map((image, index) => (
                         <div key={index}>
                           <img
@@ -282,7 +297,7 @@ function InfoEvents() {
                 <div className="w-[100%] h-full p-4 md:p-0 md:mt-4 text-white flex justify-center">
                   <div className="flex justify-center w-full h-full p-2 flex-col 2xl:flex-row 2xl:w-[94%]">
                     <div className="h-full lg:w-full self-center bg- text-textBlack rounded-sm p-2">
-                      <h2 className="mb-8 font-bold text-xl">
+                      <h2 className="mb-8 font-bold text-lg">
                         {filteredEvent.title}
                       </h2>
                       <p className="font-bold">Descripción del evento:</p>
@@ -322,33 +337,33 @@ function InfoEvents() {
                         </select>
                       </div>
 
-                      <div className="bg-amber-100 p-4">
+                      <div className="bg-amber-100 p-2 h-[180px]">
                         {showAllComments && comments && comments.length > 0 ? (
                           <SimpleBar
                             autoHide
                             over
                             direction="vertical"
-                            style={{ maxHeight: 100 }}
+                            style={{ maxHeight: 155 }}
                           >
                             {comments.map((comment, index) => (
                               <div
                                 key={index}
-                                className="bg-amber-200 h-12 font-semibold text-amber-900 rounded-xl mb-1 flex w-full items-center justify-between"
+                                className="bg-amber-200 text-sm xl:h-12 font-semibold text-amber-900 rounded-xl mb-1 flex w-full items-center justify-between"
                               >
                                 <div className="w-2/3 break-words">
                                   <p className="font-bold ">{comment.client}</p>
-                                  <p className="w-full pl-2 text-wrap font-semibold">
+                                  <p className="w-full pl-2 text-sm text-wrap font-semibold">
                                     {comment.comment_text}
                                   </p>
                                 </div>
                                 <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                                  <p className="pr-2">
+                                  <p className="pr-2 text-sm">
                                     {dayjs(comment.created_at)
                                       .utc()
                                       .local()
                                       .format("HH:mm")}
                                   </p>
-                                  <p className="pr-2">
+                                  <p className="pr-2 text-sm">
                                     {dayjs(comment.created_at)
                                       .utc()
                                       .format("DD/MM/YYYY")}
@@ -384,10 +399,10 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                className="w-[20%] m-auto"
+                                className="w-2/5 xl:w-[20%] m-auto"
                                 alt=""
                               />
-                              <p className="flex justify-center font-semibold text-xl text-[#742d13] ">
+                              <p className="flex justify-center font-semibold xl:text-xl text-[#742d13] ">
                                 No hay comentarios
                               </p>
                             </div>
@@ -401,7 +416,7 @@ function InfoEvents() {
                           ).length > 0 ? (
                             <SimpleBar
                               direction="vertical"
-                              style={{ maxHeight: 100 }}
+                              style={{ maxHeight: 155 }}
                             >
                               {comments.map(
                                 (comment, index) =>
@@ -409,19 +424,19 @@ function InfoEvents() {
                                   comment.created_at && (
                                     <div
                                       key={index}
-                                      className="bg-amber-200 h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                      className="bg-amber-200 xl:h-12 text-sm text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
                                     >
                                       <div className="w-2/3 pl-2 font-semibold break-words">
                                         {comment.possitive_comments}
                                       </div>
                                       <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                                        <p className="pr-2">
+                                        <p className="pr-2 text-sm">
                                           {dayjs(comment.created_at)
                                             .utc()
                                             .local()
                                             .format("HH:mm")}
                                         </p>
-                                        <p className="pr-2">
+                                        <p className="pr-2 text-sm">
                                           {dayjs(comment.created_at)
                                             .utc()
                                             .format("DD/MM/YYYY")}
@@ -460,10 +475,10 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                className="w-[20%] m-auto"
+                                className="w-2/5 xl:w-[20%] m-auto"
                                 alt=""
                               />
-                              <p className="flex justify-center font-semibold text-xl text-[#742d13]">
+                              <p className="flex justify-center font-semibold xl:text-xl text-[#742d13]">
                                 No hay comentarios positivos
                               </p>
                             </div>
@@ -481,7 +496,7 @@ function InfoEvents() {
                               autoHide
                               over
                               direction="vertical"
-                              style={{ maxHeight: 100 }}
+                              style={{ maxHeight: 155 }}
                             >
                               {comments.map(
                                 (comment, index) =>
@@ -489,19 +504,19 @@ function InfoEvents() {
                                   comment.created_at && (
                                     <div
                                       key={index}
-                                      className="bg-amber-200 h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
+                                      className="bg-amber-200 text-sm xl:h-12 text-amber-900 rounded-sm mb-1 flex w-full items-center justify-between"
                                     >
                                       <div className="w-2/3 pl-2 break-words font-semibold">
                                         {comment.negative_comments}
                                       </div>
                                       <div className="w-1/3 flex justify-end flex-wrap text-amber-600">
-                                        <p className="pr-2">
+                                        <p className="pr-2 text-sm">
                                           {dayjs(comment.created_at)
                                             .utc()
                                             .local()
                                             .format("HH:mm")}
                                         </p>
-                                        <p className="pr-2">
+                                        <p className="pr-2 text-sm">
                                           {dayjs(comment.created_at)
                                             .utc()
                                             .format("DD/MM/YYYY")}
@@ -540,10 +555,10 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                className="w-[20%] m-auto"
+                                className="w-2/5 xl:w-[20%] m-auto"
                                 alt=""
                               />
-                              <p className="flex justify-center font-semibold text-xl text-[#742d13]">
+                              <p className="flex justify-center font-semibold xl:text-xl text-[#742d13]">
                                 No hay comentarios negativos
                               </p>
                             </div>
@@ -553,18 +568,18 @@ function InfoEvents() {
                         )}
                       </div>
 
-                      <div className="flex justify-center items-center ">
+                      <div className="flex flex-col sm:justify-center sm:items-center ">
                         <textarea
                           value={comment}
                           onChange={handleCommentChange}
-                          className="w-[80%] bg- rounded-xl border-2 border-amber-950 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
+                          className="w-full sm:w.[80%] rounded-xl border-2 border-amber-950 text-amber-900 placeholder:text-[#AC703E] pl-2 mt-4 outline-none font-bold"
                           placeholder="Escribe tu comentario aquí..."
                         ></textarea>
-                        <div className="w-[20%] h-[50%] flex justify-center items-center">
-                          <div className="w-full ml-2 mt-4">
+                        <div className="sm:w-[20%] h-[50%] flex self-start gap-1 justify-center items-center">
+                          <div className="w-full sm:ml-2 mt-4">
                             <button
                               onClick={handleCommentSubmit}
-                              className="w-full bg-amber-950 text-[#f5c054] font-bold p-2 rounded-lg hover:bg-amber-800 duration-300"
+                              className="sm:w-full bg-amber-950 text-[#f5c054] font-bold p-2 rounded-lg hover:bg-amber-800 duration-300"
                             >
                               {editingComment ? "Guardar cambios" : "Comentar"}
                             </button>
@@ -599,12 +614,12 @@ function InfoEvents() {
                   </div>
                 </div>
               </div>
-              <div className="p-4 w-full lg:w-1/2 sm:w-11/12">
-                <h2 className="mb-4 text-amber-950 font-bold text-2xl">
+              <div className="p-4 flex flex-col items-center w-full lg:w-1/2 sm:w-11/12">
+                <h2 className="hidden mb-4 text-amber-950 font-bold text-lg xl:text-2xl">
                   {filteredEvent.title}
                 </h2>
                 <div
-                  className="bg-contain bg-no-repeat bg-center bg-amber-900 mb-4 rounded-xl w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
+                  className="hidden bg-contain bg-no-repeat bg-center bg-amber-900 mb-4 rounded-xl w-[90%] sm:w-[95%] h-[200px] sm:h-[300px] md:w-full md:h-[350px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
                   style={{ backgroundImage: `url(${noContentImg})` }}
                 >
                   <img
@@ -620,10 +635,10 @@ function InfoEvents() {
                   <img src={logoeventBrew} className="m-auto w-[40%] " alt="" />
                   <div className="h-1/2">
                     <div className="text-white">
-                      <h2 className=" text-center text-xl">
+                      <h2 className=" text-center text-lg">
                         ¿Deseas agregar los eventos de tu establecimiento?
                       </h2>
-                      <h2 className="font-bold text-center text-xl">
+                      <h2 className="font-bold text-center text-lg">
                         Contactanos
                       </h2>
                     </div>

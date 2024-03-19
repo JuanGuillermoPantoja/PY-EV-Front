@@ -25,7 +25,7 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-amber-950 w-full flex justify-between items-center px-4 h-[70px] border-b-[1px] border-amber-800  ">
+          <nav className="bg-amber-950 w-full flex flex-col sm:flex-row justify-between items-center px-4 h-[70px] border-b-[1px] border-amber-800  ">
             <h1 className="text-textBlack font-lobster text-lg sm:text-xl md:text-3xl lg:text-4xl 2xl:text-5xl ">
               <Link to="/" className='text-white font-lobster"'>
                 <span className="text-acent">E</span>v
