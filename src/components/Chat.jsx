@@ -82,10 +82,10 @@ function Chat() {
       )}
       {isModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-end justify-end bottom-0 animate-slide-in-bottom animate-duration-1000">
-          <div className='bg-[url("https://img.freepik.com/premium-photo/detailed-grunge-background-with-scratches-stains_1048-13431.jpg")] text-[#f8d98f] border-2 border-b-0 rounded-b-none flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[20%]'>
-            <h1 className="text-xl my-4">Charla con nosotros!</h1>
+          <div className='bg-amber-950 text-[#f8d98f] border-2 border-b-0 rounded-b-none flex flex-col items-center p-8 rounded-lg w-[80%] sm:w-[70%] lg:w-[20%]'>
+            <h1 className="text-2xl my-4">Charla con nosotros!</h1>
 
-            <div className='animate-fade-in flex justify-center items-center flex-col w-full bg-[url("https://png.pngtree.com/background/20210717/original/pngtree-old-paper-texture-vintage-background-design-concept-picture-image_1416483.jpg")] rounded-t-md'>
+            <div className='animate-fade-in flex justify-center items-center flex-col w-full bg-amber-100 rounded-t-md'>
               <SimpleBar autoHide className="w-full" style={{ maxHeight: 300 }}>
                 {history.map((item, index) => (
                   <div key={index} className="flex">

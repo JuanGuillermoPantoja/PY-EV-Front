@@ -384,7 +384,7 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                className="w-[20%] m-auto"
+                                className="w-[10%] animate-vertical-bounce animate-iteration-count-infinite m-auto"
                                 alt=""
                               />
                               <p className="flex justify-center font-semibold text-xl text-[#742d13] ">
@@ -460,7 +460,7 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                className="w-[20%] m-auto"
+                                className="w-[10%] animate-vertical-bounce animate-iteration-count-infinite m-auto"
                                 alt=""
                               />
                               <p className="flex justify-center font-semibold text-xl text-[#742d13]">
@@ -540,7 +540,7 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                className="w-[20%] m-auto"
+                                className="w-[10%] animate-vertical-bounce animate-iteration-count-infinite m-auto"
                                 alt=""
                               />
                               <p className="flex justify-center font-semibold text-xl text-[#742d13]">
