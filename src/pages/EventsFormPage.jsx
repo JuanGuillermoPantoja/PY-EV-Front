@@ -130,7 +130,7 @@ function EventsFormPage() {
     <>
       <Navbar></Navbar>
       <div className="lg:h-screen bg-gradient-orange bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2 xl:justify-center items-center ">
-        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-sm xl:w-[40%] xl:h-[70%]">
+        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-sm xl:w-[40%] xl:h-[80%]">
           <form
             className="flex flex-col h-full w-[85%] justify-center xl:w-3/4"
             onSubmit={onSubmit}
@@ -213,7 +213,7 @@ function EventsFormPage() {
           </form>
         </div>
         {params.id && (
-          <div className="flex flex-col mt-4 lg:mt-0 items-center w-[90%] sm:w-3/4 lg:h-3/4 lg:mb-0 mb-4 bg-amber-950 xl:w-[40%] xl:h-[70%] h-3/4 rounded-sm">
+          <div className="flex flex-col mt-4 lg:mt-0 items-center w-[90%] sm:w-3/4 lg:h-3/4 lg:mb-0 mb-4 bg-amber-950 xl:w-[40%] xl:h-[80%] h-3/4 rounded-sm">
             <h2 className="font-bold text-start text-lg">Imagen de portada</h2>
             <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
             <div className="flex flex-col w-[100%] lg:justify-center lg:h-1/2 xl:h-[60%] 2xl:h-[42%] h-full mb-4 lg:mb-0">
