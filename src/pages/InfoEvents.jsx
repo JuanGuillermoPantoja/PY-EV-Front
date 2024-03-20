@@ -24,6 +24,7 @@ import Footer from "../components/Footer";
 function InfoEvents() {
   const { id } = useParams(); // Obtener el parámetro id de la URL
   const [event, setEvent] = useState(null);
+
   const {
     createComment,
     comments,
@@ -181,7 +182,6 @@ function InfoEvents() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    arrows: false,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -257,30 +257,28 @@ function InfoEvents() {
       <div className=" w-full flex">
         <div className="w-full h-full">
           {filteredEvent ? (
-            
             <div className="flex w-full h-full bg-white flex-col lg:flex-row lg:justify-between lg:gap-3">
               <div className="lg:w-[55%] xl:w-[65%] 2xl:w-[65%] md:w-[90%] md:self-center flex flex-col">
                 <div className="flex justify-center w-full h-full p-2 flex-col gap-2 xl:flex-row">
                   <div className="w-[88%] min-[570px]:w-[92%] md:w-full lg:w-full xl:w-[98%] min-[1920px]:w-[94%] self-center">
-                  <h2 className="lg:hidden ml-1 mb-2 text-amber-950 font-bold text-lg xl:text-2xl">
-                  {filteredEvent.title}
-                </h2>
-                  <div
-                  className="lg:hidden bg-contain bg-no-repeat bg-center bg-amber-900 mb-4 rounded-xl w-full h-[200px] sm:h-[300px] min-[570px]:h-[260px] md:w-full md:h-[350px] min-[980px]:h-[380px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
-                  style={{ backgroundImage: `url(${noContentImg})` }}
-                >
-                  <img
-                    className="border-2 w-full h-full rounded-xl"
-                    src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
-                    alt="Cover Image"
-                  />
-                </div>
+                    <h2 className="lg:hidden ml-1 mb-2 text-amber-950 font-bold text-lg xl:text-2xl">
+                      {filteredEvent.title}
+                    </h2>
+                    <div
+                      className="lg:hidden bg-contain bg-no-repeat bg-center bg-amber-900 mb-4 rounded-xl w-full h-[200px] sm:h-[300px] min-[570px]:h-[260px] md:w-full md:h-[350px] min-[980px]:h-[380px] lg:w-full xl:h-[300px] 2xl:h-[400px] self-center"
+                      style={{ backgroundImage: `url(${noContentImg})` }}
+                    >
+                      <img
+                        className="border-2 w-full h-full rounded-xl"
+                        src={`https://events-cqtw.onrender.com/uploads/${filteredEvent.img_event}`}
+                        alt="Cover Image"
+                      />
+                    </div>
                     <Slider
                       className="bg-amber-900 h-[180px] sm:h-[250px] min-[570px]:h-[250px] md:h-[320px] min-[980px]:h-[370px] lg:h-[340px] xl:h-[360px] 2xl:h-[425px] min-[1920px]:h-[480px] bg-contain bg-center bg-no-repeat rounded-xl"
                       {...settings}
-                      style={{ backgroundImage: 'white' }}
+                      style={{ backgroundImage: "white" }}
                     >
-                      
                       {images?.images?.map((image, index) => (
                         <div key={index}>
                           <img
@@ -351,6 +349,8 @@ function InfoEvents() {
                                 className="bg-amber-200 text-sm lg:text-base lg:h-12 font-semibold text-amber-900 rounded-xl mb-1 flex w-full items-center justify-between"
                               >
                                 <div className="w-2/3 break-words">
+                                  {console.log(client, comment, event)}
+
                                   <p className="font-bold ">{comment.client}</p>
                                   <p className="w-full pl-2 text-sm lg:text-base text-wrap font-semibold">
                                     {comment.comment_text}
@@ -399,7 +399,7 @@ function InfoEvents() {
                             <div>
                               <img
                                 src={gato}
-                                  className="w-2/5 min-[450px]:w-1/3 min-[520px]:w-1/4 sm:w-1/5 md:w-1/6 lg:w-1/5 xl:w-[15%] min-[1615px]:w-[12%] m-auto"
+                                className="w-2/5 min-[450px]:w-1/3 min-[520px]:w-1/4 sm:w-1/5 md:w-1/6 lg:w-1/5 xl:w-[15%] min-[1615px]:w-[12%] m-auto"
                                 alt=""
                               />
                               <p className="flex justify-center font-semibold xl:text-xl text-[#742d13] ">
@@ -632,7 +632,11 @@ function InfoEvents() {
                   className="lg:mt-8 2xl:mt-8 bg-amber-950 flex flex-col w-[95%] md:w-[90%] lg:w-full lg:h-[60%] xl:h-[61%] 2xl:h-[57%] min-[1920px]:h-[53.5%] rounded-md p-2 shadow-complete shadow-black"
                   onSubmit={onSubmit}
                 >
-                  <img src={logoeventBrew} className="m-auto w-[40%] sm:w-[30%] min-[960px]:w-[25%] lg:w-3/5 min-[1920px]:w-[45%]" alt="" />
+                  <img
+                    src={logoeventBrew}
+                    className="m-auto w-[40%] sm:w-[30%] min-[960px]:w-[25%] lg:w-3/5 min-[1920px]:w-[45%]"
+                    alt=""
+                  />
                   <div className="w-[90%] min-[980px]:w-[80%] lg:w-[90%] self-center">
                     <div className="text-white">
                       <h2 className=" text-center text-lg">

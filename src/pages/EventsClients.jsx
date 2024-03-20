@@ -63,7 +63,7 @@ function EventsClients() {
             </div>
           </div>
           {events.length > 0 && (
-            <h1 className="text-left w-[80%] text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
+            <h1 className="text-left w-[80%] text-xl md:text-3xl xl:text-4xl 2xl:text-5xl py-4">
               Eventos disponibles
             </h1>
           )}
@@ -109,20 +109,20 @@ function EventsClients() {
                         }}
                       >
                         <div className="bg-black h-full w-full absolute opacity-40"></div>
-                        <h2 className="h-[20%] w-[75%] text-white text-lg xl:text-xl flex justify-center items-center relative bottom-10 z-10">
+                        <h2 className="h-[20%] w-[75%] text-white font-bold xl:text-2xl flex justify-center items-center relative bottom-10 z-10">
                           {event.title}
                         </h2>
-                        <p className="h-[25%] md:h-[20%] bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
+                        <p className="md:h-[25%] h-[25%] font-semibold bg-acent text-textBlack text-base xl:text-base w-[75%] flex justify-center items-center relative z-10">
                           {event.promotion}
                         </p>
-                        <p className="h-10% bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
+                        <p className="h-[20%] flex justify-center items-center bg-textBlack text-acent text-base xl:text-base w-[75%] relative z-10">
                           {dayjs(event.dates)
                             .utc()
                             .format("DD [de] MMMM [del] YYYY")}
                         </p>
                       </div>
                       <div className="w-full h-[60%] bg-cover bg-center flex flex-col justify-start items-center relative z-10">
-                        <p className="bg-primary w-[75%] text-base h-[35%] md:h-[40%] md:line-clamp-4 text-white line-clamp-3">
+                        <p className="bg-primary pt-4 w-[75%] text-base h-[35%] md:h-[40%] md:line-clamp-4 text-white line-clamp-3">
                           {event.address}
                         </p>
                         <button

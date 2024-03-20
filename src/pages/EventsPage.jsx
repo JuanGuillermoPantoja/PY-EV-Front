@@ -76,7 +76,7 @@ function EventsPage() {
                           }}
                         >
                           <div
-                            className="w-full h-[50%] bg-amber-900 bg-cover bg-center flex flex-col justify-end items-center relative "
+                            className="w-full h-[50%] bg-amber-900 bg-cover bg-center flex flex-col justify-end items-center relative"
                             style={{
                               backgroundImage: `url(${`https://events-cqtw.onrender.com/uploads/${event.img_event}`})`,
                             }}
