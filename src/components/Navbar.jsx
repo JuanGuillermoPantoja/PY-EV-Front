@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import userIcon from "../img/userIconWhite.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import editarPerfil from "../img/editarPerfil.png";
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
@@ -25,7 +26,7 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-amber-950 w-full flex flex-col sm:flex-row justify-between items-center px-4 h-[70px] border-b-[1px] border-amber-800  ">
+          <nav className="bg-amber-950 w-full flex flex-col sm:flex-row justify-between items-center px-4 h-[90px] border-b-[1px] border-amber-800  ">
             <h1 className="text-textBlack font-lobster text-lg sm:text-xl md:text-3xl lg:text-4xl 2xl:text-5xl ">
               <Link to="/" className='text-white font-lobster"'>
                 <span className="text-acent">E</span>v
@@ -34,23 +35,29 @@ function Navbar() {
                 <span className="text-white">ew</span>
               </Link>
             </h1>
-            <ul className="flex justify-center items-center gap-x-1 sm:gap-x-2 text-xs sm:text-base md:text-lg lg:text-xl text-black h-full">
-              {user.user.username && (
-                <li className="font-bold text-white rounded-xl p-[6px] sm:p-[2px] h-2/3 flex items-center line-clamp-1">
-                  <button
-                    className="h-3/4 hidden md:block md:h-full"
-                    onClick={handleClick}
-                  >
+            <ul className="flex w-[30%] justify-around items-center gap-x-1 sm:gap-x-2 text-xs sm:text-base md:text-lg lg:text-xl text-black h-full">
+              <div className="flex justify-center items-center">
+                {user.user.username && (
+                  <li className="font-bold text-white rounded-xl p-[6px] sm:p-[2px] h-2/3 flex items-center line-clamp-1">
                     <img
-                      className="h-3/4 hidden md:block md:h-full mr-1 md:mr-2 rounded-full"
+                      className="h-[80px] w-[60px]  hidden md:block md:h-full mr-1 md:mr-2 rounded-full"
                       src={imageProfile}
                       alt="adminImg"
                     />
+
+                    {user.user.username}
+                  </li>
+                )}
+                <li>
+                  <button
+                    className="h-[80px] hidden md:block md:h-full relative"
+                    onClick={handleClick}
+                  >
+                    <img className="w-[34px] mx-2" src={editarPerfil} alt="" />
                   </button>
-                  {user.user.username}
                 </li>
-              )}
-              <div className="h-[60%] w-[1px] bg-gray-200"></div>
+              </div>
+              <div className="h-[60%] w-[1px] bg-amber-900"></div>
               <li className="bg-acent text-primary p-[6px] md:p-2 rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
                 <Link to="/events">Mis eventos</Link>
               </li>

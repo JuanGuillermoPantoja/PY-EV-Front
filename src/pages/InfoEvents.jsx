@@ -311,17 +311,18 @@ function InfoEvents() {
                       <div className="h-[1px] my-4 bg-black"></div>
                       <div className="overflow-hidden flex justify-start gap-2 w-full">
                         <select
-                          className="bg-amber-900 text-[#f5c054] rounded-md outline-none p-2 font-semibold mb-1"
+                          className="bg-amber-900 text-white rounded-md outline-none p-2 font-semibold mb-1 "
                           onChange={(e) => handleSelectChange(e.target.value)}
                         >
                           <option
-                            className="bg-amber-800 p-2 border-collapse border-2 border-black"
+                            className="bg-amber-800 p-2 border-collapse border-2 border-black "
                             value="all"
                           >
                             Comentarios
                           </option>
+
                           <option
-                            className="bg-amber-800 p-2 border-collapse border-2 border-black"
+                            className="bg-amber-800 p-2 border-collapse border-2 border-black "
                             value="positive"
                           >
                             Comentarios positivos
@@ -579,7 +580,7 @@ function InfoEvents() {
                           <div className="w-full mt-4">
                             <button
                               onClick={handleCommentSubmit}
-                              className="sm:w-full bg-amber-950 text-[#f5c054] font-bold p-2 rounded-lg hover:bg-amber-800 duration-300"
+                              className="sm:w-full bg-amber-950 text-white font-bold p-2 rounded-lg hover:bg-amber-800 duration-300"
                             >
                               {editingComment ? "Guardar cambios" : "Comentar"}
                             </button>
