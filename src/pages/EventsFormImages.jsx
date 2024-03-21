@@ -261,14 +261,14 @@ function EventsFormImages() {
     <div className="mt-4 2xl:mt-0 lg:pb-1 lg:h-2/3 flex flex-col justify-center  items-center w-full">
       <h2 className="font-bold text-lg">Mostrar más imagenes</h2>
       <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
-      <SimpleBar className="bg-white p-2 w-[70%] sm:w-[60%] md:h-[180px] rounded-md bg-cover bg-center h-[145px] sm:h-[160px] lg:w-[60%] lg:h-[150px] xl:w-[60%] 2xl:w-[60%] 2xl:h-[180px] min-[1920px]:h-[200px]">
+      <SimpleBar className="bg-white p-2 w-[70%] sm:w-[60%] md:h-[180px] rounded-md bg-cover bg-center h-[145px] sm:h-[160px] lg:w-[60%] lg:h-[150px] xl:w-[60%] xl:h-[130px]  2xl:w-[60%] 2xl:h-[180px] min-[1920px]:h-[200px]">
         <div className="flex gap-4 justify-center flex-wrap lg:w-full">
           {images.map((imagen, index) => (
             <div className="w-[95%]" key={`${imagen.name}_${index}`}>
               <div className="flex justify-center lg:w-full">
                 {imagen.name !== "default" ? (
                   <button
-                    className="absolute w-8 right-[8%] min-[450px]:right-[7%] sm:right-[7.2%] min-[805px]:right-[6.5%] lg:right-[7.2%] xl:right-[7.4%] 2xl:right-[7.2%] min-[1920px]:right-[4.2%] bg-red-800"
+                    className="absolute w-8 right-[8%] min-[450px]:right-[7%] sm:right-[7.2%] min-[805px]:right-[6.5%] lg:right-[7.2%] xl:right-[7.2%] 2xl:right-[7.2%] min-[1920px]:right-[4.2%] bg-red-800"
                     onClick={() => deleteImg(imagen.index)}
                   >
                     x
@@ -279,7 +279,7 @@ function EventsFormImages() {
                   src={imagen.url}
                   data-toggle="modal"
                   data-target="#ModalPreViewImg"
-                  className="w-[95%] h-[125px] sm:h-[140px] md:h-[165px] lg:h-[135px] xl:h-[130px] 2xl:h-[160px] min-[1920px]:h-[185px] min-[1920px]:w-full"
+                  className="w-[95%] h-[125px] sm:h-[140px] md:h-[165px] lg:h-[135px] xl:h-[110px] 2xl:h-[160px] min-[1920px]:h-[185px] min-[1920px]:w-full"
                 ></img>
               </div>
             </div>
