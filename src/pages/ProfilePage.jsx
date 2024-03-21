@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
@@ -75,7 +75,9 @@ function ProfilePage() {
         `https://events-cqtw.onrender.com/uploadInfoProfile/${params.id}`,
         { username, email }
       );
-      console.log(res);
+      if (res.status === 200) {
+        showAlert("la información se actualizó correctamente", "success", 2000 )
+      }
     } catch (error) {
       console.error(error);
     }
@@ -96,10 +98,9 @@ function ProfilePage() {
           },
         }
       );
-      if ((res.status = "Succes Update Profile")) {
+      if ((res.status === 200)) {
         showAlert("La imagen se actualizo correctamente", "success", 2000);
       }
-      console.log(res);
     } catch (error) {
       console.error(error);
     }
