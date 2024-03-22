@@ -26,48 +26,47 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-amber-950 w-full flex flex-col sm:flex-row justify-between items-center px-4 h-[90px] border-b-[1px] border-amber-800  ">
-            <h1 className="text-textBlack font-lobster text-lg sm:text-xl md:text-3xl lg:text-4xl 2xl:text-5xl ">
-              <Link to="/" className='text-white font-lobster"'>
+          <nav className="bg-amber-950 w-full h-[90px] flex flex-col justify-between items-center px-4  border-b-[1px] border-amber-800 md:flex-row 2xl:justify-around">
+            <h1 className="text-textBlack font-lobster text-lg">
+              <Link to="/" className='text-white font-lobster text-2xl md:text-3xl'>
                 <span className="text-acent">E</span>v
                 <span className="text-white">en</span>ts
                 <span className="text-acent">B</span>r
                 <span className="text-white">ew</span>
               </Link>
             </h1>
-            <ul className="flex w-[30%] justify-around items-center gap-x-1 sm:gap-x-2 text-xs sm:text-base md:text-lg lg:text-xl text-black h-full">
-              <div className="flex justify-center items-center">
+            <ul className="flex w-full h-full justify-around items-center text-xs text-black md:w-[58%] lg:w-[46%] xl:w-[33%] 2xl:w-[18%]">
+              <div className="flex justify-center items-center h-full">
                 {user.user.username && (
-                  <li className="font-bold text-white rounded-xl p-[6px] sm:p-[2px] h-2/3 flex items-center line-clamp-1">
+                  <li className="h-full flex items-center justify-center line-clamp-1 font-bold text-white rounded-xl">
                     <img
-                      className="h-[80px] w-[60px]  hidden md:block md:h-full mr-1 md:mr-2 rounded-full"
+                      className="w-[40px] h-[40px]  mr-1 rounded-full md:mr-2 md:block md:w-[50px] md:h-[50px] lg:w-[70px] lg:h-[70px]"
                       src={imageProfile}
                       alt="adminImg"
                     />
-
-                    {user.user.username}
+                    <span className="hidden md:flex md:mr-2 md:text-base">{user.user.username}</span>
                   </li>
                 )}
                 <li>
                   <button
-                    className="h-[80px] hidden md:block md:h-full relative"
+                    className="h-[50px] md:block md:h-full relative"
                     onClick={handleClick}
                   >
-                    <img className="w-[34px] mx-2" src={editarPerfil} alt="" />
+                    <img className="w-[20px] md:w-[30px]" src={editarPerfil} alt="" />
                   </button>
                 </li>
               </div>
               <div className="h-[60%] w-[1px] bg-amber-900"></div>
-              <li className="bg-acent text-primary p-[6px] md:p-2 rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
+              <li className="bg-acent w-[85px] py-2 text-center  text-primary rounded-lg hover:animate-bouncing hover:animate-iteration-count-infinite duration-100 md:w-[100px] md:font-semibold md:text-base">
                 <Link to="/events">Mis eventos</Link>
               </li>
-              <li className="bg-acent text-primary  p-[6px] md:p-2 rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
+              <li className="bg-acent w-[85px] py-2 text-center text-primary rounded-lg hover:animate-bouncing hover:animate-iteration-count-infinite duration-100 md:w-[120px] md:font-semibold md:text-base">
                 <Link to="/add-event">Añadir evento</Link>
               </li>
-              <li className="bg-acent text-primary  p-[6px] md:p-2 rounded-xl hover:animate-bouncing hover:animate-iteration-count-infinite duration-100">
+              <li className="bg-acent w-[85px] py-2 text-center text-primary  rounded-lg hover:animate-bouncing hover:animate-iteration-count-infinite duration-100 md:w-[50px] md:font-semibold md:text-base">
                 <Link
                   to="/"
-                  onClick={() => {
+                  onClick={() => {md:
                     logout();
                   }}
                 >
