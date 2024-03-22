@@ -26,7 +26,7 @@ function Navbar() {
     <>
       {isAuthenticated ? (
         <>
-          <nav className="bg-amber-950 w-full h-[90px] flex flex-col justify-between items-center px-4  border-b-[1px] border-amber-800 md:flex-row 2xl:justify-around">
+          <nav className="bg-amber-950 w-full h-[90px] flex flex-col justify-between items-center px-4  border-b-[1px] border-amber-800 sm:flex-row 2xl:justify-around">
             <h1 className="text-textBlack font-lobster text-lg">
               <Link to="/" className='text-white font-lobster text-2xl md:text-3xl'>
                 <span className="text-acent">E</span>v
@@ -35,7 +35,7 @@ function Navbar() {
                 <span className="text-white">ew</span>
               </Link>
             </h1>
-            <ul className="flex w-full h-full justify-around items-center text-xs text-black md:w-[58%] lg:w-[46%] xl:w-[33%] 2xl:w-[18%]">
+            <ul className="flex w-full h-full justify-around items-center text-xs text-black sm:w-[60%] md:w-[60%] lg:w-[46%] xl:w-[38%] 2xl:w-[31%]">
               <div className="flex justify-center items-center h-full">
                 {user.user.username && (
                   <li className="h-full flex items-center justify-center line-clamp-1 font-bold text-white rounded-xl">
