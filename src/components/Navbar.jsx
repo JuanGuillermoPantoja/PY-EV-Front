@@ -35,12 +35,12 @@ function Navbar() {
                 <span className="text-white">ew</span>
               </Link>
             </h1>
-            <ul className="flex w-full h-full justify-around items-center text-xs text-black md:w-[58%] lg:w-[43%] xl:w-[30%] 2xl:w-[20%]">
+            <ul className="flex w-full h-full justify-around items-center text-xs text-black md:w-[58%] lg:w-[46%] xl:w-[33%] 2xl:w-[18%]">
               <div className="flex justify-center items-center h-full">
                 {user.user.username && (
                   <li className="h-full flex items-center justify-center line-clamp-1 font-bold text-white rounded-xl">
                     <img
-                      className="w-[40px] h-[40px]  mr-1 rounded-full md:mr-2 md:block md:w-[50px] md:h-[50px]"
+                      className="w-[40px] h-[40px]  mr-1 rounded-full md:mr-2 md:block md:w-[50px] md:h-[50px] lg:w-[70px] lg:h-[70px]"
                       src={imageProfile}
                       alt="adminImg"
                     />
@@ -52,7 +52,7 @@ function Navbar() {
                     className="h-[50px] md:block md:h-full relative"
                     onClick={handleClick}
                   >
-                    <img className="w-[20px] md:w-[20px]" src={editarPerfil} alt="" />
+                    <img className="w-[20px] md:w-[30px]" src={editarPerfil} alt="" />
                   </button>
                 </li>
               </div>
