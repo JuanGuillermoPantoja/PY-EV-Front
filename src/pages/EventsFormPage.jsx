@@ -129,7 +129,7 @@ function EventsFormPage() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="lg:h-screen bg-gradient-orange bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2 xl:justify-center items-center ">
+      <div className="lg:h-screen bg-white bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2 xl:justify-center items-center ">
         <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-sm xl:w-[40%] xl:h-[80%]">
           <form
             className="flex flex-col h-full w-[85%] justify-center xl:w-3/4"
