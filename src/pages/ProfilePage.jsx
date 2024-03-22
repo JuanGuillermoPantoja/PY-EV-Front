@@ -165,7 +165,7 @@ function ProfilePage() {
                 />
               ) : (
                 <img
-                  className="h-[180px] w-[180px] sm:h-[200px] sm:w-[200px] md:h-[210px] md:w-[210px] lg:h-[240px] lg:w-[240px] xl:-[250px] xl:w-[250px] rounded-full"
+                  className="bg-amber-950 p-2 h-[180px] w-[180px] sm:h-[200px] sm:w-[200px] md:h-[210px] md:w-[210px] lg:h-[240px] lg:w-[240px] xl:-[250px] xl:w-[250px] rounded-full"
                   src={userIcon}
                   alt="Previsualización"
                 />

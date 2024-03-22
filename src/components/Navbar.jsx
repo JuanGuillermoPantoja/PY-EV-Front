@@ -65,8 +65,8 @@ function Navbar() {
               </li>
               <li className="bg-acent w-[85px] py-2 text-center text-primary  rounded-lg hover:animate-bouncing hover:animate-iteration-count-infinite duration-100 md:w-[50px] md:font-semibold md:text-base">
                 <Link
-                  to="/"
-                  onClick={() => {md:
+                  to="/login"
+                  onClick={() => {
                     logout();
                   }}
                 >
