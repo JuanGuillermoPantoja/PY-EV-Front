@@ -129,8 +129,8 @@ function EventsFormPage() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="lg:h-screen bg-white bg-cover bg-center pt-4 flex flex-col lg:flex-row lg:gap-4 lg:px-2 xl:justify-center items-center ">
-        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-[80%] rounded-sm xl:w-[40%] xl:h-[80%]">
+      <div className="pb-4 lg:h-screen lg:pb-0 bg-white bg-cover bg-center pt-4 flex flex-col lg:gap-4 lg:px-2 xl:justify-center items-center ">
+        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-1/2 rounded-sm xl:w-[40%] xl:h-[80%]">
           <form
             className="flex flex-col h-full w-[85%] justify-center xl:w-3/4"
             onSubmit={onSubmit}
