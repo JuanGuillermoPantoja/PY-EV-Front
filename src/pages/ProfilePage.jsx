@@ -147,32 +147,32 @@ function ProfilePage() {
   return (
     <>
       <Navbar />
-      <div className="w-full h-[80vh] flex flex-col items-center justify-center bg-white ">
-        <div className="h-[90%] p-4 bg-gray-50 shadow-complete shadow-gray-200 text-black flex justify-between items-center w-[90%] rounded-xl">
-          <div className="flex justify-center items-center flex-col w-[30%]">
+      <div className="w-full xl:h-[80vh] flex flex-col items-center justify-center bg-white ">
+        <div className="h-[90%] p-4 bg-gray-50 shadow-complete shadow-gray-200 text-black flex justify-between flex-col xl:flex-row items-center w-[90%] rounded-xl">
+          <div className="flex justify-center items-center flex-col xl:w-[30%]">
             <div className="mb-4">
               {profileImage ? (
                 <img
-                  className="h-[250px] w-[250px] border-2 border-amber-950 rounded-full"
+                  className="h-[180px] w-[180px] sm:h-[200px] sm:w-[200px] md:h-[210px] md:w-[210px] lg:h-[240px] lg:w-[240px] xl:h-[250px] xl:w-[250px] border-2 border-amber-950 rounded-full"
                   src={profileImage}
                   alt="Imagen de perfil"
                 />
               ) : user.user.img_profile ? (
                 <img
-                  className="h-[250px] w-[250px] rounded-full border-2 border-amber-950"
+                  className="h-[180px] xl:h-[250px] sm:h-[200px] sm:w-[200px] md:h-[210px] md:w-[210px] lg:h-[240px] lg:w-[240px] w-[180px] xl:w-[250px] rounded-full border-2 border-amber-950"
                   src={`https://events-cqtw.onrender.com/uploads/${user.user.img_profile}`}
                   alt="Imagen de perfil"
                 />
               ) : (
                 <img
-                  className="h-[250px] w-[250px] rounded-full"
+                  className="h-[180px] w-[180px] sm:h-[200px] sm:w-[200px] md:h-[210px] md:w-[210px] lg:h-[240px] lg:w-[240px] xl:-[250px] xl:w-[250px] rounded-full"
                   src={userIcon}
                   alt="Previsualización"
                 />
               )}
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1 xl:flex-row xl:gap-0">
               <button
                 onClick={handleButtonClick}
                 className="ml-1 text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-xl hover:bg-amber-600"
@@ -193,7 +193,7 @@ function ProfilePage() {
               </button>
             </div>
           </div>
-          <div className="w-[65%]">
+          <div className="w-full mt-4 md:w-[85%] xl:w-[65%]">
             <div className="mb-4">
               <div>
                 <button
@@ -322,7 +322,7 @@ function ProfilePage() {
                 <div className="flex">
                   <button
                     onClick={handleChangePassword}
-                    className="w-[50%] text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-amber-600 animate-slide-in-top animate-duration-300"
+                    className="w-[70%] md:w-[50%] text-base bg-acent font-bold p-2 h-10 text-textBlack shadow-gold shadow-inner rounded-t-none rounded-md  hover:bg-amber-600 animate-slide-in-top animate-duration-300"
                   >
                     Cambiar Contraseña
                   </button>
