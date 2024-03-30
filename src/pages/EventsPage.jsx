@@ -88,7 +88,7 @@ function EventsPage() {
                             <p className="h-[28%] line-clamp-2 bg-acent text-textBlack text-base w-[75%] flex justify-center items-center relative z-10">
                               {event.promotion}
                             </p>
-                            <p className="h-[17%] text-center bg-textBlack text-base text-acent w-[75%] relative z-10">
+                            <p className="flex justify-center items-center h-[20%] text-center bg-textBlack text-base text-acent w-[75%] relative z-10">
                               {dayjs(event.dates)
                                 .utc()
                                 .format("DD [de] MMMM [del] YYYY")}
