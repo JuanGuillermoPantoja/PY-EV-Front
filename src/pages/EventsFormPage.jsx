@@ -130,9 +130,9 @@ function EventsFormPage() {
     <>
       <Navbar></Navbar>
       <div className="xl:h-screen xl:flex-row pb-4 lg:pb-0 bg-white bg-cover bg-center pt-4 flex flex-col lg:gap-4 lg:px-2 xl:justify-center items-center min-[1920px]:h-[900px]">
-        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-1/2 rounded-sm xl:w-[40%] xl:h-[80%] 2xl:h-[70%] min-[1920px]:h-[74%] min-[1920px]:w-[35%]">
+        <div className="flex justify-center items-center bg-amber-950 h-3/4 w-[90%] sm:w-3/4 lg:w-1/2 rounded-sm xl:w-[40%] xl:h-[80%] 2xl:h-[70%] min-[1920px]:h-[80%] min-[1920px]:w-[35%]">
           <form
-            className="flex flex-col h-full w-[85%] justify-center xl:w-3/4 min-[1920px]:w-[80%] min-[1920px]:justify-start"
+            className="flex flex-col h-full w-[85%] justify-center xl:w-3/4 min-[1920px]:w-[80%] min-[1920px]:justify-start min-[1920px]:gap-1"
             onSubmit={onSubmit}
           >
             <h2 className="font-bold text-lg text-start">
@@ -213,11 +213,11 @@ function EventsFormPage() {
           </form>
         </div>
         {params.id && (
-          <div className="flex flex-col mt-4 items-center w-[90%] sm:w-3/4 lg:w-1/2 lg:h-3/4 mb-4 bg-amber-950 xl:w-[40%] xl:h-[80%] 2xl:h-[70%] min-[1920px]:h-[74%] min-[1920px]:w-[35%] h-3/4 rounded-sm">
+          <div className="flex flex-col mt-4 items-center w-[90%] sm:w-3/4 lg:w-1/2 lg:h-3/4 mb-4 bg-amber-950 xl:w-[40%] xl:h-[80%] 2xl:h-[70%] min-[1920px]:h-[80%] min-[1920px]:w-[35%] min-[1920px]:gap-1 h-3/4 rounded-sm">
             <h2 className="font-bold text-start text-lg">Imagen de portada</h2>
             <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
             <div className="flex flex-col w-[100%] lg:justify-center lg:h-1/2 xl:h-[60%] 2xl:h-[42%] h-full mb-4 lg:mb-0">
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center min-[1920px]:gap-1">
                 <div className="bg-white p-2 w-[70%] h-[145px] sm:w-[60%] sm:h-[200px] md:h-[240px] lg:h-[160px] lg:w-[60%] xl:w-[60%] xl:h-[140px] 2xl:h-[200px] min-[1920px]:h-[230px] rounded-md flex justify-center items-center">
                   <img
                     className="w-[90%] h-[120px] sm:h-[160px] md:h-[200px] lg:h-[90%] 2xl:h-[180px] min-[1920px]:h-[210px] min-[1920px]:w-[95%]"

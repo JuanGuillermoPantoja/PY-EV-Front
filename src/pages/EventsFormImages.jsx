@@ -258,7 +258,7 @@ function EventsFormImages() {
   };
 
   return (
-    <div className="mt-4 2xl:mt-0 lg:pb-1 lg:h-2/3 flex flex-col justify-center  items-center w-full">
+    <div className="mt-4 2xl:mt-0 lg:pb-1 lg:h-2/3 flex flex-col justify-center items-center w-full min-[1920px]:gap-1">
       <h2 className="font-bold text-lg">Mostrar más imagenes</h2>
       <div className="w-[85%] 2xl:w-[80%] bg-acent h-[1px] mb-4"></div>
       <SimpleBar className="bg-white p-2 w-[70%] sm:w-[60%] md:h-[180px] rounded-md bg-cover bg-center h-[145px] sm:h-[160px] lg:w-[60%] lg:h-[150px] xl:w-[60%] xl:h-[130px]  2xl:w-[60%] 2xl:h-[180px] min-[1920px]:h-[200px]">
